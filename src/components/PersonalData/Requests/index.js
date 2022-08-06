@@ -1,6 +1,7 @@
 import ReqEntry from "./ReqEntry";
 import ReqHeader from "./ReqHeader";
 import { requestNames, requestMicroNames } from "../../../util";
+import { nanoid } from "nanoid";
 
 const Requests = (props) => {
     const { counts, isMicro } = props;
@@ -10,7 +11,11 @@ const Requests = (props) => {
         <ul>
             <ReqHeader isMicro={isMicro} />
             {names.map((item) => (
-                <ReqEntry name={item.name} value={counts[item.sysName]} />
+                <ReqEntry
+                    key={item.id}
+                    name={item.name}
+                    value={counts[item.sysName]}
+                />
             ))}
         </ul>
     );

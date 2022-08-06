@@ -1,15 +1,20 @@
 const requestNames = [
-    { sysName: "nbkiRequestsCount", name: "Total" },
-    { sysName: "nbkiCollectionRequestCount", name: "Last 24 months" },
-    { sysName: "nbkiLastRequestCount", name: "Last 30 days" },
-    { sysName: "score", name: "Score" },
+    { id: 1, sysName: "nbkiRequestsCount", name: "Total" },
+    { id: 2, sysName: "nbkiCollectionRequestCount", name: "Last 24 months" },
+    { id: 3, sysName: "nbkiLastRequestCount", name: "Last 30 days" },
+    { id: 4, sysName: "score", name: "Score" },
 ];
 
 const requestMicroNames = [
-    { sysName: "microcreditRequestsCount", name: "Total" },
-    { sysName: "last30DaysMicrocreditRequestsCount", name: "Last 30 days" },
-    { sysName: "lastYearMicrocreditRequestsCount", name: "Last year" },
+    { id: 1, sysName: "microcreditRequestsCount", name: "Total" },
     {
+        id: 2,
+        sysName: "last30DaysMicrocreditRequestsCount",
+        name: "Last 30 days",
+    },
+    { id: 3, sysName: "lastYearMicrocreditRequestsCount", name: "Last year" },
+    {
+        id: 4,
         sysName: "more1YearMicrocreditRequestsCount",
         name: "More than 1 year",
     },
