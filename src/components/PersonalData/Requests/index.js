@@ -1,11 +1,10 @@
 import ReqEntry from "./ReqEntry";
 import ReqHeader from "./ReqHeader";
-import { requestNames, requestMicroNames } from "../../../util";
-import { nanoid } from "nanoid";
+import { Match } from "../../../helpers";
 
 const Requests = (props) => {
     const { counts, isMicro } = props;
-    const names = isMicro ? requestMicroNames : requestNames;
+    const names = isMicro ? Match.requestMicroNames : Match.requestNames;
 
     return (
         <ul>
