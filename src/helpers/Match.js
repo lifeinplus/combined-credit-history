@@ -1,3 +1,34 @@
+const paymentChbNames = [
+    {
+        id: 1,
+        name: "Payments amount CHB: RUB",
+        sysName: "paymentAmountChbTotal",
+    },
+    {
+        id: 2,
+        name: "RUB",
+        sysName: "paymentAmountChbRub",
+    },
+    {
+        id: 3,
+        name: "USD",
+        sysName: "paymentAmountChbUsd",
+    },
+    {
+        id: 4,
+        name: "EUR",
+        sysName: "paymentAmountChbEur",
+    },
+];
+
+const paymentFlcNames = [
+    {
+        id: 1,
+        name: "Payments amount 4892-U: RUB",
+        sysName: "paymentAmountFlcTotal",
+    },
+];
+
 const requestNames = [
     { id: 1, sysName: "nbkiRequestsCount", name: "Total" },
     { id: 2, sysName: "nbkiCollectionRequestCount", name: "Last 24 months" },
@@ -20,4 +51,4 @@ const requestMicroNames = [
     },
 ];
 
-export { requestNames, requestMicroNames };
+export { paymentChbNames, paymentFlcNames, requestNames, requestMicroNames };

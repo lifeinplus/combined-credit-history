@@ -34,7 +34,7 @@ function App() {
                     paymentAmountChbTotal: data.bkiPaymentsAmountTotal,
                     paymentAmountChbRub: data.bkiPaymentsAmountRub,
                     paymentAmountChbUsd: data.bkiPaymentsAmountUsd,
-                    paymentAmountChbEur: data.bkiPaymentsAmount,
+                    paymentAmountChbEur: data.bkiPaymentsAmountEur,
                 }}
                 paymentAmountsFlc={{
                     paymentAmountFlcTotal: data.pskPaymentsAmountTotal,

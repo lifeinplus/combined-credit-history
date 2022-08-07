@@ -2,14 +2,24 @@ import React from "react";
 import Header from "./Header";
 import { ToggleControls } from "./ToggleControls";
 import CreditObligations from "./CreditObligations";
-import PaymentAmountsChb from "./PaymentAmountsChb";
-import PaymentAmountsFlc from "./PaymentAmountsFlc";
+import PaymentAmounts from "./PaymentAmounts";
+import { Match } from "../../helpers";
 
 function CreditHistory(props) {
     const { creditObligations, header, paymentAmountsChb, paymentAmountsFlc } =
         props;
 
     const [showExtendedData, setShowExtendedData] = React.useState(false);
+
+    const paymentChbList = Match.paymentChbNames.map((item) => ({
+        ...item,
+        value: paymentAmountsChb[item.sysName],
+    }));
+
+    const paymentFlcList = Match.paymentFlcNames.map((item) => ({
+        ...item,
+        value: paymentAmountsFlc[item.sysName],
+    }));
 
     return (
         <div>
@@ -25,19 +35,8 @@ function CreditHistory(props) {
                 cardsAmount={creditObligations.cardsAmount}
                 loansAmount={creditObligations.loansAmount}
             />
-            <PaymentAmountsChb
-                paymentAmountChbTotal={paymentAmountsChb.paymentAmountChbTotal}
-                paymentAmountChbRub={paymentAmountsChb.paymentAmountChbTotal}
-                paymentAmountChbUsd={paymentAmountsChb.paymentAmountChbTotal}
-                paymentAmountChbEur={paymentAmountsChb.paymentAmountChbTotal}
-            />
-            {showExtendedData && (
-                <PaymentAmountsFlc
-                    paymentAmountFlcTotal={
-                        paymentAmountsFlc.paymentAmountFlcTotal
-                    }
-                />
-            )}
+            <PaymentAmounts list={paymentChbList} />
+            {showExtendedData && <PaymentAmounts list={paymentFlcList} />}
         </div>
     );
 
