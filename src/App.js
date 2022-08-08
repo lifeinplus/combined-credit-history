@@ -5,7 +5,26 @@ import { PersonalData } from "./components/PersonalData";
 import data from "./data/945349.json";
 
 function App() {
+    // TODO: Revert after creating loans table
+    // const [expandCreditHistory, setExpandCreditHistory] = React.useState(true);
+
     const [expandCreditHistory, setExpandCreditHistory] = React.useState(false);
+    const [showExtendedData, setShowExtendedData] = React.useState(false);
+
+    const buttonNames = {
+        creditHistory: ["Expand", "Collapse"],
+        extendedData: ["+", "-"],
+    };
+
+    const buttonNameCreditHistory = getButtonName(
+        expandCreditHistory,
+        buttonNames.creditHistory
+    );
+
+    const buttonNameExtendedData = getButtonName(
+        showExtendedData,
+        buttonNames.extendedData
+    );
 
     return (
         <div className="App">
@@ -22,32 +41,32 @@ function App() {
                 />
             )}
             <CreditHistory
-                creditObligations={{
-                    cardsAmount: data.bkiCreditCardsAmount,
-                    loansAmount: data.bkiLoansAmount,
+                data={data}
+                showExtendedData={showExtendedData}
+                toggleControls={{
+                    creditHistory: {
+                        name: buttonNameCreditHistory,
+                        onClick: (event) => {
+                            const { target } = event;
+                            target.innerText = buttonNameCreditHistory;
+                            setExpandCreditHistory(!expandCreditHistory);
+                        },
+                    },
+                    extendedData: {
+                        name: buttonNameExtendedData,
+                        onClick: (event) => {
+                            const { target } = event;
+                            target.innerText = buttonNameExtendedData;
+                            setShowExtendedData(!showExtendedData);
+                        },
+                    },
                 }}
-                header={{
-                    loansCount: data.loansCount,
-                    lastBkiCreationDate: data.lastBkiCreationDate,
-                }}
-                paymentAmountsChb={{
-                    paymentAmountChbTotal: data.bkiPaymentsAmountTotal,
-                    paymentAmountChbRub: data.bkiPaymentsAmountRub,
-                    paymentAmountChbUsd: data.bkiPaymentsAmountUsd,
-                    paymentAmountChbEur: data.bkiPaymentsAmountEur,
-                }}
-                paymentAmountsFlc={{
-                    paymentAmountFlcTotal: data.pskPaymentsAmountTotal,
-                }}
-                toggleCreditHistory={toggleCreditHistory}
             />
         </div>
     );
 
-    function toggleCreditHistory(event) {
-        const { target } = event;
-        target.innerText = expandCreditHistory ? "Expand" : "Collapse";
-        setExpandCreditHistory(!expandCreditHistory);
+    function getButtonName(isFirst, names) {
+        return isFirst ? names[1] : names[0];
     }
 }
 

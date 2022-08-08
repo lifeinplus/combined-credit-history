@@ -1,44 +1,45 @@
-const paymentChbAmounts = [
+const paymentAmounts = [
     {
         id: 1,
         name: "Payments amount CHB: RUB",
-        sysName: "paymentAmountChbTotal",
+        sysName: "bkiPaymentsAmountTotal",
+        type: "CHB",
     },
     {
         id: 2,
         name: "RUB",
-        sysName: "paymentAmountChbRub",
+        sysName: "bkiPaymentsAmountRub",
+        type: "CHB",
     },
     {
         id: 3,
         name: "USD",
-        sysName: "paymentAmountChbUsd",
+        sysName: "bkiPaymentsAmountUsd",
+        type: "CHB",
     },
     {
         id: 4,
         name: "EUR",
-        sysName: "paymentAmountChbEur",
+        sysName: "bkiPaymentsAmountEur",
+        type: "CHB",
     },
-];
-
-const paymentFlcAmounts = [
     {
-        id: 1,
+        id: 5,
         name: "Payments amount 4892-U: RUB",
-        sysName: "paymentAmountFlcTotal",
+        sysName: "pskPaymentsAmountTotal",
+        type: "FLC",
     },
-];
-
-const paymentObligationAmounts = [
     {
-        id: 1,
+        id: 6,
         name: "Loans amount: RUB",
-        sysName: "loansAmount",
+        sysName: "bkiLoansAmount",
+        type: "obligation",
     },
     {
-        id: 2,
+        id: 7,
         name: "Cards amount: RUB",
-        sysName: "cardsAmount",
+        sysName: "bkiCreditCardsAmount",
+        type: "obligation",
     },
 ];
 
@@ -64,10 +65,4 @@ const requestMicrocreditCounts = [
     },
 ];
 
-export {
-    paymentChbAmounts,
-    paymentFlcAmounts,
-    paymentObligationAmounts,
-    requestCounts,
-    requestMicrocreditCounts,
-};
+export { paymentAmounts, requestCounts, requestMicrocreditCounts };

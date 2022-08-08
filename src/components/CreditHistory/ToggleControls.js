@@ -1,8 +1,12 @@
 const ToggleControls = (props) => {
+    const { creditHistory, extendedData } = props.controls;
+
     return (
         <div>
-            <button onClick={props.toggleCreditHistory}>Expand</button>
-            <button onClick={props.toggleExtendedData}>+</button>
+            <button onClick={creditHistory.onClick}>
+                {creditHistory.name}
+            </button>
+            <button onClick={extendedData.onClick}>{extendedData.name}</button>
         </div>
     );
 };

@@ -5,53 +5,31 @@ import { PaymentAmounts } from "./PaymentAmounts";
 import { ToggleControls } from "./ToggleControls";
 
 function CreditHistory(props) {
-    const { creditObligations, header, paymentAmountsChb, paymentAmountsFlc } =
-        props;
+    const { data } = props;
 
-    const [showExtendedData, setShowExtendedData] = React.useState(false);
-
-    const paymentChbAmounts = matchAmounts(
-        Match.paymentChbAmounts,
-        paymentAmountsChb
-    );
-
-    const paymentFlcAmounts = matchAmounts(
-        Match.paymentFlcAmounts,
-        paymentAmountsFlc
-    );
-
-    const paymentObligationAmounts = matchAmounts(
-        Match.paymentObligationAmounts,
-        creditObligations
-    );
+    const amounts = {
+        chb: defineAmounts(Match.paymentAmounts, data, "CHB"),
+        flc: defineAmounts(Match.paymentAmounts, data, "FLC"),
+        obligation: defineAmounts(Match.paymentAmounts, data, "obligation"),
+    };
 
     return (
         <div>
-            <Header
-                loansCount={header.loansCount}
-                lastBkiCreationDate={header.lastBkiCreationDate}
-            />
-            <ToggleControls
-                toggleExtendedData={toggleExtendedData}
-                toggleCreditHistory={props.toggleCreditHistory}
-            />
-            <PaymentAmounts amounts={paymentObligationAmounts} />
-            <PaymentAmounts amounts={paymentChbAmounts} />
-            {showExtendedData && <PaymentAmounts amounts={paymentFlcAmounts} />}
+            <Header data={data} />
+            <ToggleControls controls={props.toggleControls} />
+            <PaymentAmounts amounts={amounts.obligation} />
+            <PaymentAmounts amounts={amounts.chb} />
+            {props.showExtendedData && <PaymentAmounts amounts={amounts.flc} />}
         </div>
     );
 
-    function matchAmounts(matchList, amounts) {
-        return matchList.map((item) => ({
-            ...item,
-            value: amounts[item.sysName],
-        }));
-    }
-
-    function toggleExtendedData(event) {
-        const { target } = event;
-        target.innerText = showExtendedData ? "+" : "-";
-        setShowExtendedData(!showExtendedData);
+    function defineAmounts(matchList, data, type) {
+        return matchList
+            .filter((item) => item.type === type)
+            .map((item) => ({
+                ...item,
+                value: data[item.sysName],
+            }));
     }
 }
 
