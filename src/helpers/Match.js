@@ -1,3 +1,141 @@
+const loanFields = [
+    { id: 101, extended: false, name: "0+", sysName: "Delinquency0Count" },
+    { id: 102, extended: false, name: "30+", sysName: "Delinquency30Count" },
+    { id: 103, extended: false, name: "60+", sysName: "Delinquency60Count" },
+    { id: 104, extended: false, name: "90+", sysName: "Delinquency90Count" },
+    {
+        id: 105,
+        extended: false,
+        name: "Restr.",
+        sysName: "DelinquencyRestructuringCount",
+    },
+    { id: 106, extended: false, name: "Status", sysName: "AccountRatingText" },
+    {
+        id: 107,
+        extended: false,
+        name: "Payment (CHB)",
+        sysName: "calculatedBkiPayment",
+    },
+    { id: 108, extended: false, name: "Loan Type", sysName: "LoanTypeText" },
+    { id: 109, extended: false, name: "Loan Amount", sysName: "LoanAmount" },
+    {
+        id: 110,
+        extended: false,
+        name: "Loan Currency",
+        sysName: "LoanCurrencyCode",
+    },
+    {
+        id: 111,
+        extended: false,
+        name: "Balance Amount",
+        sysName: "CurrentBalanceAmount",
+    },
+    { id: 112, extended: false, name: "Debt Amount", sysName: "DebtAmount" },
+    {
+        id: 113,
+        extended: false,
+        name: "Unpaid Percent",
+        sysName: "unpaidPercent",
+    },
+    {
+        id: 114,
+        extended: false,
+        name: "Delinquency Amount",
+        sysName: "DelinquencyAmount",
+    },
+    { id: 115, extended: false, name: "Guarantee", sysName: "AccountCodeText" },
+    {
+        id: 116,
+        extended: false,
+        name: "Creation Date",
+        sysName: "LoanCreationDateText",
+    },
+    { id: 117, extended: false, name: "Close Date", sysName: "CloseDateText" },
+    {
+        id: 118,
+        extended: false,
+        name: "Last Update Date",
+        sysName: "LastInfoUpdatedDateText",
+    },
+    {
+        id: 119,
+        extended: true,
+        name: "Payment Period Count",
+        sysName: "PaymentPeriodCount",
+    },
+    {
+        id: 120,
+        extended: true,
+        name: "Months Number Since Date Of Creation",
+        sysName: "monthsNumberSinceDateOfCreation",
+    },
+    {
+        id: 121,
+        extended: false,
+        name: "Business Category",
+        sysName: "BusinessCategory",
+    },
+    {
+        id: 122,
+        extended: false,
+        name: "NBCH Loan Number",
+        sysName: "nbkiLoanNumber",
+    },
+    {
+        id: 123,
+        extended: false,
+        name: "OKB Loan Number",
+        sysName: "okbLoanNumber",
+    },
+    {
+        id: 124,
+        extended: true,
+        name: "Months Number Close Date Remaining",
+        sysName: "monthsNumberCloseDateRemaining",
+    },
+    { id: 125, extended: true, name: "FLC Taken", sysName: "pskTaken" },
+    { id: 126, extended: true, name: "FLC CBR", sysName: "pskCbr" },
+    { id: 127, extended: true, name: "FLC NBCH", sysName: "pskNbki" },
+    { id: 128, extended: true, name: "FLC OKB", sysName: "pskOkb" },
+    {
+        id: 129,
+        extended: true,
+        name: "Creditor Type (CBR-NBCH)",
+        sysName: "creditorTypeNbki",
+    },
+    {
+        id: 130,
+        extended: true,
+        name: "Creditor Type (CBR-OKB)",
+        sysName: "creditorTypeOkb",
+    },
+    {
+        id: 131,
+        extended: true,
+        name: "Loan Type (CBR-NBCH)",
+        sysName: "loanTypeNbki",
+    },
+    {
+        id: 132,
+        extended: true,
+        name: "Finance Type (CBR-OKB)",
+        sysName: "financeTypeOkb",
+    },
+    {
+        id: 133,
+        extended: true,
+        name: "Loan Type (CBR-OKB)",
+        sysName: "financeTypeOkb",
+    },
+    {
+        id: 134,
+        extended: true,
+        name: "Contract Period Count",
+        sysName: "contractPeriodCount",
+    },
+    { id: 135, extended: false, name: "Payment (FLC)", sysName: "pskPayment" },
+];
+
 const paymentAmounts = [
     {
         id: 1,
@@ -83,4 +221,4 @@ const requestCounts = [
     },
 ];
 
-export { paymentAmounts, requestCounts };
+export { loanFields, paymentAmounts, requestCounts };

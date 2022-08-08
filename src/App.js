@@ -5,9 +5,6 @@ import { PersonalData } from "./components/PersonalData";
 import data from "./data/945349.json";
 
 function App() {
-    // TODO: Revert after creating loans table
-    // const [expandCreditHistory, setExpandCreditHistory] = React.useState(true);
-
     const [expandCreditHistory, setExpandCreditHistory] = React.useState(false);
     const [showExtendedData, setShowExtendedData] = React.useState(false);
 
