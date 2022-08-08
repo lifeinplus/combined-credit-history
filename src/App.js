@@ -14,11 +14,11 @@ function App() {
                     applicationNumber={data.DOCUMENTNUMBER}
                     creationDate={data.CREATIONDATE}
                     documents={data.personInfo}
-                    requestsCounts={{
+                    requestCounts={{
                         ...data.requestsCounts,
                         score: data.ScoringBall,
                     }}
-                    requestsMicrocreditCounts={data.microcreditRequestsCounts}
+                    requestMicrocreditCounts={data.microcreditRequestsCounts}
                 />
             )}
             <CreditHistory

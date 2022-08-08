@@ -1,9 +1,9 @@
 const PaymentAmounts = (props) => {
-    const { list } = props;
+    const { amounts } = props;
 
     return (
         <ul>
-            {list.map((item) => (
+            {amounts.map((item) => (
                 <li key={item.id}>
                     <small>{item.name}</small>
                     <span>{item.value}</span>
@@ -13,4 +13,4 @@ const PaymentAmounts = (props) => {
     );
 };
 
-export default PaymentAmounts;
+export { PaymentAmounts };

@@ -1,6 +1,6 @@
 import Header from "./Header";
 import { Documents } from "./Documents";
-import { Requests } from "./Requests";
+import { RequestCounts } from "./Requests";
 
 function PersonalData(props) {
     return (
@@ -10,8 +10,11 @@ function PersonalData(props) {
                 creationDate={props.creationDate}
             />
             <Documents documents={props.documents} />
-            <Requests counts={props.requestsCounts} />
-            <Requests counts={props.requestsMicrocreditCounts} isMicro={true} />
+            <RequestCounts counts={props.requestCounts} />
+            <RequestCounts
+                counts={props.requestMicrocreditCounts}
+                isMicro={true}
+            />
         </div>
     );
 }

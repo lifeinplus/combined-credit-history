@@ -1,9 +1,8 @@
 import React from "react";
-import Header from "./Header";
-import { ToggleControls } from "./ToggleControls";
-import CreditObligations from "./CreditObligations";
-import PaymentAmounts from "./PaymentAmounts";
 import { Match } from "../../helpers";
+import { Header } from "./Header";
+import { PaymentAmounts } from "./PaymentAmounts";
+import { ToggleControls } from "./ToggleControls";
 
 function CreditHistory(props) {
     const { creditObligations, header, paymentAmountsChb, paymentAmountsFlc } =
@@ -11,15 +10,20 @@ function CreditHistory(props) {
 
     const [showExtendedData, setShowExtendedData] = React.useState(false);
 
-    const paymentChbList = Match.paymentChbNames.map((item) => ({
-        ...item,
-        value: paymentAmountsChb[item.sysName],
-    }));
+    const paymentChbAmounts = matchAmounts(
+        Match.paymentChbAmounts,
+        paymentAmountsChb
+    );
 
-    const paymentFlcList = Match.paymentFlcNames.map((item) => ({
-        ...item,
-        value: paymentAmountsFlc[item.sysName],
-    }));
+    const paymentFlcAmounts = matchAmounts(
+        Match.paymentFlcAmounts,
+        paymentAmountsFlc
+    );
+
+    const paymentObligationAmounts = matchAmounts(
+        Match.paymentObligationAmounts,
+        creditObligations
+    );
 
     return (
         <div>
@@ -31,14 +35,18 @@ function CreditHistory(props) {
                 toggleExtendedData={toggleExtendedData}
                 toggleCreditHistory={props.toggleCreditHistory}
             />
-            <CreditObligations
-                cardsAmount={creditObligations.cardsAmount}
-                loansAmount={creditObligations.loansAmount}
-            />
-            <PaymentAmounts list={paymentChbList} />
-            {showExtendedData && <PaymentAmounts list={paymentFlcList} />}
+            <PaymentAmounts amounts={paymentObligationAmounts} />
+            <PaymentAmounts amounts={paymentChbAmounts} />
+            {showExtendedData && <PaymentAmounts amounts={paymentFlcAmounts} />}
         </div>
     );
+
+    function matchAmounts(matchList, amounts) {
+        return matchList.map((item) => ({
+            ...item,
+            value: amounts[item.sysName],
+        }));
+    }
 
     function toggleExtendedData(event) {
         const { target } = event;
