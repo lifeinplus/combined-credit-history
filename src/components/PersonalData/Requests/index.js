@@ -3,21 +3,21 @@ import ReqHeader from "./ReqHeader";
 import { Match } from "../../../helpers";
 
 const RequestCounts = (props) => {
-    const { counts, isMicro } = props;
-    const matchList = isMicro
-        ? Match.requestMicrocreditCounts
-        : Match.requestCounts;
-
     return (
         <ul>
-            <ReqHeader isMicro={isMicro} />
-            {matchList.map((item) => (
-                <ReqEntry
-                    key={item.id}
-                    name={item.name}
-                    value={counts[item.sysName]}
-                />
-            ))}
+            <ReqHeader type={props.type} />
+            {Match.requestCounts
+                .filter((item) => item.type === props.type)
+                .map((item) => (
+                    <ReqEntry
+                        key={item.id}
+                        name={item.name}
+                        value={props.counts[item.sysName]}
+                    />
+                ))}
+            {props.type === "all" && (
+                <ReqEntry name={"Score"} value={props.score} />
+            )}
         </ul>
     );
 };

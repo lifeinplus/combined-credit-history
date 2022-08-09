@@ -1,9 +1,11 @@
 const ReqHeader = (props) => {
-    const title = props.isMicro ? "Requests for microcredits" : "Requests";
-
     return (
         <li>
-            <span>{title}</span>
+            <span>
+                {props.type === "all"
+                    ? "Requests"
+                    : "Requests for microcredits"}
+            </span>
         </li>
     );
 };

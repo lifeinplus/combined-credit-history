@@ -1,6 +1,6 @@
 import React from "react";
-import { Match } from "../../helpers";
 import { Header } from "./Header";
+import { Match } from "../../helpers";
 import { PaymentAmounts } from "./PaymentAmounts";
 import { ToggleControls } from "./ToggleControls";
 

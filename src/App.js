@@ -12,51 +12,33 @@ function App() {
     const [showExtendedData, setShowExtendedData] = React.useState(false);
 
     const buttonNames = {
-        creditHistory: ["Expand", "Collapse"],
-        extendedData: ["+", "-"],
+        creditHistory: getButtonName(expandCreditHistory, [
+            "Expand",
+            "Collapse",
+        ]),
+        extendedData: getButtonName(showExtendedData, ["+", "-"]),
     };
-
-    const buttonNameCreditHistory = getButtonName(
-        expandCreditHistory,
-        buttonNames.creditHistory
-    );
-
-    const buttonNameExtendedData = getButtonName(
-        showExtendedData,
-        buttonNames.extendedData
-    );
 
     return (
         <div className="App">
-            {!expandCreditHistory && (
-                <PersonalData
-                    applicationNumber={data.DOCUMENTNUMBER}
-                    creationDate={data.CREATIONDATE}
-                    documents={data.personInfo}
-                    requestCounts={{
-                        ...data.requestsCounts,
-                        score: data.ScoringBall,
-                    }}
-                    requestMicrocreditCounts={data.microcreditRequestsCounts}
-                />
-            )}
+            {!expandCreditHistory && <PersonalData data={data} />}
             <CreditHistory
                 data={data}
                 showExtendedData={showExtendedData}
                 toggleControls={{
                     creditHistory: {
-                        name: buttonNameCreditHistory,
+                        name: buttonNames.creditHistory,
                         onClick: (event) => {
                             const { target } = event;
-                            target.innerText = buttonNameCreditHistory;
+                            target.innerText = buttonNames.creditHistory;
                             setExpandCreditHistory(!expandCreditHistory);
                         },
                     },
                     extendedData: {
-                        name: buttonNameExtendedData,
+                        name: buttonNames.extendedData,
                         onClick: (event) => {
                             const { target } = event;
-                            target.innerText = buttonNameExtendedData;
+                            target.innerText = buttonNames.extendedData;
                             setShowExtendedData(!showExtendedData);
                         },
                     },

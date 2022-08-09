@@ -44,25 +44,43 @@ const paymentAmounts = [
 ];
 
 const requestCounts = [
-    { id: 1, sysName: "nbkiRequestsCount", name: "Total" },
-    { id: 2, sysName: "nbkiCollectionRequestCount", name: "Last 24 months" },
-    { id: 3, sysName: "nbkiLastRequestCount", name: "Last 30 days" },
-    { id: 4, sysName: "score", name: "Score" },
-];
-
-const requestMicrocreditCounts = [
-    { id: 1, sysName: "microcreditRequestsCount", name: "Total" },
+    { id: 1, name: "Total", sysName: "nbkiRequestsCount", type: "all" },
     {
         id: 2,
-        sysName: "last30DaysMicrocreditRequestsCount",
-        name: "Last 30 days",
+        name: "Last 24 months",
+        sysName: "nbkiCollectionRequestCount",
+        type: "all",
     },
-    { id: 3, sysName: "lastYearMicrocreditRequestsCount", name: "Last year" },
+    {
+        id: 3,
+        name: "Last 30 days",
+        sysName: "nbkiLastRequestCount",
+        type: "all",
+    },
     {
         id: 4,
+        sysName: "microcreditRequestsCount",
+        name: "Total",
+        type: "micro",
+    },
+    {
+        id: 5,
+        sysName: "last30DaysMicrocreditRequestsCount",
+        name: "Last 30 days",
+        type: "micro",
+    },
+    {
+        id: 6,
+        sysName: "lastYearMicrocreditRequestsCount",
+        name: "Last year",
+        type: "micro",
+    },
+    {
+        id: 7,
         sysName: "more1YearMicrocreditRequestsCount",
         name: "More than 1 year",
+        type: "micro",
     },
 ];
 
-export { paymentAmounts, requestCounts, requestMicrocreditCounts };
+export { paymentAmounts, requestCounts };

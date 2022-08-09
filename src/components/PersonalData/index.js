@@ -3,17 +3,20 @@ import { Documents } from "./Documents";
 import { RequestCounts } from "./Requests";
 
 function PersonalData(props) {
+    const { data } = props;
+
     return (
         <div>
-            <Header
-                applicationNumber={props.applicationNumber}
-                creationDate={props.creationDate}
-            />
-            <Documents documents={props.documents} />
-            <RequestCounts counts={props.requestCounts} />
+            <Header data={props.data} />
+            <Documents data={props.data} />
             <RequestCounts
-                counts={props.requestMicrocreditCounts}
-                isMicro={true}
+                counts={data.requestsCounts}
+                score={data.ScoringBall}
+                type="all"
+            />
+            <RequestCounts
+                counts={data.microcreditRequestsCounts}
+                type="micro"
             />
         </div>
     );

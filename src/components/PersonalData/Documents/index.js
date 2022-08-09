@@ -3,7 +3,9 @@ import { DocHeader } from "./DocHeader";
 import { nanoid } from "nanoid";
 
 const Documents = (props) => {
-    const documents = props.documents.map((item) => ({
+    const { data } = props;
+
+    const documents = data.personInfo.map((item) => ({
         ...item,
         id: nanoid(),
     }));
