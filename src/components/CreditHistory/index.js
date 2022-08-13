@@ -1,7 +1,9 @@
 import React from "react";
+
 import { Match } from "../../helpers";
+
 import { Header } from "./Header";
-import { Loans } from "./Loans";
+import { LoansTable } from "./LoansTable";
 import { PaymentAmounts } from "./PaymentAmounts";
 import { ToggleControls } from "./ToggleControls";
 
@@ -21,7 +23,7 @@ function CreditHistory(props) {
             <PaymentAmounts amounts={amounts.obligation} />
             <PaymentAmounts amounts={amounts.chb} />
             {props.showExtendedData && <PaymentAmounts amounts={amounts.flc} />}
-            <Loans
+            <LoansTable
                 lastBkiCreationDate={data.lastBkiCreationDate}
                 loans={data.loans}
                 showExtendedData={props.showExtendedData}

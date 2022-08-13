@@ -6,19 +6,13 @@ const Body = (props) => {
         <tbody>
             {props.loans.map((loan) => (
                 <tr key={nanoid()}>
-                    {props.loanFields.map((field) => (
-                        <td key={nanoid()}>{getValue(field, loan)}</td>
+                    {props.fields.map((field) => (
+                        <td key={nanoid()}>{getValue(loan, field)}</td>
                     ))}
                 </tr>
             ))}
         </tbody>
     );
-
-    function getValue(field, loan) {
-        return field.status
-            ? getPaymentStatus(loan.MonthlyHistoryList, field.name)
-            : loan[field.sysName];
-    }
 
     function getPaymentStatus(historyList, date) {
         const history = historyList.filter(
@@ -26,6 +20,18 @@ const Body = (props) => {
         );
 
         return history.length ? history[0].AccountPaymentStatus : null;
+    }
+
+    function getValue(loan, field) {
+        const value = loan[field.sysNameStatus] || loan[field.sysName];
+
+        if (field.type === "date" && value) {
+            return format(new Date(value), "dd.MM.yyyy");
+        }
+
+        return field.status
+            ? getPaymentStatus(loan.MonthlyHistoryList, field.name)
+            : value;
     }
 };
 

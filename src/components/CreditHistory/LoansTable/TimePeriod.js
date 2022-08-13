@@ -1,9 +1,8 @@
-function TimePeriod(lastDate, loans) {
-    const _lastDate = new Date(lastDate);
+function TimePeriod(loans) {
     const _loans = loans || [];
 
-    this.getTextMonths = function () {
-        const dates = getMonthDates();
+    this.getTextMonths = function (lastDate) {
+        const dates = getMonthDates(lastDate);
 
         return dates.map((item) => {
             return new Intl.DateTimeFormat("ru", {
@@ -13,9 +12,11 @@ function TimePeriod(lastDate, loans) {
         });
     };
 
-    function getMonthDates() {
+    function getMonthDates(lastDate) {
+        const _lastDate = new Date(lastDate);
+
         const result = [_lastDate];
-        const monthsNumber = getMonthsNumber();
+        const monthsNumber = getMonthsNumber(_lastDate);
 
         for (let i = 1; i < monthsNumber; i++) {
             let previous = result[i - 1];
@@ -29,20 +30,20 @@ function TimePeriod(lastDate, loans) {
         return result;
     }
 
-    function getMonthsNumber() {
-        const startDate = getStartDate();
+    function getMonthsNumber(lastDate) {
+        const startDate = getStartDate(lastDate);
         const startFullYear = startDate.getFullYear();
         const startMonth = startDate.getMonth();
 
-        const endDate = _lastDate;
+        const endDate = lastDate;
         const endFullYear = endDate.getFullYear();
         const endMonth = endDate.getMonth();
 
         return (endFullYear - startFullYear) * 12 + (endMonth + 1) - startMonth;
     }
 
-    function getStartDate() {
-        let result = _lastDate;
+    function getStartDate(lastDate) {
+        let result = lastDate;
 
         _loans.forEach((loan) => {
             const MonthlyHistoryList = loan.MonthlyHistoryList || [];
