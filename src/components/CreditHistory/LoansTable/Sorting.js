@@ -1,22 +1,22 @@
 function Sorting(loans) {
     const _loans = loans ? [...loans] : [];
 
-    let _compareMoreResult = 1;
-    let _compareLessResult = -1;
+    let _more;
+    let _less;
 
     const _compareFunctions = {
         amount: function (loan1, loan2) {
             const status1 = loan1[this.sysNameStatus];
             const status2 = loan2[this.sysNameStatus];
 
-            if (status1 === "Ошибка вычисления") return _compareLessResult;
-            if (status2 === "Ошибка вычисления") return _compareMoreResult;
+            if (status1 === "Ошибка вычисления") return _less;
+            if (status2 === "Ошибка вычисления") return _more;
 
             const value1 = loan1[this.sysName];
             const value2 = loan2[this.sysName];
 
-            if (isNaN(value1)) return _compareMoreResult;
-            if (isNaN(value2)) return _compareLessResult;
+            if (isNaN(value1)) return _more;
+            if (isNaN(value2)) return _less;
 
             return getCompareResult(value1, value2);
         },
@@ -25,14 +25,14 @@ function Sorting(loans) {
             const status1 = loan1[this.sysNameStatus];
             const status2 = loan2[this.sysNameStatus];
 
-            if (status1 === "Ошибка вычисления") return _compareLessResult;
-            if (status2 === "Ошибка вычисления") return _compareMoreResult;
+            if (status1 === "Ошибка вычисления") return _less;
+            if (status2 === "Ошибка вычисления") return _more;
 
             const value1 = loan1[this.sysName];
             const value2 = loan2[this.sysName];
 
-            if (isNaN(value1)) return _compareMoreResult;
-            if (isNaN(value2)) return _compareLessResult;
+            if (isNaN(value1)) return _more;
+            if (isNaN(value2)) return _less;
 
             return getCompareResult(value1, value2);
         },
@@ -47,8 +47,8 @@ function Sorting(loans) {
             const value1 = parseInt(array1[0]);
             const value2 = parseInt(array2[0]);
 
-            if (isNaN(value1)) return _compareMoreResult;
-            if (isNaN(value2)) return _compareLessResult;
+            if (isNaN(value1)) return _more;
+            if (isNaN(value2)) return _less;
 
             return getCompareResult(value1, value2);
         },
@@ -64,8 +64,8 @@ function Sorting(loans) {
             const value1 = loan1[this.sysName];
             const value2 = loan2[this.sysName];
 
-            if (!value1) return _compareLessResult;
-            if (!value2) return _compareMoreResult;
+            if (!value1) return _less;
+            if (!value2) return _more;
 
             const date1 = new Date(value1);
             const date2 = new Date(value2);
@@ -75,6 +75,12 @@ function Sorting(loans) {
     };
 
     this.onClick = function (event, field) {
+        const { target } = event;
+
+        resetSortClasses(target);
+        setCompareResults(target);
+        setSortClasses(target);
+
         const compare = _compareFunctions[field.type].bind(field);
         _loans.sort(compare);
     };
@@ -84,8 +90,46 @@ function Sorting(loans) {
     };
 
     function getCompareResult(value1, value2) {
-        if (value1 > value2) return _compareMoreResult;
-        if (value1 < value2) return _compareLessResult;
+        if (value1 > value2) return _more;
+        if (value1 < value2) return _less;
+    }
+
+    function resetSortClasses(target) {
+        const { cellIndex, parentElement } = target;
+        const cells = [].slice.call(parentElement.children);
+
+        cells.forEach((item, i) => {
+            if (i === cellIndex) return;
+            item.classList.remove("asc", "desc");
+        });
+    }
+
+    function setCompareResults(target) {
+        const isAsc = target.classList.contains("asc");
+        const isDesc = target.classList.contains("desc");
+
+        if (isDesc || !isAsc) {
+            _more = 1;
+            _less = -1;
+            return;
+        }
+
+        _more = -1;
+        _less = 1;
+    }
+
+    function setSortClasses(target) {
+        const isAsc = target.classList.contains("asc");
+        const isDesc = target.classList.contains("desc");
+
+        if (isDesc || !isAsc) {
+            target.classList.remove("desc");
+            target.classList.add("asc");
+            return;
+        }
+
+        target.classList.remove("asc");
+        target.classList.add("desc");
     }
 }
 
