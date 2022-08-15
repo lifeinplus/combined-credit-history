@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 
-const DocEntry = (props) => {
+const Entry = (props) => {
     const { document } = props;
 
     const birthDate = formatDate(document.birthDate);
@@ -18,8 +18,8 @@ const DocEntry = (props) => {
     );
 
     function formatDate(date) {
-        return date ? format(new Date(date), "yyyy-MM-dd") : date;
+        return date ? format(new Date(date), "dd-MM-yyyy") : date;
     }
 };
 
-export { DocEntry };
+export { Entry };

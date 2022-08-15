@@ -1,4 +1,4 @@
-import { Utils } from "../../helpers";
+import { Date } from "../../utils";
 
 const Header = (props) => {
     const { data } = props;
@@ -10,7 +10,7 @@ const Header = (props) => {
                 <small>Application No</small>
                 <span>{data.DOCUMENTNUMBER}</span>
                 <small>Creation Date</small>
-                <span>{Utils.formatHeaderDate(data.CREATIONDATE)}</span>
+                <span>{Date.formatHeader(data.CREATIONDATE)}</span>
             </p>
         </div>
     );

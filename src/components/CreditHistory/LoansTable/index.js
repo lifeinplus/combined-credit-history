@@ -1,7 +1,7 @@
 import React from "react";
 import { nanoid } from "nanoid";
 
-import { Match } from "../../../helpers";
+import { Match } from "../../../utils";
 import { Sorting } from "./Sorting";
 import { TimePeriod } from "./TimePeriod";
 

@@ -1,4 +1,4 @@
-import { Utils } from "../../helpers";
+import { Date } from "../../utils";
 
 const Header = (props) => {
     const { data } = props;
@@ -10,7 +10,7 @@ const Header = (props) => {
                 <small>Number of accounts</small>
                 <span>{data.loansCount}</span>
                 <small>Report date</small>
-                <span>{Utils.formatHeaderDate(data.lastBkiCreationDate)}</span>
+                <span>{Date.formatHeader(data.lastBkiCreationDate)}</span>
             </p>
         </div>
     );

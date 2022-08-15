@@ -1,6 +1,7 @@
-import { DocEntry } from "./DocEntry";
-import { DocHeader } from "./DocHeader";
 import { nanoid } from "nanoid";
+
+import { Entry } from "./Entry";
+import { Header } from "./Header";
 
 const Documents = (props) => {
     const { data } = props;
@@ -13,11 +14,11 @@ const Documents = (props) => {
     return (
         <table>
             <thead>
-                <DocHeader />
+                <Header />
             </thead>
             <tbody>
                 {documents.map((item) => (
-                    <DocEntry key={item.id} document={item} />
+                    <Entry key={item.id} document={item} />
                 ))}
             </tbody>
         </table>

@@ -1,6 +1,6 @@
 import ReqEntry from "./ReqEntry";
 import ReqHeader from "./ReqHeader";
-import { Match } from "../../../helpers";
+import { Match } from "../../../utils";
 
 const RequestCounts = (props) => {
     return (

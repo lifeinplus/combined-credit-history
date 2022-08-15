@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Match } from "../../helpers";
+import { Match } from "../../utils";
 
 import { Header } from "./Header";
 import { LoansTable } from "./LoansTable";
