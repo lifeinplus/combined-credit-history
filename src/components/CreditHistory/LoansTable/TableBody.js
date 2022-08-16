@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import { nanoid } from "nanoid";
 
-const Body = (props) => {
+const TableBody = (props) => {
     return (
         <tbody>
             {props.loans.map((loan) => (
@@ -35,4 +35,4 @@ const Body = (props) => {
     }
 };
 
-export default Body;
+export { TableBody };

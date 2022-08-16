@@ -1,22 +1,27 @@
-import ReqEntry from "./ReqEntry";
-import ReqHeader from "./ReqHeader";
+import { useTranslation } from "react-i18next";
+
 import { Match } from "../../../utils";
 
+import { Entry } from "./Entry";
+import { Header } from "./Header";
+
 const RequestCounts = (props) => {
+    const { t } = useTranslation(["personal_data"]);
+
     return (
         <ul>
-            <ReqHeader type={props.type} />
+            <Header type={props.type} />
             {Match.requestCounts
                 .filter((item) => item.type === props.type)
-                .map((item) => (
-                    <ReqEntry
-                        key={item.id}
-                        name={item.name}
-                        value={props.counts[item.sysName]}
+                .map(({ id, name, sysName }) => (
+                    <Entry
+                        key={id}
+                        name={t(`requests.${sysName}`)}
+                        value={props.counts[sysName]}
                     />
                 ))}
             {props.type === "all" && (
-                <ReqEntry name={"Score"} value={props.score} />
+                <Entry name={t("score")} value={props.score} />
             )}
         </ul>
     );

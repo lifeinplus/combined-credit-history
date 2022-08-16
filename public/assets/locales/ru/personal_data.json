@@ -1,0 +1,25 @@
+{
+    "app_creation_date": "от",
+    "app_number": "Заявка №",
+    "document": {
+        "birth_date": "Дата рождения",
+        "full_name": "ФИО",
+        "issue_date": "Дата выдачи паспорта",
+        "passport_number": "Номер паспорта",
+        "passport_series": "Серия паспорта",
+        "source": "Источник"
+    },
+    "requests": {
+        "title_all": "Запросы",
+        "title_microcredits": "Запросы на микрокредиты",
+        "nbkiRequestsCount": "Всего",
+        "nbkiCollectionRequestCount": "Последние 24 месяца",
+        "nbkiLastRequestCount": "Последние 30 дней",
+        "microcreditRequestsCount": "Всего",
+        "last30DaysMicrocreditRequestsCount": "Последние 30 дней",
+        "lastYearMicrocreditRequestsCount": "Последний год",
+        "more1YearMicrocreditRequestsCount": "Более 1 года"
+    },
+    "title": "Персональные данные",
+    "score": "Скоринговый балл"
+}

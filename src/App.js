@@ -1,41 +1,49 @@
-import React from "react";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+
 import "./App.css";
+
 import { CreditHistory } from "./components/CreditHistory";
 import { PersonalData } from "./components/PersonalData";
+import { Header } from "./components/Header";
+
 import data from "./data/945349.json";
 
 function App() {
-    const [expandCreditHistory, setExpandCreditHistory] = React.useState(false);
-    const [showExtendedData, setShowExtendedData] = React.useState(false);
+    const { t } = useTranslation(["credit_history"]);
 
-    const buttonNames = {
-        creditHistory: getButtonName(expandCreditHistory, [
-            "Expand",
-            "Collapse",
+    const [expandCreditHistory, setExpandCreditHistory] = useState(false);
+    const [showExtendedData, setShowExtendedData] = useState(false);
+
+    const controlNames = {
+        creditHistory: getControlName(expandCreditHistory, [
+            t("controls.expand"),
+            t("controls.collapse"),
         ]),
-        extendedData: getButtonName(showExtendedData, ["+", "-"]),
+        extendedData: getControlName(showExtendedData, ["+", "-"]),
     };
 
     return (
         <div className="App">
+            <Header />
             {!expandCreditHistory && <PersonalData data={data} />}
             <CreditHistory
                 data={data}
                 showExtendedData={showExtendedData}
                 toggleControls={{
                     creditHistory: {
-                        name: buttonNames.creditHistory,
+                        name: controlNames.creditHistory,
                         onClick: (event) => {
                             const { target } = event;
-                            target.innerText = buttonNames.creditHistory;
+                            target.innerText = controlNames.creditHistory;
                             setExpandCreditHistory(!expandCreditHistory);
                         },
                     },
                     extendedData: {
-                        name: buttonNames.extendedData,
+                        name: controlNames.extendedData,
                         onClick: (event) => {
                             const { target } = event;
-                            target.innerText = buttonNames.extendedData;
+                            target.innerText = controlNames.extendedData;
                             setShowExtendedData(!showExtendedData);
                         },
                     },
@@ -44,7 +52,7 @@ function App() {
         </div>
     );
 
-    function getButtonName(isFirst, names) {
+    function getControlName(isFirst, names) {
         return isFirst ? names[1] : names[0];
     }
 }

@@ -1,0 +1,25 @@
+{
+    "app_creation_date": "Creation Date",
+    "app_number": "Application No",
+    "document": {
+        "birth_date": "Birth Date",
+        "full_name": "Full Name",
+        "issue_date": "Issue Date",
+        "passport_number": "Passport Number",
+        "passport_series": "Passport Series",
+        "source": "Source"
+    },
+    "requests": {
+        "title_all": "Requests",
+        "title_microcredits": "Requests for microcredits",
+        "nbkiRequestsCount": "Total",
+        "nbkiCollectionRequestCount": "Last 24 months",
+        "nbkiLastRequestCount": "Last 30 days",
+        "microcreditRequestsCount": "Total",
+        "last30DaysMicrocreditRequestsCount": "Last 30 days",
+        "lastYearMicrocreditRequestsCount": "Last year",
+        "more1YearMicrocreditRequestsCount": "More than 1 year"
+    },
+    "title": "Personal Data",
+    "score": "Score"
+}

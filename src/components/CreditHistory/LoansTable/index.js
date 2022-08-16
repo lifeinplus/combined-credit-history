@@ -5,8 +5,8 @@ import { Match } from "../../../utils";
 import { Sorting } from "./Sorting";
 import { TimePeriod } from "./TimePeriod";
 
-import Body from "./Body";
-import Head from "./Head";
+import { TableBody } from "./TableBody";
+import { TableHead } from "./TableHead";
 
 const LoansTable = (props) => {
     const [table, setTable] = React.useState({
@@ -23,8 +23,8 @@ const LoansTable = (props) => {
 
     return (
         <table>
-            <Head fields={table.fields} sortRows={sortRows} />
-            <Body fields={table.fields} loans={table.loans} />
+            <TableHead fields={table.fields} sortRows={sortRows} />
+            <TableBody fields={table.fields} loans={table.loans} />
         </table>
     );
 

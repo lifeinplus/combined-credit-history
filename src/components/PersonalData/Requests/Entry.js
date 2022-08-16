@@ -1,4 +1,4 @@
-const ReqEntry = (props) => {
+const Entry = (props) => {
     return (
         <li>
             <div>
@@ -9,4 +9,4 @@ const ReqEntry = (props) => {
     );
 };
 
-export default ReqEntry;
+export { Entry };

@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
 
-import { Entry } from "./Entry";
-import { Header } from "./Header";
+import { TableBody } from "./TableBody";
+import { TableHead } from "./TableHead";
 
 const Documents = (props) => {
     const { data } = props;
@@ -13,14 +13,8 @@ const Documents = (props) => {
 
     return (
         <table>
-            <thead>
-                <Header />
-            </thead>
-            <tbody>
-                {documents.map((item) => (
-                    <Entry key={item.id} document={item} />
-                ))}
-            </tbody>
+            <TableHead />
+            <TableBody documents={documents} />
         </table>
     );
 };
