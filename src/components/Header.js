@@ -20,21 +20,26 @@ const Header = () => {
     }, [t]);
 
     return (
-        <div>
-            <h1>{t("title")}</h1>
-            <div>
-                {Object.keys(lngs).map((lng) => (
-                    <button
-                        key={lng}
-                        disabled={i18n.resolvedLanguage === lng}
-                        onClick={() => i18n.changeLanguage(lng)}
-                        type={"submit"}
-                    >
-                        {lngs[lng].nativeName}
-                    </button>
-                ))}
+        <nav className="navbar bg-light">
+            <div className="container-fluid">
+                <a className="navbar-brand" href="#">
+                    {t("title")}
+                </a>
+                <form className="d-flex">
+                    {Object.keys(lngs).map((lng) => (
+                        <button
+                            className="btn btn-sm me-1"
+                            key={lng}
+                            disabled={i18n.resolvedLanguage === lng}
+                            onClick={() => i18n.changeLanguage(lng)}
+                            type={"submit"}
+                        >
+                            {lngs[lng].nativeName}
+                        </button>
+                    ))}
+                </form>
             </div>
-        </div>
+        </nav>
     );
 
     function changeLanguage() {

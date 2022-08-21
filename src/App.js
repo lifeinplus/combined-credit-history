@@ -24,31 +24,41 @@ function App() {
     };
 
     return (
-        <div className="App">
-            <Header />
-            {!expandCreditHistory && <PersonalData data={data} />}
-            <CreditHistory
-                data={data}
-                showExtendedData={showExtendedData}
-                toggleControls={{
-                    creditHistory: {
-                        name: controlNames.creditHistory,
-                        onClick: (event) => {
-                            const { target } = event;
-                            target.innerText = controlNames.creditHistory;
-                            setExpandCreditHistory(!expandCreditHistory);
-                        },
-                    },
-                    extendedData: {
-                        name: controlNames.extendedData,
-                        onClick: (event) => {
-                            const { target } = event;
-                            target.innerText = controlNames.extendedData;
-                            setShowExtendedData(!showExtendedData);
-                        },
-                    },
-                }}
-            />
+        <div>
+            <header>
+                <Header />
+            </header>
+            <main>
+                <div className="container-fluid">
+                    {!expandCreditHistory && <PersonalData data={data} />}
+                    <CreditHistory
+                        data={data}
+                        showExtendedData={showExtendedData}
+                        toggleControls={{
+                            creditHistory: {
+                                name: controlNames.creditHistory,
+                                onClick: (event) => {
+                                    const { target } = event;
+                                    target.innerText =
+                                        controlNames.creditHistory;
+                                    setExpandCreditHistory(
+                                        !expandCreditHistory
+                                    );
+                                },
+                            },
+                            extendedData: {
+                                name: controlNames.extendedData,
+                                onClick: (event) => {
+                                    const { target } = event;
+                                    target.innerText =
+                                        controlNames.extendedData;
+                                    setShowExtendedData(!showExtendedData);
+                                },
+                            },
+                        }}
+                    />
+                </div>
+            </main>
         </div>
     );
 

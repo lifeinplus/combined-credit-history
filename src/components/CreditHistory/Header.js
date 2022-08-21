@@ -7,14 +7,18 @@ const Header = (props) => {
     const { data } = props;
 
     return (
-        <div>
-            <h2>{t("title")}</h2>
-            <p>
-                <small>{t("number_of_accounts")}</small>
-                <span>{data.loansCount}</span>
-                <small>{t("report_date")}</small>
-                <span>{Date.formatHeader(data.lastBkiCreationDate)}</span>
-            </p>
+        <div className="row">
+            <div className="col-6">
+                <h2>{t("title")}</h2>
+            </div>
+            <div className="col-6 text-end">
+                <p>
+                    <small>{t("number_of_accounts")}</small>
+                    <span>{data.loansCount}</span>
+                    <small>{t("report_date")}</small>
+                    <span>{Date.formatHeader(data.lastBkiCreationDate)}</span>
+                </p>
+            </div>
         </div>
     );
 };

@@ -19,15 +19,31 @@ function CreditHistory(props) {
     return (
         <div>
             <Header data={data} />
-            <ToggleControls controls={props.toggleControls} />
-            <PaymentAmounts amounts={amounts.obligation} />
-            <PaymentAmounts amounts={amounts.chb} />
-            {props.showExtendedData && <PaymentAmounts amounts={amounts.flc} />}
-            <LoansTable
-                lastBkiCreationDate={data.lastBkiCreationDate}
-                loans={data.loans}
-                showExtendedData={props.showExtendedData}
-            />
+            <div className="row justify-content-between">
+                <div className="col-2">
+                    <ToggleControls controls={props.toggleControls} />
+                </div>
+                <div className="col-3">
+                    <PaymentAmounts amounts={amounts.obligation} />
+                </div>
+                <div className="col-3">
+                    <PaymentAmounts amounts={amounts.chb} />
+                </div>
+                {props.showExtendedData && (
+                    <div className="col-3">
+                        <PaymentAmounts amounts={amounts.flc} />
+                    </div>
+                )}
+            </div>
+            <div className="row">
+                <div className="col">
+                    <LoansTable
+                        lastBkiCreationDate={data.lastBkiCreationDate}
+                        loans={data.loans}
+                        showExtendedData={props.showExtendedData}
+                    />
+                </div>
+            </div>
         </div>
     );
 
