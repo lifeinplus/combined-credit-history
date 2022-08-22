@@ -6,7 +6,7 @@ const lngs = {
     ru: { nativeName: "Русский" },
 };
 
-const Header = () => {
+const Navbar = () => {
     const { t, i18n } = useTranslation(["header"]);
 
     document.onkeydown = (event) => {
@@ -51,4 +51,4 @@ const Header = () => {
     }
 };
 
-export { Header };
+export { Navbar };

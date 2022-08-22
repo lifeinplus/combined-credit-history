@@ -1,11 +1,11 @@
 import React from "react";
 
-import { Match } from "../../utils";
+import { Match } from "../utils";
 
-import { Header } from "./Header";
-import { LoansTable } from "./LoansTable";
-import { PaymentAmounts } from "./PaymentAmounts";
-import { ToggleControls } from "./ToggleControls";
+import { Header } from "../components/CreditHistoryHeader";
+import { LoansTable } from "../components/LoansTable";
+import { PaymentAmounts } from "../components/PaymentAmounts";
+import { ToggleControls } from "../components/ToggleControls";
 
 function CreditHistory(props) {
     const { data } = props;
@@ -17,7 +17,7 @@ function CreditHistory(props) {
     };
 
     return (
-        <div>
+        <div className="row">
             <Header data={data} />
             <div className="row justify-content-between">
                 <div className="col-2">

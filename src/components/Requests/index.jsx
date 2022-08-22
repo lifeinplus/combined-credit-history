@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import { Match } from "../../../utils";
+import { Match } from "../../utils";
 
 import { Entry } from "./Entry";
 import { Header } from "./Header";

@@ -1,12 +1,12 @@
-import Header from "./Header";
-import { Documents } from "./Documents";
-import { RequestCounts } from "./Requests";
+import { Header } from "../components/PersonalDataHeader";
+import { Documents } from "../components/Documents";
+import { RequestCounts } from "../components/Requests";
 
 function PersonalData(props) {
     const { data } = props;
 
     return (
-        <div>
+        <div className="row">
             <Header data={props.data} />
             <div className="row">
                 <div className="col-8">
