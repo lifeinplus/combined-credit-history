@@ -2,7 +2,7 @@ import React from "react";
 
 import { Match } from "../utils";
 
-import { Header } from "../components/CreditHistoryHeader";
+import { Header } from "../components/Header";
 import { LoansTable } from "../components/LoansTable";
 import { PaymentAmounts } from "../components/PaymentAmounts";
 import { ToggleControls } from "../components/ToggleControls";
@@ -18,7 +18,17 @@ function CreditHistory(props) {
 
     return (
         <div className="row">
-            <Header data={data} />
+            <Header
+                captions={{
+                    date: "report_date",
+                    number: "number_of_accounts",
+                }}
+                data={{
+                    date: data.lastBkiCreationDate,
+                    number: data.loansCount,
+                }}
+                nameSpaces={["credit_history"]}
+            />
             <div className="row justify-content-between">
                 <div className="col-2">
                     <ToggleControls controls={props.toggleControls} />

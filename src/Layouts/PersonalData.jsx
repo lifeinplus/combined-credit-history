@@ -1,4 +1,4 @@
-import { Header } from "../components/PersonalDataHeader";
+import { Header } from "../components/Header";
 import { Documents } from "../components/Documents";
 import { RequestCounts } from "../components/Requests";
 
@@ -7,7 +7,17 @@ function PersonalData(props) {
 
     return (
         <div className="row">
-            <Header data={props.data} />
+            <Header
+                captions={{
+                    date: "app_creation_date",
+                    number: "app_number",
+                }}
+                data={{
+                    date: data.CREATIONDATE,
+                    number: data.DOCUMENTNUMBER,
+                }}
+                nameSpaces={["personal_data"]}
+            />
             <div className="row">
                 <div className="col-8">
                     <Documents data={props.data} />

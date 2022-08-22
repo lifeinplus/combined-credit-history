@@ -3,9 +3,9 @@ import { useTranslation } from "react-i18next";
 import { Date } from "../utils";
 
 const Header = (props) => {
-    const { data } = props;
-    const { t } = useTranslation(["personal_data"]);
-    // TODO: Make it one component
+    const { captions, data } = props;
+    const { t } = useTranslation(props.nameSpaces);
+
     return (
         <div className="row g-0">
             <div className="col-6 gy-2 gx-4">
@@ -13,10 +13,10 @@ const Header = (props) => {
             </div>
             <div className="col-6 text-end gy-2 gx-4">
                 <p>
-                    <small>{t("app_number")}</small>
-                    <span>{data.DOCUMENTNUMBER}</span>
-                    <small>{t("app_creation_date")}</small>
-                    <span>{Date.formatHeader(data.CREATIONDATE)}</span>
+                    <small>{t(captions.number)}</small>
+                    <span>{data.number}</span>
+                    <small>{t(captions.date)}</small>
+                    <span>{Date.formatHeader(data.date)}</span>
                 </p>
             </div>
         </div>
