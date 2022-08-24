@@ -3,8 +3,13 @@ import { useTranslation } from "react-i18next";
 import { Date } from "../utils";
 
 const Header = (props) => {
-    const { captions, data } = props;
     const { t } = useTranslation(props.nameSpaces);
+
+    const { captions, data } = props;
+    const { date, number } = data;
+
+    const dateCaption = t(captions.date);
+    const numberCaption = t(captions.number);
 
     return (
         <div className="row g-0">
@@ -13,10 +18,9 @@ const Header = (props) => {
             </div>
             <div className="col-6 text-end gy-2 gx-4">
                 <p>
-                    <small>{t(captions.number)}</small>
-                    <span>{data.number}</span>
-                    <small>{t(captions.date)}</small>
-                    <span>{Date.formatHeader(data.date)}</span>
+                    <small>{numberCaption}</small> <strong>{number} </strong>
+                    <small>{dateCaption}</small>{" "}
+                    <strong>{Date.formatHeader(date)}</strong>
                 </p>
             </div>
         </div>

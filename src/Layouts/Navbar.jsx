@@ -23,6 +23,13 @@ const Navbar = () => {
         <nav className="navbar bg-light">
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">
+                    <img
+                        src="logo.png"
+                        alt=""
+                        width="24"
+                        height="24"
+                        className="d-inline-block align-text-top"
+                    />{" "}
                     {t("title")}
                 </a>
                 <form className="d-flex">

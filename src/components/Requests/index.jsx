@@ -9,7 +9,7 @@ const RequestCounts = (props) => {
     const { t } = useTranslation(["personal_data"]);
 
     return (
-        <ul>
+        <ul className="list-unstyled">
             <Header type={props.type} />
             {Match.requestCounts
                 .filter((item) => item.type === props.type)

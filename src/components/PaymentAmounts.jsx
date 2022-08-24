@@ -5,10 +5,10 @@ const PaymentAmounts = (props) => {
     const { amounts } = props;
 
     return (
-        <ul>
+        <ul className="list-unstyled">
             {amounts.map(({ id, sysName, value }) => (
-                <li key={id}>
-                    <small>{t(`amounts.${sysName}`)}</small>
+                <li key={id} className="list-inline-item">
+                    <small>{t(`amounts.${sysName}`)}</small>{" "}
                     <span>{value}</span>
                 </li>
             ))}

@@ -33,14 +33,14 @@ function CreditHistory(props) {
                 <div className="col-2">
                     <ToggleControls controls={props.toggleControls} />
                 </div>
-                <div className="col-3">
+                <div className="col-5">
                     <PaymentAmounts amounts={amounts.obligation} />
                 </div>
-                <div className="col-3">
+                <div className="col-5">
                     <PaymentAmounts amounts={amounts.chb} />
                 </div>
                 {props.showExtendedData && (
-                    <div className="col-3">
+                    <div className="col-5">
                         <PaymentAmounts amounts={amounts.flc} />
                     </div>
                 )}

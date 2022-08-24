@@ -11,7 +11,11 @@ const TableHead = () => {
         "passport_series",
         "passport_number",
         "issue_date",
-    ].map((item) => <th key={nanoid()}>{t(`document.${item}`)}</th>);
+    ].map((item) => (
+        <th key={nanoid()} scope="col">
+            {t(`document.${item}`)}
+        </th>
+    ));
 
     return (
         <thead>

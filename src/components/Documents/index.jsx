@@ -12,10 +12,12 @@ const Documents = (props) => {
     }));
 
     return (
-        <table>
-            <TableHead />
-            <TableBody documents={documents} />
-        </table>
+        <div className="table-responsive">
+            <table className="table">
+                <TableHead />
+                <TableBody documents={documents} />
+            </table>
+        </div>
     );
 };
 

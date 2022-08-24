@@ -22,10 +22,12 @@ const LoansTable = (props) => {
     }, [props.showExtendedData]);
 
     return (
-        <table>
-            <TableHead fields={table.fields} sortRows={sortRows} />
-            <TableBody fields={table.fields} loans={table.loans} />
-        </table>
+        <div className="table-responsive">
+            <table className="table">
+                <TableHead fields={table.fields} sortRows={sortRows} />
+                <TableBody fields={table.fields} loans={table.loans} />
+            </table>
+        </div>
     );
 
     function getFields() {
