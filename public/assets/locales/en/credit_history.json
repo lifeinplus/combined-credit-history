@@ -8,10 +8,7 @@
         "bkiLoansAmount": "Loans amount: RUB",
         "bkiCreditCardsAmount": "Cards amount: RUB"
     },
-    "controls": {
-        "collapse": "Collapse",
-        "expand": "Expand"
-    },
+    "extended_control": "Extended",
     "fields": {
         "Delinquency0Count": "0+",
         "Delinquency30Count": "30+",

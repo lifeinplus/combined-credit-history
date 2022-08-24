@@ -10,6 +10,7 @@ i18n.use(initReactI18next) // passes i18n down to react-i18next
         // debug: true,
         supportedLngs: ["en", "ru"],
         fallbackLng: "en",
+        ns: ["credit_history", "header", "personal_data"],
         detection: {
             order: ["path", "cookie", "htmlTag", "localStorage", "subdomain"],
             caches: ["cookie"],

@@ -1,13 +1,16 @@
 import React from "react";
+import { useState } from "react";
 
 import { Match } from "../utils";
 
+import { ExtendedControl } from "../components/ExtendedControl";
 import { Header } from "../components/Header";
 import { LoansTable } from "../components/LoansTable";
 import { PaymentAmounts } from "../components/PaymentAmounts";
-import { ToggleControls } from "../components/ToggleControls";
 
 function CreditHistory(props) {
+    const [showExtendedData, setShowExtendedData] = useState(false);
+
     const { data } = props;
 
     const amounts = {
@@ -15,6 +18,10 @@ function CreditHistory(props) {
         flc: defineAmounts(Match.paymentAmounts, data, "FLC"),
         obligation: defineAmounts(Match.paymentAmounts, data, "obligation"),
     };
+
+    function toggleExtend() {
+        setShowExtendedData(!showExtendedData);
+    }
 
     return (
         <div className="row">
@@ -31,7 +38,7 @@ function CreditHistory(props) {
             />
             <div className="row justify-content-between">
                 <div className="col-2">
-                    <ToggleControls controls={props.toggleControls} />
+                    <ExtendedControl toggleExtend={toggleExtend} />
                 </div>
                 <div className="col-5">
                     <PaymentAmounts amounts={amounts.obligation} />
@@ -39,7 +46,7 @@ function CreditHistory(props) {
                 <div className="col-5">
                     <PaymentAmounts amounts={amounts.chb} />
                 </div>
-                {props.showExtendedData && (
+                {showExtendedData && (
                     <div className="col-5">
                         <PaymentAmounts amounts={amounts.flc} />
                     </div>
@@ -50,7 +57,7 @@ function CreditHistory(props) {
                     <LoansTable
                         lastBkiCreationDate={data.lastBkiCreationDate}
                         loans={data.loans}
-                        showExtendedData={props.showExtendedData}
+                        showExtendedData={showExtendedData}
                     />
                 </div>
             </div>

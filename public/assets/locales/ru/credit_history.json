@@ -8,10 +8,7 @@
         "bkiLoansAmount": "Сумма по кредитам: RUB",
         "bkiCreditCardsAmount": "Сумма по картам: RUB"
     },
-    "controls": {
-        "collapse": "Свернуть",
-        "expand": "Развернуть"
-    },
+    "extended_control": "Расширенная",
     "fields": {
         "Delinquency0Count": "0+",
         "Delinquency30Count": "30+",
