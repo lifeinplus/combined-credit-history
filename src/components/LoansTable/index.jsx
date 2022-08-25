@@ -39,9 +39,7 @@ const LoansTable = (props) => {
         const timePeriod = new TimePeriod(props.loans);
         const textMonths = timePeriod.getTextMonths(props.lastBkiCreationDate);
 
-        textMonths.forEach((item) =>
-            result.push({ id: nanoid(), name: item, status: true })
-        );
+        textMonths.forEach((item) => result.push({ name: item, status: true }));
 
         return result;
     }

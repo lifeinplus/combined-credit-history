@@ -6,8 +6,8 @@ const PaymentAmounts = (props) => {
 
     return (
         <ul className="list-unstyled">
-            {amounts.map(({ id, sysName, value }) => (
-                <li key={id} className="list-inline-item">
+            {amounts.map(({ sysName, value }) => (
+                <li key={sysName} className="list-inline-item">
                     <small>{t(`amounts.${sysName}`)}</small>{" "}
                     <span>{value}</span>
                 </li>

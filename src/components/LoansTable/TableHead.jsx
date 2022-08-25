@@ -7,7 +7,7 @@ const TableHead = (props) => {
 
     const ths = props.fields.map((field) => (
         <Th
-            key={field.id}
+            key={field.sysName || field.name}
             field={{
                 ...field,
                 name: field.name || t(`fields.${field.sysName}`),

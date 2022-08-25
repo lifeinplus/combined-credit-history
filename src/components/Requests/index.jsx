@@ -13,9 +13,9 @@ const RequestCounts = (props) => {
             <Header type={props.type} />
             {Match.requestCounts
                 .filter((item) => item.type === props.type)
-                .map(({ id, name, sysName }) => (
+                .map(({ sysName }) => (
                     <Entry
-                        key={id}
+                        key={sysName}
                         name={t(`requests.${sysName}`)}
                         value={props.counts[sysName]}
                     />
