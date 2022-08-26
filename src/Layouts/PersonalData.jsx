@@ -1,6 +1,6 @@
 import { Header } from "../components/Header";
 import { Documents } from "../components/Documents";
-import { RequestCounts } from "../components/Requests";
+import { RequestCounts } from "../components/RequestCounts";
 
 function PersonalData(props) {
     const { data } = props;
@@ -23,21 +23,13 @@ function PersonalData(props) {
                     <Documents data={props.data} />
                 </div>
                 <div className="col-4">
-                    <div className="row">
-                        <div className="col">
-                            <RequestCounts
-                                counts={data.requestsCounts}
-                                score={data.ScoringBall}
-                                type="all"
-                            />
-                        </div>
-                        <div className="col">
-                            <RequestCounts
-                                counts={data.microcreditRequestsCounts}
-                                type="micro"
-                            />
-                        </div>
-                    </div>
+                    <RequestCounts
+                        requestsCounts={data.requestsCounts}
+                        microcreditRequestsCounts={
+                            data.microcreditRequestsCounts
+                        }
+                        score={data.ScoringBall}
+                    />
                 </div>
             </div>
         </div>
