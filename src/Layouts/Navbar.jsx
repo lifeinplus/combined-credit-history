@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 const lngs = {
@@ -33,17 +33,27 @@ const Navbar = () => {
                     {t("title")}
                 </a>
                 <form className="d-flex">
-                    {Object.keys(lngs).map((lng) => (
-                        <button
-                            className="btn btn-sm me-1"
-                            key={lng}
-                            disabled={i18n.resolvedLanguage === lng}
-                            onClick={() => i18n.changeLanguage(lng)}
-                            type={"submit"}
-                        >
-                            {lngs[lng].nativeName}
-                        </button>
-                    ))}
+                    <div className="btn-group btn-group-sm" role="group">
+                        {Object.keys(lngs).map((lng) => (
+                            <Fragment key={lng}>
+                                <input
+                                    id={lng}
+                                    autoComplete="off"
+                                    checked={i18n.resolvedLanguage === lng}
+                                    className="btn-check"
+                                    name="btnradio"
+                                    onChange={() => i18n.changeLanguage(lng)}
+                                    type="radio"
+                                />
+                                <label
+                                    className="btn btn-outline-secondary"
+                                    htmlFor={lng}
+                                >
+                                    {lngs[lng].nativeName}
+                                </label>
+                            </Fragment>
+                        ))}
+                    </div>
                 </form>
             </div>
         </nav>

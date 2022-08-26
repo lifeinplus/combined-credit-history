@@ -12,11 +12,11 @@ const Header = (props) => {
     const numberCaption = t(captions.number);
 
     return (
-        <div className="row g-0">
+        <div className="row my-2 pe-0">
             <div className="col-6 gy-2 gx-4">
                 <h4>{t("title")}</h4>
             </div>
-            <div className="col-6 text-end gy-2 gx-4">
+            <div className="col-6 gy-2 gx-4 pe-1 text-end">
                 <p>
                     <small>{numberCaption}</small> <strong>{number} </strong>
                     <small>{dateCaption}</small>{" "}
