@@ -11,12 +11,12 @@
     },
     "requests": {
         "title_all": "Запросы",
-        "title_microcredits": "Запросы на микрокредиты",
+        "title_microcredits": "Запросы на МКР",
         "nbkiRequestsCount": "Всего",
-        "nbkiCollectionRequestCount": "Последние 24 месяца",
-        "nbkiLastRequestCount": "Последние 30 дней",
+        "nbkiCollectionRequestCount": "Последние 24 мес.",
+        "nbkiLastRequestCount": "Последние 30 дн.",
         "microcreditRequestsCount": "Всего",
-        "last30DaysMicrocreditRequestsCount": "Последние 30 дней",
+        "last30DaysMicrocreditRequestsCount": "Последние 30 дн.",
         "lastYearMicrocreditRequestsCount": "Последний год",
         "more1YearMicrocreditRequestsCount": "Более 1 года"
     },
