@@ -5,7 +5,7 @@ const ExtendedControl = (props) => {
 
     return (
         <div>
-            <div className="form-check form-switch">
+            <div className="form-check form-switch navbar-text pb-1">
                 <input
                     id="switchExtendedData"
                     className="form-check-input"

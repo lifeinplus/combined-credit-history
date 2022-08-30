@@ -3,7 +3,6 @@ import { useState } from "react";
 
 import { Match } from "../utils";
 
-import { ExtendedControl } from "../components/ExtendedControl";
 import { Header } from "../components/Header";
 import { LoansTable } from "../components/LoansTable";
 import { PaymentAmounts } from "../components/PaymentAmounts";
@@ -35,11 +34,9 @@ function CreditHistory(props) {
                     number: data.loansCount,
                 }}
                 nameSpaces={["credit_history"]}
+                toggleExtend={toggleExtend}
             />
-            <div className="row justify-content-between">
-                <div className="col-2">
-                    <ExtendedControl toggleExtend={toggleExtend} />
-                </div>
+            <div className="row justify-content-evenly">
                 <div className="col-4">
                     <PaymentAmounts amounts={amounts.obligation} />
                 </div>
@@ -47,7 +44,7 @@ function CreditHistory(props) {
                     <PaymentAmounts amounts={amounts.chb} />
                 </div>
                 {showExtendedData && (
-                    <div className="col-2">
+                    <div className="col-4">
                         <PaymentAmounts amounts={amounts.flc} />
                     </div>
                 )}

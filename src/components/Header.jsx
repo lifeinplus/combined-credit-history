@@ -2,6 +2,8 @@ import { useTranslation } from "react-i18next";
 
 import { Date } from "../utils";
 
+import { ExtendedControl } from "./ExtendedControl";
+
 const Header = (props) => {
     const { t } = useTranslation(props.nameSpaces);
 
@@ -12,18 +14,30 @@ const Header = (props) => {
     const numberCaption = t(captions.number);
 
     return (
-        <div className="row my-2 pe-0">
-            <div className="col-6 gy-2 gx-4">
-                <h4>{t("title")}</h4>
+        <nav className="navbar navbar-light bg-light">
+            <div className="container-fluid">
+                <span className="navbar-brand" href="#">
+                    {t("title")}
+                </span>
+                {props.toggleExtend && (
+                    <ul className="navbar-nav me-auto">
+                        <li className="nav-item">
+                            <ExtendedControl
+                                toggleExtend={props.toggleExtend}
+                            />
+                        </li>
+                    </ul>
+                )}
+                <form className="d-flex">
+                    <span className="navbar-text">
+                        <small>{numberCaption}</small>{" "}
+                        <strong>{number} </strong>
+                        <small>{dateCaption}</small>{" "}
+                        <strong>{Date.formatHeader(date)}</strong>
+                    </span>
+                </form>
             </div>
-            <div className="col-6 gy-2 gx-4 pe-1 text-end">
-                <p>
-                    <small>{numberCaption}</small> <strong>{number} </strong>
-                    <small>{dateCaption}</small>{" "}
-                    <strong>{Date.formatHeader(date)}</strong>
-                </p>
-            </div>
-        </div>
+        </nav>
     );
 };
 
