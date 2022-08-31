@@ -18,11 +18,11 @@ function PersonalData(props) {
                 }}
                 nameSpaces={["personal_data"]}
             />
-            <div className="row">
-                <div className="col-8">
+            <div className="row justify-content-center">
+                <div className="col-md-12 col-lg-7 col-xl-8">
                     <Documents data={props.data} />
                 </div>
-                <div className="col-4">
+                <div className="col-md-8 col-lg-5 col-xl-4">
                     <RequestCounts
                         requestsCounts={data.requestsCounts}
                         microcreditRequestsCounts={
