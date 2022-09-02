@@ -181,24 +181,27 @@ const fields = [
 
 const paymentAmounts = [
     {
+        context: "warning",
         sysName: "bkiPaymentsAmountTotal",
-        type: "CHB",
+        type: "payment",
     },
     {
         sysName: "bkiPaymentsAmountRub",
-        type: "CHB",
+        type: "payment",
     },
     {
         sysName: "bkiPaymentsAmountUsd",
-        type: "CHB",
+        type: "payment",
     },
     {
         sysName: "bkiPaymentsAmountEur",
-        type: "CHB",
+        type: "payment",
     },
     {
+        context: "info",
+        extended: true,
         sysName: "pskPaymentsAmountTotal",
-        type: "FLC",
+        type: "payment",
     },
     {
         sysName: "bkiLoansAmount",

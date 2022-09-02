@@ -1,8 +1,6 @@
 import React from "react";
 import { useState } from "react";
 
-import { Match } from "../utils";
-
 import { Header } from "../components/Header";
 import { LoansTable } from "../components/LoansTable";
 import { PaymentAmounts } from "../components/PaymentAmounts";
@@ -11,12 +9,6 @@ function CreditHistory(props) {
     const [showExtendedData, setShowExtendedData] = useState(false);
 
     const { data } = props;
-
-    const amounts = {
-        chb: defineAmounts(Match.paymentAmounts, data, "CHB"),
-        flc: defineAmounts(Match.paymentAmounts, data, "FLC"),
-        obligation: defineAmounts(Match.paymentAmounts, data, "obligation"),
-    };
 
     function toggleExtend() {
         setShowExtendedData(!showExtendedData);
@@ -36,19 +28,7 @@ function CreditHistory(props) {
                 nameSpaces={["credit_history"]}
                 toggleExtend={toggleExtend}
             />
-            <div className="row justify-content-evenly">
-                <div className="col-4">
-                    <PaymentAmounts amounts={amounts.obligation} />
-                </div>
-                <div className="col-4">
-                    <PaymentAmounts amounts={amounts.chb} />
-                </div>
-                {showExtendedData && (
-                    <div className="col-4">
-                        <PaymentAmounts amounts={amounts.flc} />
-                    </div>
-                )}
-            </div>
+            <PaymentAmounts data={data} showExtendedData={showExtendedData} />
             <div className="row">
                 <div className="col">
                     <LoansTable
@@ -60,15 +40,6 @@ function CreditHistory(props) {
             </div>
         </div>
     );
-
-    function defineAmounts(matchList, data, type) {
-        return matchList
-            .filter((item) => item.type === type)
-            .map((item) => ({
-                ...item,
-                value: data[item.sysName],
-            }));
-    }
 }
 
 export { CreditHistory };
