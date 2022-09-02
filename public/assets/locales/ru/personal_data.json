@@ -11,7 +11,7 @@
     },
     "requests": {
         "title_all": "Запросы",
-        "title_microcredits": "Запросы на МКР",
+        "title_microcredits": "Запросы на микрокредиты",
         "nbkiRequestsCount": "Всего",
         "nbkiCollectionRequestCount": "Последние 24 мес.",
         "nbkiLastRequestCount": "Последние 30 дн.",

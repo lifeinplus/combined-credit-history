@@ -23,7 +23,7 @@ const RequestCounts = (props) => {
                 </div>
             </div>
             <div className={`card ${borderDanger}`}>
-                <div className="card-header text-center">
+                <div className="card-header text-center text-truncate">
                     {t("requests.title_microcredits")}
                 </div>
                 <ListGroup
