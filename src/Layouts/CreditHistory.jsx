@@ -25,12 +25,13 @@ function CreditHistory(props) {
                     date: data.lastBkiCreationDate,
                     number: data.loansCount,
                 }}
+                iconName={"bi-credit-card-2-front"}
                 nameSpaces={["credit_history"]}
                 toggleExtend={toggleExtend}
             />
             <PaymentAmounts data={data} showExtendedData={showExtendedData} />
-            <div className="row">
-                <div className="col">
+            <div className="row pe-1">
+                <div className="col pe-1">
                     <LoansTable
                         lastBkiCreationDate={data.lastBkiCreationDate}
                         loans={data.loans}

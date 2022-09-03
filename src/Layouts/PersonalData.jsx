@@ -16,13 +16,14 @@ function PersonalData(props) {
                     date: data.CREATIONDATE,
                     number: data.DOCUMENTNUMBER,
                 }}
+                iconName={"bi-file-person"}
                 nameSpaces={["personal_data"]}
             />
-            <div className="row justify-content-center">
+            <div className="row justify-content-center pe-1">
                 <div className="col-md-12 col-lg-7 col-xl-8">
                     <Documents data={props.data} />
                 </div>
-                <div className="col-md-8 col-lg-5 col-xl-4">
+                <div className="col-md-8 col-lg-5 col-xl-4 pe-1">
                     <RequestCounts
                         requestsCounts={data.requestsCounts}
                         microcreditRequestsCounts={

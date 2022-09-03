@@ -20,7 +20,7 @@ const Navbar = () => {
     }, [t]);
 
     return (
-        <nav className="navbar bg-light">
+        <nav className="navbar bg-light shadow">
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">
                     <img

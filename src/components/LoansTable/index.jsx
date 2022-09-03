@@ -1,5 +1,4 @@
 import React from "react";
-import { nanoid } from "nanoid";
 
 import { Match } from "../../utils";
 import { Sorting } from "./Sorting";
@@ -23,7 +22,7 @@ const LoansTable = (props) => {
 
     return (
         <div className="table-responsive">
-            <table className="table">
+            <table className="table table-bordered table-striped table-hover">
                 <TableHead fields={table.fields} sortRows={sortRows} />
                 <TableBody fields={table.fields} loans={table.loans} />
             </table>

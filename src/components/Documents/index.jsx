@@ -13,7 +13,7 @@ const Documents = (props) => {
 
     return (
         <div className="table-responsive">
-            <table className="table">
+            <table className="table table-striped">
                 <TableHead />
                 <TableBody documents={documents} />
             </table>

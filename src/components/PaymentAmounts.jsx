@@ -5,18 +5,18 @@ import { Match } from "../utils";
 const PaymentAmounts = (props) => {
     const { t } = useTranslation(["credit_history"]);
 
-    const { showExtendedData } = props;
+    const { showExtendedData: extended } = props;
 
-    const obligationCols = showExtendedData ? "col-lg-4" : "col-lg-5";
-    const paymentCols = showExtendedData ? "col-lg-8" : "col-lg-7";
+    const obligationCols = extended ? "col-lg-4" : "col-lg-5";
+    const paymentCols = extended ? "col-lg-8" : "col-lg-7";
 
     return (
-        <div className="row justify-content-end text-center">
+        <div className="row justify-content-between text-center pe-1">
             <div className={obligationCols}>
-                <ListGroup type={"obligation"} />
+                <ListGroup justify={"start"} type={"obligation"} />
             </div>
-            <div className={paymentCols}>
-                <ListGroup type={"payment"} />
+            <div className={`${paymentCols} pe-1`}>
+                <ListGroup justify={"end"} type={"payment"} />
             </div>
         </div>
     );
@@ -25,7 +25,9 @@ const PaymentAmounts = (props) => {
         const amounts = defineAmounts(props.type);
 
         return (
-            <ul className="list-group list-group-horizontal justify-content-lg-end justify-content-sm-center">
+            <ul
+                className={`list-group list-group-horizontal mb-3 justify-content-lg-${props.justify} justify-content-sm-center`}
+            >
                 {amounts.map(({ context, sysName, value }) => {
                     const contextClass = context
                         ? `list-group-item-${context}`

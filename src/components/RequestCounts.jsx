@@ -58,7 +58,7 @@ const RequestCounts = (props) => {
         const isDanger = props.type === "micro" && counts;
 
         const itemDanger = isDanger && "list-group-item-danger";
-        const badgeBg = isDanger ? "danger" : "primary";
+        const badgeBg = isDanger ? "danger" : "light";
 
         return (
             <li
