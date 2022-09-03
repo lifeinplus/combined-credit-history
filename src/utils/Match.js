@@ -1,93 +1,75 @@
 const fields = [
     {
-        extended: false,
         sysName: "Delinquency0Count",
         type: "numeric",
     },
     {
-        extended: false,
         sysName: "Delinquency30Count",
         type: "numeric",
     },
     {
-        extended: false,
         sysName: "Delinquency60Count",
         type: "numeric",
     },
     {
-        extended: false,
         sysName: "Delinquency90Count",
         type: "numeric",
     },
     {
-        extended: false,
         sysName: "DelinquencyRestructuringCount",
         type: "numeric",
     },
     {
-        extended: false,
         sysName: "AccountRatingText",
         type: "text",
     },
     {
-        extended: false,
         sysName: "calculatedBkiPayment",
         sysNameStatus: "calculatedBkiStatus",
         type: "amount",
     },
     {
-        extended: false,
         sysName: "LoanTypeText",
         type: "text",
     },
     {
-        extended: false,
         sysName: "LoanAmount",
         type: "amount",
     },
     {
-        extended: false,
         sysName: "LoanCurrencyCode",
         type: "text",
     },
     {
-        extended: false,
         sysName: "CurrentBalanceAmount",
         type: "amount",
     },
     {
-        extended: false,
         sysName: "DebtAmount",
         type: "amount",
     },
     {
-        extended: false,
         sysName: "unpaidPercent",
         sysNameStatus: "unpaidPercentStatus",
         type: "numeric",
     },
     {
-        extended: false,
         sysName: "DelinquencyAmount",
         type: "amount",
     },
     {
-        extended: false,
         sysName: "AccountCodeText",
         type: "text",
     },
     {
-        extended: false,
         sysName: "LoanCreationDate",
         type: "date",
     },
     {
-        extended: false,
         sysName: "CloseDate",
         type: "date",
     },
     {
-        extended: false,
         sysName: "LastInfoUpdatedDate",
         type: "date",
     },
@@ -102,17 +84,14 @@ const fields = [
         type: "numeric",
     },
     {
-        extended: false,
         sysName: "BusinessCategory",
         type: "text",
     },
     {
-        extended: false,
         sysName: "nbkiLoanNumber",
         type: "numericArray",
     },
     {
-        extended: false,
         sysName: "okbLoanNumber",
         type: "numericArray",
     },
@@ -172,7 +151,6 @@ const fields = [
         type: "numeric",
     },
     {
-        extended: false,
         sysName: "pskPayment",
         sysNameStatus: "calculatedBkiStatus",
         type: "amount",
