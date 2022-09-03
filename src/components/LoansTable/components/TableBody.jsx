@@ -1,13 +1,13 @@
 import { format } from "date-fns";
 import { nanoid } from "nanoid";
 
-const TableBody = (props) => {
+const TableBody = ({ loans, columns }) => {
     return (
         <tbody>
-            {props.loans.map((loan) => (
+            {loans.map((loan) => (
                 <tr key={nanoid()}>
-                    {props.fields.map((field) => (
-                        <td key={nanoid()}>{getValue(loan, field)}</td>
+                    {columns.map((column) => (
+                        <td key={nanoid()}>{getValue(loan, column)}</td>
                     ))}
                 </tr>
             ))}
@@ -22,15 +22,15 @@ const TableBody = (props) => {
         return history.length ? history[0].AccountPaymentStatus : null;
     }
 
-    function getValue(loan, field) {
-        const value = loan[field.sysNameStatus] || loan[field.sysName];
+    function getValue(loan, column) {
+        const value = loan[column.sysNameStatus] || loan[column.sysName];
 
-        if (field.type === "date" && value) {
+        if (column.type === "date" && value) {
             return format(new Date(value), "dd.MM.yyyy");
         }
 
-        return field.status
-            ? getPaymentStatus(loan.MonthlyHistoryList, field.name)
+        return column.status
+            ? getPaymentStatus(loan.MonthlyHistoryList, column.name)
             : value;
     }
 };

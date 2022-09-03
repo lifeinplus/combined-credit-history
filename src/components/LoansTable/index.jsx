@@ -1,36 +1,42 @@
-import React from "react";
+import "./style.css";
 
-import { Match } from "../../utils";
-import { Sorting } from "./Sorting";
-import { TimePeriod } from "./TimePeriod";
+import { TimePeriod, respectiveColumns } from "./util";
+import { useSortableData } from "./hooks/useSortableData";
 
-import { TableBody } from "./TableBody";
-import { TableHead } from "./TableHead";
+import { TableBody } from "./components/TableBody";
+import { TableHead } from "./components/TableHead";
 
 const LoansTable = (props) => {
-    const [table, setTable] = React.useState({
-        fields: getFields(),
-        loans: props.loans,
+    const columns = defineColumns();
+
+    const {
+        items: loans,
+        requestSort,
+        sortConfig,
+    } = useSortableData(props.loans, {
+        direction: "asc",
+        sysName: "calculatedBkiPayment",
+        sysNameStatus: "calculatedBkiStatus",
+        type: "amount",
     });
 
-    React.useEffect(() => {
-        setTable((oldTable) => ({
-            ...oldTable,
-            fields: getFields(),
-        }));
-    }, [props.showExtendedData]);
+    const getSortClass = (name) => {
+        return sortConfig && sortConfig.sysName === name
+            ? sortConfig.direction
+            : undefined;
+    };
 
     return (
         <div className="table-responsive">
             <table className="table table-bordered table-striped table-hover">
-                <TableHead fields={table.fields} sortRows={sortRows} />
-                <TableBody fields={table.fields} loans={table.loans} />
+                <TableHead {...{ columns, getSortClass, requestSort }} />
+                <TableBody {...{ columns, loans }} />
             </table>
         </div>
     );
 
-    function getFields() {
-        const result = Match.fields.filter(
+    function defineColumns() {
+        const result = respectiveColumns.filter(
             (item) =>
                 !item.extended || (item.extended && props.showExtendedData)
         );
@@ -41,16 +47,6 @@ const LoansTable = (props) => {
         textMonths.forEach((item) => result.push({ name: item, status: true }));
 
         return result;
-    }
-
-    function sortRows(event, field) {
-        const sorting = new Sorting(table.loans);
-        sorting.onClick(event, field);
-
-        setTable((oldTable) => ({
-            ...oldTable,
-            loans: sorting.getLoans(),
-        }));
     }
 };
 

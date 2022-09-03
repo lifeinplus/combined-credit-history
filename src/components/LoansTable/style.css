@@ -1,0 +1,11 @@
+.asc {
+    background-image: url(../../assets/images/asc.png) !important;
+    background-repeat: no-repeat !important;
+    background-position: center bottom !important;
+}
+
+.desc {
+    background-image: url(../../assets/images/desc.png) !important;
+    background-repeat: no-repeat !important;
+    background-position: center top !important;
+}
