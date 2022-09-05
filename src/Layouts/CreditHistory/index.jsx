@@ -6,13 +6,16 @@ import { TimePeriod, respectiveColumns } from "./util";
 import { Header } from "../../components/Header";
 import { LoansTable } from "./components/LoansTable";
 import { PaymentAmounts } from "./components/PaymentAmounts";
+import { nanoid } from "nanoid";
 
-function CreditHistory(props) {
+function CreditHistory({ data }) {
     const [showExtendedData, setShowExtendedData] = useState(false);
 
-    const { data } = props;
-
     const columns = defineColumns();
+
+    const rows = React.useMemo(() => {
+        return data.loans.map((item) => ({ ...item, id: nanoid() }));
+    }, [data.loans]);
 
     function toggleExtend() {
         setShowExtendedData(!showExtendedData);
@@ -34,7 +37,7 @@ function CreditHistory(props) {
                 toggleExtend={toggleExtend}
             />
             <PaymentAmounts data={data} showExtendedData={showExtendedData} />
-            <LoansTable columns={columns} data={data.loans} />
+            <LoansTable columns={columns} rows={rows} />
         </div>
     );
 

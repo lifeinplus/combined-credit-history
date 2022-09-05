@@ -2,7 +2,7 @@ import { format } from "date-fns";
 
 const TableBody = (props) => {
     return (
-        <tbody>
+        <tbody className="table-group-divider">
             {props.documents.map((item) => (
                 <tr key={item.id}>
                     <td>{item.dataSource}</td>

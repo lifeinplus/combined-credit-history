@@ -31,8 +31,8 @@
         "PaymentPeriodCount": "Продолжительность данного кредита",
         "monthsNumberSinceDateOfCreation": "Количество месяцев с даты открытия",
         "BusinessCategory": "Вид деятельности источника",
-        "nbkiLoanNumber": "Номер счёта в отчёте НБКИ",
-        "okbLoanNumber": "Номер счёта в отчёте ОКБ",
+        "nbkiLoanNumber": "Номер счёта НБКИ",
+        "okbLoanNumber": "Номер счёта ОКБ",
         "monthsNumberCloseDateRemaining": "Количество месяцев до закрытия",
         "pskTaken": "ПСК учтённое",
         "pskCbr": "ПСК ЦБ",
@@ -44,7 +44,7 @@
         "financeTypeOkb": "Тип финансирования (ЦБ-ОКБ)",
         "loanTypeOkb": "Тип кредита (ЦБ-ОКБ)",
         "contractPeriodCount": "Количество дней по договору",
-        "pskPayment": "Платёж (4892-У)"
+        "pskPayment": "Платёж (ПСК)"
     },
     "number_of_accounts": "Количество счетов",
     "report_date": "Дата отчёта",

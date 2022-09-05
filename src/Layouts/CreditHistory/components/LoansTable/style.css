@@ -9,3 +9,23 @@
     background-repeat: no-repeat !important;
     background-position: center top !important;
 }
+
+.table-responsive {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-bottom-width: 0;
+    border-radius: 0.375rem;
+}
+
+.table tbody tr:hover .common {
+    background: #d7c8ff;
+}
+
+.table tbody tr.selected-row {
+    border-top: 0.07rem solid #8859ff;
+    border-bottom: 0.07rem solid #8859ff;
+}
+
+.table tbody td.selected-cell.common {
+    background: #8768d8;
+    color: #fff;
+}
