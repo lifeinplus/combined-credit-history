@@ -1,13 +1,13 @@
 import { format } from "date-fns";
 import { nanoid } from "nanoid";
 
-const TableBody = ({ loans, columns }) => {
+const TableBody = ({ columns, data }) => {
     return (
         <tbody>
-            {loans.map((loan) => (
+            {data.map((item) => (
                 <tr key={nanoid()}>
                     {columns.map((column) => (
-                        <td key={nanoid()}>{getValue(loan, column)}</td>
+                        <td key={nanoid()}>{getValue(item, column)}</td>
                     ))}
                 </tr>
             ))}

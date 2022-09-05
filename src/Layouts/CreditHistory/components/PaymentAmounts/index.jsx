@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import { Match } from "../utils";
+import { respectivePaymentAmounts } from "./util";
 
 const PaymentAmounts = (props) => {
     const { t } = useTranslation(["credit_history"]);
@@ -48,7 +48,7 @@ const PaymentAmounts = (props) => {
     }
 
     function defineAmounts(type) {
-        return Match.paymentAmounts
+        return respectivePaymentAmounts
             .filter(
                 (item) =>
                     item.type === type &&

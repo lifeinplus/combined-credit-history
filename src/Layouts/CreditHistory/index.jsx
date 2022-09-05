@@ -1,14 +1,18 @@
 import React from "react";
 import { useState } from "react";
 
-import { Header } from "../components/Header";
-import { LoansTable } from "../components/LoansTable";
-import { PaymentAmounts } from "../components/PaymentAmounts";
+import { TimePeriod, respectiveColumns } from "./util";
+
+import { Header } from "../../components/Header";
+import { LoansTable } from "./components/LoansTable";
+import { PaymentAmounts } from "./components/PaymentAmounts";
 
 function CreditHistory(props) {
     const [showExtendedData, setShowExtendedData] = useState(false);
 
     const { data } = props;
+
+    const columns = defineColumns();
 
     function toggleExtend() {
         setShowExtendedData(!showExtendedData);
@@ -30,17 +34,22 @@ function CreditHistory(props) {
                 toggleExtend={toggleExtend}
             />
             <PaymentAmounts data={data} showExtendedData={showExtendedData} />
-            <div className="row pe-1">
-                <div className="col pe-1">
-                    <LoansTable
-                        lastBkiCreationDate={data.lastBkiCreationDate}
-                        loans={data.loans}
-                        showExtendedData={showExtendedData}
-                    />
-                </div>
-            </div>
+            <LoansTable columns={columns} data={data.loans} />
         </div>
     );
+
+    function defineColumns() {
+        const result = respectiveColumns.filter(
+            (item) => !item.extended || (item.extended && showExtendedData)
+        );
+
+        const timePeriod = new TimePeriod(data.loans);
+        const textMonths = timePeriod.getTextMonths(data.lastBkiCreationDate);
+
+        textMonths.forEach((item) => result.push({ name: item, status: true }));
+
+        return result;
+    }
 }
 
 export { CreditHistory };

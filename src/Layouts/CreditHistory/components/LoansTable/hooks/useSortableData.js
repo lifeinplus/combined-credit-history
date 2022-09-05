@@ -1,6 +1,6 @@
 import React from "react";
 
-const useSortableData = (items, config = null) => {
+const useSortableData = (data, config = null) => {
     const [sortConfig, setSortConfig] = React.useState(config);
 
     const { direction, sysName, sysNameStatus, type } = sortConfig;
@@ -75,11 +75,11 @@ const useSortableData = (items, config = null) => {
         },
     };
 
-    const sortedItems = React.useMemo(() => {
+    const sortedData = React.useMemo(() => {
         const more = direction === "asc" ? 1 : -1;
         const less = direction === "asc" ? -1 : 1;
 
-        const result = [...items].sort((a, b) => {
+        const result = [...data].sort((a, b) => {
             const result = _compareFunctions[type](a, b);
             const { order, valueA, valueB } = result;
 
@@ -90,7 +90,7 @@ const useSortableData = (items, config = null) => {
         });
 
         return result;
-    }, [items, sortConfig]);
+    }, [data, sortConfig]);
 
     const requestSort = (field) => {
         let direction = "asc";
@@ -106,7 +106,7 @@ const useSortableData = (items, config = null) => {
         setSortConfig({ ...field, direction });
     };
 
-    return { items: sortedItems, requestSort, sortConfig };
+    return { sortedData, requestSort, sortConfig };
 };
 
 export { useSortableData };
