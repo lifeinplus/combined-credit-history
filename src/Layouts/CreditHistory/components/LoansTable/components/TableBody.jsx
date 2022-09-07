@@ -1,59 +1,52 @@
+import React from "react";
 import { format } from "date-fns";
 import { nanoid } from "nanoid";
-import React from "react";
 
-const TableBody = ({ columns, rows }) => {
+import { joinClasses } from "../util";
+
+const TableBody = ({ columns, loans }) => {
     const [selectedRowId, setSelectedRowId] = React.useState(undefined);
+
+    const handleClick = ({ target }) => {
+        const { parentElement } = target;
+        const { id } = parentElement;
+        setSelectedRowId(id !== selectedRowId && id);
+    };
 
     return (
         <tbody className="table-group-divider">
-            {rows.map((row) => {
-                return <Tr key={row.id} row={row} />;
-            })}
+            {loans.map((loan) => (
+                <Tr key={loan.id} loan={loan} />
+            ))}
         </tbody>
     );
 
-    function Tr({ row }) {
-        // TODO: refactor
+    function Tr({ loan }) {
+        const selectedClass = loan.id === selectedRowId ? "selected" : "";
+
         return (
-            <tr
-                id={row.id}
-                className={row.id === selectedRowId ? "selected-row" : ""}
-                onClick={({ target }) => {
-                    const { parentElement } = target;
-
-                    let id = parentElement.id;
-                    id = id === selectedRowId ? undefined : id;
-
-                    setSelectedRowId(id);
-                }}
-            >
+            <tr id={loan.id} className={selectedClass} onClick={handleClick}>
                 {columns.map((column) => (
-                    <td
+                    <Td
                         key={nanoid()}
-                        className={
-                            (row.id === selectedRowId ? "selected-cell" : "") +
-                            " " +
-                            getClass(column)
-                        }
-                    >
-                        {getValue(row, column)}
-                    </td>
+                        column={column}
+                        loan={loan}
+                        selectedClass={selectedClass}
+                    />
                 ))}
             </tr>
         );
     }
 
-    function getClass({ status }) {
-        return status ? "" : "common";
-    }
+    function Td({ column, loan, selectedClass }) {
+        const commonClass = column.common ? "common" : "";
+        const value = getValue(loan, column);
 
-    function getPaymentStatus(historyList, date) {
-        const history = historyList.filter(
-            (item) => format(new Date(item.HistoryDate), "MM.yyyy") === date
+        return (
+            <td className={joinClasses([commonClass, selectedClass])}>
+                {value}
+            </td>
         );
-
-        return history.length ? history[0].AccountPaymentStatus : null;
     }
 
     function getValue(loan, column) {
@@ -63,9 +56,17 @@ const TableBody = ({ columns, rows }) => {
             return format(new Date(value), "dd.MM.yyyy");
         }
 
-        return column.status
-            ? getPaymentStatus(loan.MonthlyHistoryList, column.name)
-            : value;
+        return column.common
+            ? value
+            : getPaymentStatus(loan.MonthlyHistoryList, column.name);
+    }
+
+    function getPaymentStatus(historyList, date) {
+        const history = historyList.filter(
+            (item) => format(new Date(item.HistoryDate), "MM.yyyy") === date
+        );
+
+        return history.length ? history[0].AccountPaymentStatus : null;
     }
 };
 

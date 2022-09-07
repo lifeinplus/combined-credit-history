@@ -1,23 +1,25 @@
 import React from "react";
-import { useState } from "react";
+import { nanoid } from "nanoid";
+import { useTranslation } from "react-i18next";
 
 import { TimePeriod, respectiveColumns } from "./util";
 
 import { Header } from "../../components/Header";
 import { LoansTable } from "./components/LoansTable";
 import { PaymentAmounts } from "./components/PaymentAmounts";
-import { nanoid } from "nanoid";
 
 function CreditHistory({ data }) {
-    const [showExtendedData, setShowExtendedData] = useState(false);
+    const { lastBkiCreationDate, loans, loansCount } = data;
+
+    const { t } = useTranslation(["credit_history"]);
+    const [showExtendedData, setShowExtendedData] = React.useState(false);
 
     const columns = defineColumns();
-
     const rows = React.useMemo(() => {
-        return data.loans.map((item) => ({ ...item, id: nanoid() }));
-    }, [data.loans]);
+        return loans.map((item) => ({ ...item, id: nanoid() }));
+    }, [loans]);
 
-    function toggleExtend() {
+    function handleExtend() {
         setShowExtendedData(!showExtendedData);
     }
 
@@ -29,12 +31,12 @@ function CreditHistory({ data }) {
                     number: "number_of_accounts",
                 }}
                 data={{
-                    date: data.lastBkiCreationDate,
-                    number: data.loansCount,
+                    date: lastBkiCreationDate,
+                    number: loansCount,
                 }}
                 iconName={"bi-credit-card-2-front"}
                 nameSpaces={["credit_history"]}
-                toggleExtend={toggleExtend}
+                handleExtend={handleExtend}
             />
             <PaymentAmounts data={data} showExtendedData={showExtendedData} />
             <LoansTable columns={columns} rows={rows} />
@@ -42,16 +44,34 @@ function CreditHistory({ data }) {
     );
 
     function defineColumns() {
-        const result = respectiveColumns.filter(
-            (item) => !item.extended || (item.extended && showExtendedData)
-        );
+        const commonCols = getCommonCols();
+        const dateCols = getDateCols();
 
-        const timePeriod = new TimePeriod(data.loans);
-        const textMonths = timePeriod.getTextMonths(data.lastBkiCreationDate);
+        return [...commonCols, ...dateCols];
+    }
 
-        textMonths.forEach((item) => result.push({ name: item, status: true }));
+    function getCommonCols() {
+        const all = [...respectiveColumns];
 
-        return result;
+        const columns = showExtendedData
+            ? all
+            : all.filter((column) => !column.extended);
+
+        return columns.map((item) => ({
+            ...item,
+            common: true,
+            name: t(`columns.${item.sysName}`),
+        }));
+    }
+
+    function getDateCols() {
+        const timePeriod = new TimePeriod(loans);
+        const textMonths = timePeriod.getTextMonths(lastBkiCreationDate);
+
+        return textMonths.map((item) => ({
+            common: false,
+            name: item,
+        }));
     }
 }
 

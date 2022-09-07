@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 
-const ExtendedControl = (props) => {
+// TODO: Toggle using hotkey
+const ExtendControl = (props) => {
     const { t } = useTranslation(["credit_history"]);
 
     return (
@@ -9,7 +10,7 @@ const ExtendedControl = (props) => {
                 <input
                     id="switchExtendedData"
                     className="form-check-input"
-                    onClick={props.toggleExtend}
+                    onClick={props.handleExtend}
                     role="switch"
                     type="checkbox"
                 />
@@ -24,4 +25,4 @@ const ExtendedControl = (props) => {
     );
 };
 
-export { ExtendedControl };
+export { ExtendControl };

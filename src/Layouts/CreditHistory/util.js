@@ -1,3 +1,4 @@
+// TODO: Refactor
 function TimePeriod(loans) {
     const _loans = loans || [];
 

@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { Date } from "../utils";
 
-import { ExtendedControl } from "./ExtendedControl";
+import { ExtendControl } from "./ExtendControl";
 
 const Header = (props) => {
     const { t } = useTranslation(props.nameSpaces);
@@ -16,12 +16,10 @@ const Header = (props) => {
                     <i className={`bi ${props.iconName} me-2`}></i>
                     {t("title")}
                 </span>
-                {props.toggleExtend && (
+                {props.handleExtend && (
                     <ul className="navbar-nav me-auto">
                         <li className="nav-item">
-                            <ExtendedControl
-                                toggleExtend={props.toggleExtend}
-                            />
+                            <ExtendControl handleExtend={props.handleExtend} />
                         </li>
                     </ul>
                 )}

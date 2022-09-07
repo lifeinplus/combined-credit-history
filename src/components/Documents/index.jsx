@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 import { TableBody } from "./TableBody";
 import { TableHead } from "./TableHead";
 
+// TODO: Move to Layouts under PersonalData
 const Documents = (props) => {
     const { data } = props;
 

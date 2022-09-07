@@ -20,12 +20,12 @@
     background: #d7c8ff;
 }
 
-.table tbody tr.selected-row {
+.table tbody tr.selected {
     border-top: 0.07rem solid #8859ff;
     border-bottom: 0.07rem solid #8859ff;
 }
 
-.table tbody td.selected-cell.common {
+.table tbody td.selected.common {
     background: #8768d8;
     color: #fff;
 }

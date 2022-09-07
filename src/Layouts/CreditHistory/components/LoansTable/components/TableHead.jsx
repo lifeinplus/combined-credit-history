@@ -1,15 +1,13 @@
-import { useTranslation } from "react-i18next";
+import { joinClasses } from "../util";
 
 const TableHead = ({ columns, getSortClass, requestSort }) => {
-    const { t } = useTranslation(["credit_history"]);
-
     return (
         <thead>
             <tr className="table-warning">
-                {columns.map((column) => (
+                {columns.map((item) => (
                     <Th
-                        key={column.sysName || column.name}
-                        column={column}
+                        key={item.sysName || item.name}
+                        column={item}
                         getSortClass={getSortClass}
                         requestSort={requestSort}
                     />
@@ -19,25 +17,21 @@ const TableHead = ({ columns, getSortClass, requestSort }) => {
     );
 
     function Th({ column, getSortClass, requestSort }) {
-        const name = column.name || t(`columns.${column.sysName}`);
-
         const colorClass = column.extended && "table-info";
-        const sortClass = !column.status && getSortClass(column.sysName);
+        const sortClass = column.common && getSortClass(column.sysName);
 
-        return column.status ? (
-            <th scope="col">{name}</th>
-        ) : (
+        return column.common ? (
             <th
-                className={[colorClass, sortClass]
-                    .filter((item) => item)
-                    .join(" ")}
+                className={joinClasses([colorClass, sortClass])}
                 onClick={() => {
                     requestSort(column);
                 }}
                 scope="col"
             >
-                {name}
+                {column.name}
             </th>
+        ) : (
+            <th scope="col">{column.name}</th>
         );
     }
 };
