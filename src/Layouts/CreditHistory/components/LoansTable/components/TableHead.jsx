@@ -1,4 +1,4 @@
-import { joinClasses } from "../util";
+import { joinClasses } from "../../../../../util";
 
 const TableHead = ({ columns, getSortClass, requestSort }) => {
     return (
@@ -36,4 +36,4 @@ const TableHead = ({ columns, getSortClass, requestSort }) => {
     }
 };
 
-export { TableHead };
+export default TableHead;

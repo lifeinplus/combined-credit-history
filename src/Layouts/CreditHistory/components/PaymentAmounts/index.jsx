@@ -1,11 +1,8 @@
 import { useTranslation } from "react-i18next";
-
 import { respectivePaymentAmounts } from "./util";
 
-const PaymentAmounts = (props) => {
+const PaymentAmounts = ({ data, showExtendedData: extended }) => {
     const { t } = useTranslation(["credit_history"]);
-
-    const { showExtendedData: extended } = props;
 
     const obligationCols = extended ? "col-lg-4" : "col-lg-5";
     const paymentCols = extended ? "col-lg-8" : "col-lg-7";
@@ -21,12 +18,12 @@ const PaymentAmounts = (props) => {
         </div>
     );
 
-    function ListGroup(props) {
-        const amounts = defineAmounts(props.type);
+    function ListGroup({ justify, type }) {
+        const amounts = defineAmounts(type);
 
         return (
             <ul
-                className={`list-group list-group-horizontal mb-3 justify-content-lg-${props.justify} justify-content-sm-center`}
+                className={`list-group list-group-horizontal mb-3 justify-content-lg-${justify} justify-content-sm-center`}
             >
                 {amounts.map(({ context, sysName, value }) => {
                     const contextClass = context
@@ -52,14 +49,13 @@ const PaymentAmounts = (props) => {
             .filter(
                 (item) =>
                     item.type === type &&
-                    (!item.extended ||
-                        (item.extended && props.showExtendedData))
+                    (!item.extended || (item.extended && extended))
             )
             .map((item) => ({
                 ...item,
-                value: props.data[item.sysName],
+                value: data[item.sysName],
             }));
     }
 };
 
-export { PaymentAmounts };
+export default PaymentAmounts;

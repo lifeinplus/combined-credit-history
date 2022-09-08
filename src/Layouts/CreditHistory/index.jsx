@@ -4,9 +4,9 @@ import { useTranslation } from "react-i18next";
 
 import { TimePeriod, respectiveColumns } from "./util";
 
-import { Header } from "../../components/Header";
-import { LoansTable } from "./components/LoansTable";
-import { PaymentAmounts } from "./components/PaymentAmounts";
+import Header from "../../components/Header";
+import LoansTable from "./components/LoansTable";
+import PaymentAmounts from "./components/PaymentAmounts";
 
 function CreditHistory({ data }) {
     const { lastBkiCreationDate, loans, loansCount } = data;
@@ -34,9 +34,9 @@ function CreditHistory({ data }) {
                     date: lastBkiCreationDate,
                     number: loansCount,
                 }}
+                handleExtend={handleExtend}
                 iconName={"bi-credit-card-2-front"}
                 nameSpaces={["credit_history"]}
-                handleExtend={handleExtend}
             />
             <PaymentAmounts data={data} showExtendedData={showExtendedData} />
             <LoansTable columns={columns} rows={rows} />
@@ -75,4 +75,4 @@ function CreditHistory({ data }) {
     }
 }
 
-export { CreditHistory };
+export default CreditHistory;

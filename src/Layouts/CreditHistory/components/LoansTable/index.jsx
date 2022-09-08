@@ -2,8 +2,8 @@ import "./style.css";
 
 import { useSortableData } from "./hooks/useSortableData";
 
-import { TableBody } from "./components/TableBody";
-import { TableHead } from "./components/TableHead";
+import TableBody from "./components/TableBody";
+import TableHead from "./components/TableHead";
 
 const LoansTable = ({ columns, rows }) => {
     const { sortedData, requestSort, sortConfig } = useSortableData(rows, {
@@ -37,4 +37,4 @@ const LoansTable = ({ columns, rows }) => {
     );
 };
 
-export { LoansTable };
+export default LoansTable;

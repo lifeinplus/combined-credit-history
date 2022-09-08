@@ -2,7 +2,7 @@ import React from "react";
 import { format } from "date-fns";
 import { nanoid } from "nanoid";
 
-import { joinClasses } from "../util";
+import { joinClasses } from "../../../../../util";
 
 const TableBody = ({ columns, loans }) => {
     const [selectedRowId, setSelectedRowId] = React.useState(undefined);
@@ -70,4 +70,4 @@ const TableBody = ({ columns, loans }) => {
     }
 };
 
-export { TableBody };
+export default TableBody;

@@ -1,25 +1,24 @@
 import { Fragment } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Date } from "../utils";
+import { formatHeader } from "../util";
 
-import { ExtendControl } from "./ExtendControl";
+import ExtendControl from "./ExtendControl";
 
-const Header = (props) => {
-    const { t } = useTranslation(props.nameSpaces);
-    const { captions, data } = props;
+const Header = ({ captions, data, handleExtend, iconName, nameSpaces }) => {
+    const { t } = useTranslation(nameSpaces);
 
     return (
         <nav className="navbar navbar-light mt-3">
             <div className="container-fluid">
                 <span className="navbar-brand" href="#">
-                    <i className={`bi ${props.iconName} me-2`}></i>
+                    <i className={`bi ${iconName} me-2`}></i>
                     {t("title")}
                 </span>
-                {props.handleExtend && (
+                {handleExtend && (
                     <ul className="navbar-nav me-auto">
                         <li className="nav-item">
-                            <ExtendControl handleExtend={props.handleExtend} />
+                            <ExtendControl handleExtend={handleExtend} />
                         </li>
                     </ul>
                 )}
@@ -31,7 +30,7 @@ const Header = (props) => {
                         />
                         <HeaderValue
                             caption={captions.date}
-                            value={Date.formatHeader(data.date)}
+                            value={formatHeader(data.date)}
                         />
                     </span>
                 </form>
@@ -39,16 +38,16 @@ const Header = (props) => {
         </nav>
     );
 
-    function HeaderValue(props) {
+    function HeaderValue({ caption, value }) {
         return (
             <Fragment>
-                <small>{t(props.caption)}</small>
+                <small>{t(caption)}</small>
                 <div className="d-inline px-2 text-body user-select-all">
-                    {props.value}
+                    {value}
                 </div>
             </Fragment>
         );
     }
 };
 
-export { Header };
+export default Header;

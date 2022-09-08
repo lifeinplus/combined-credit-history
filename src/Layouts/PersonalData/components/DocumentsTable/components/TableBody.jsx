@@ -1,9 +1,10 @@
 import { format } from "date-fns";
 
-const TableBody = (props) => {
+// TODO: Refactor
+const TableBody = ({ documents }) => {
     return (
         <tbody className="table-group-divider">
-            {props.documents.map((item) => (
+            {documents.map((item) => (
                 <tr key={item.id}>
                     <td>{item.dataSource}</td>
                     <td>{item.fullName}</td>
@@ -21,4 +22,4 @@ const TableBody = (props) => {
     }
 };
 
-export { TableBody };
+export default TableBody;

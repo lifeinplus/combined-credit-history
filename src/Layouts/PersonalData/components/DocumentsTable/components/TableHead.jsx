@@ -1,6 +1,7 @@
 import { nanoid } from "nanoid";
 import { useTranslation } from "react-i18next";
 
+// TODO: Refactor
 const TableHead = () => {
     const { t } = useTranslation(["personal_data"]);
 
@@ -24,4 +25,4 @@ const TableHead = () => {
     );
 };
 
-export { TableHead };
+export default TableHead;

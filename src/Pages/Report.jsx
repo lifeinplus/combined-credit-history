@@ -1,12 +1,12 @@
 import { CreditHistory, PersonalData } from "../Layouts";
 
-const Report = (props) => {
+const Report = ({ data }) => {
     return (
         <div className="container-fluid">
-            <PersonalData data={props.data} />
-            <CreditHistory data={props.data} />
+            <PersonalData data={data} />
+            <CreditHistory data={data} />
         </div>
     );
 };
 
-export { Report };
+export default Report;

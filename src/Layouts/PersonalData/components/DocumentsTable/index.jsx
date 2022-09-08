@@ -1,12 +1,9 @@
 import { nanoid } from "nanoid";
 
-import { TableBody } from "./TableBody";
-import { TableHead } from "./TableHead";
+import TableBody from "./components/TableBody";
+import TableHead from "./components/TableHead";
 
-// TODO: Move to Layouts under PersonalData
-const Documents = (props) => {
-    const { data } = props;
-
+const DocumentsTable = ({ data }) => {
     const documents = data.personInfo.map((item) => ({
         ...item,
         id: nanoid(),
@@ -22,4 +19,4 @@ const Documents = (props) => {
     );
 };
 
-export { Documents };
+export default DocumentsTable;

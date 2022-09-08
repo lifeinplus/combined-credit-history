@@ -5,4 +5,8 @@ function formatHeader(isoDate) {
     return format(date, "dd-MM-yyyy HH:mm:ss");
 }
 
-export { formatHeader };
+function joinClasses(classes) {
+    return classes.filter((item) => item).join(" ");
+}
+
+export { formatHeader, joinClasses };

@@ -1,5 +1,5 @@
 import { Navbar } from "./Layouts";
-import { Report } from "./Pages/Report";
+import Report from "./Pages/Report";
 
 import data from "./data/945349.json";
 
