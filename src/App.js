@@ -5,14 +5,14 @@ import data from "./data/945349.json";
 
 const App = () => {
     return (
-        <div>
+        <>
             <header>
                 <Navbar />
             </header>
             <main>
                 <Report data={data} />
             </main>
-        </div>
+        </>
     );
 };
 

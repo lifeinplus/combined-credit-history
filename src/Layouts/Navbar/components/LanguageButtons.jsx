@@ -26,7 +26,7 @@ const LanguageButtons = ({ i18n }) => {
                         onChange={() => i18n.changeLanguage(lng)}
                         type="radio"
                     />
-                    <label className="btn btn-outline-secondary" htmlFor={lng}>
+                    <label className="btn btn-outline-primary" htmlFor={lng}>
                         {lngs[lng].nativeName}
                     </label>
                 </Fragment>

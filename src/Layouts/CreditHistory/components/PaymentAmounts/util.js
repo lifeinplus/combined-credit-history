@@ -1,6 +1,6 @@
 const respectivePaymentAmounts = [
     {
-        context: "warning",
+        context: "primary",
         sysName: "bkiPaymentsAmountTotal",
         type: "payment",
     },
@@ -17,7 +17,7 @@ const respectivePaymentAmounts = [
         type: "payment",
     },
     {
-        context: "info",
+        context: "warning",
         extended: true,
         sysName: "pskPaymentsAmountTotal",
         type: "payment",

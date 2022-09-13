@@ -20,7 +20,7 @@ const TableHead = () => {
 
     return (
         <thead>
-            <tr>{ths}</tr>
+            <tr className="table-primary">{ths}</tr>
         </thead>
     );
 };

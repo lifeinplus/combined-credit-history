@@ -11,21 +11,21 @@
 }
 
 .table-responsive {
-    border: 1px solid rgba(0, 0, 0, 0.125);
+    border: 1px solid #dfdfdf;
     border-bottom-width: 0;
     border-radius: 0.375rem;
 }
 
 .table tbody tr:hover .common {
-    background: #d7c8ff;
+    background: #e4dff2;
 }
 
 .table tbody tr.selected {
-    border-top: 0.07rem solid #8859ff;
-    border-bottom: 0.07rem solid #8859ff;
+    border-top: 0.07rem solid #7860b7;
+    border-bottom: 0.07rem solid #7860b7;
 }
 
 .table tbody td.selected.common {
-    background: #8768d8;
+    background: #7860b7;
     color: #fff;
 }

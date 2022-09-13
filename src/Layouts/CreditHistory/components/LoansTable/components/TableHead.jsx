@@ -3,7 +3,7 @@ import { joinClasses } from "../../../../../util";
 const TableHead = ({ columns, getSortClass, requestSort }) => {
     return (
         <thead>
-            <tr className="table-warning">
+            <tr className="table-primary">
                 {columns.map((item) => (
                     <Th
                         key={item.sysName || item.name}
@@ -17,7 +17,7 @@ const TableHead = ({ columns, getSortClass, requestSort }) => {
     );
 
     function Th({ column, getSortClass, requestSort }) {
-        const colorClass = column.extended && "table-info";
+        const colorClass = column.extended && "table-warning";
         const sortClass = column.common && getSortClass(column.sysName);
 
         return column.common ? (

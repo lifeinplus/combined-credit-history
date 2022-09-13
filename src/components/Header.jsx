@@ -1,8 +1,5 @@
-import { Fragment } from "react";
 import { useTranslation } from "react-i18next";
-
 import { formatHeader } from "../util";
-
 import ExtendControl from "./ExtendControl";
 
 const Header = ({ captions, data, handleExtend, iconName, nameSpaces }) => {
@@ -40,12 +37,12 @@ const Header = ({ captions, data, handleExtend, iconName, nameSpaces }) => {
 
     function HeaderValue({ caption, value }) {
         return (
-            <Fragment>
+            <>
                 <small>{t(caption)}</small>
                 <div className="d-inline px-2 text-body user-select-all">
                     {value}
                 </div>
-            </Fragment>
+            </>
         );
     }
 };
