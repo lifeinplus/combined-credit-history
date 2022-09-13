@@ -8,7 +8,7 @@ import Header from "../../components/Header";
 import LoansTable from "./components/LoansTable";
 import PaymentAmounts from "./components/PaymentAmounts";
 
-function CreditHistory({ data }) {
+const CreditHistory = ({ data }) => {
     const { lastBkiCreationDate, loans, loansCount } = data;
 
     const { t } = useTranslation(["credit_history"]);
@@ -73,6 +73,6 @@ function CreditHistory({ data }) {
             name: item,
         }));
     }
-}
+};
 
 export default CreditHistory;

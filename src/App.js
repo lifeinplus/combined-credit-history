@@ -3,7 +3,7 @@ import Report from "./Pages/Report";
 
 import data from "./data/945349.json";
 
-function App() {
+const App = () => {
     return (
         <div>
             <header>
@@ -14,6 +14,6 @@ function App() {
             </main>
         </div>
     );
-}
+};
 
 export default App;

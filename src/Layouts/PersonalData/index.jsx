@@ -2,7 +2,7 @@ import DocumentsTable from "./components/DocumentsTable";
 import Header from "../../components/Header";
 import RequestCounts from "./components/RequestCounts";
 
-function PersonalData({ data }) {
+const PersonalData = ({ data }) => {
     return (
         <div className="row">
             <Header
@@ -33,6 +33,6 @@ function PersonalData({ data }) {
             </div>
         </div>
     );
-}
+};
 
 export default PersonalData;
