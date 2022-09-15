@@ -17,7 +17,7 @@ const TableHead = ({ columns, getSortClass, requestSort }) => {
     );
 
     function Th({ column, getSortClass, requestSort }) {
-        const colorClass = column.extended && "table-warning";
+        const colorClass = column.extended && "table-info";
         const sortClass = column.common && getSortClass(column.sysName);
 
         return column.common ? (

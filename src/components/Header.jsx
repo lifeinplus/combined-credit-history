@@ -6,7 +6,7 @@ const Header = ({ captions, data, handleExtend, iconName, nameSpaces }) => {
     const { t } = useTranslation(nameSpaces);
 
     return (
-        <nav className="navbar navbar-light mt-3">
+        <nav className="navbar navbar-light">
             <div className="container-fluid">
                 <span className="navbar-brand" href="#">
                     <i className={`bi ${iconName} me-2`}></i>
@@ -38,8 +38,8 @@ const Header = ({ captions, data, handleExtend, iconName, nameSpaces }) => {
     function HeaderValue({ caption, value }) {
         return (
             <>
-                <small>{t(caption)}</small>
-                <div className="d-inline px-2 text-body user-select-all">
+                <small className="px-2">{t(caption)}</small>
+                <div className="d-inline text-body user-select-all">
                     {value}
                 </div>
             </>

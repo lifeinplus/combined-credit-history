@@ -17,7 +17,7 @@ const respectivePaymentAmounts = [
         type: "payment",
     },
     {
-        context: "warning",
+        context: "info",
         extended: true,
         sysName: "pskPaymentsAmountTotal",
         type: "payment",

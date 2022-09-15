@@ -5,7 +5,6 @@ const lngs = {
     ru: { nativeName: "Русский" },
 };
 
-// TODO: Make purple
 const LanguageButtons = ({ i18n }) => {
     document.onkeydown = (event) => {
         if (event.altKey && event.code === "KeyL") {

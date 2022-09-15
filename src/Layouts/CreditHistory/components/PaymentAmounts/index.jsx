@@ -8,11 +8,11 @@ const PaymentAmounts = ({ data, showExtendedData: extended }) => {
     const paymentCols = extended ? "col-lg-8" : "col-lg-7";
 
     return (
-        <div className="row justify-content-between text-center pe-1">
-            <div className={obligationCols}>
+        <div className="row justify-content-between text-center pe-0">
+            <div className={`${obligationCols} pe-0`}>
                 <ListGroup justify={"start"} type={"obligation"} />
             </div>
-            <div className={`${paymentCols} pe-1`}>
+            <div className={`${paymentCols} pe-0`}>
                 <ListGroup justify={"end"} type={"payment"} />
             </div>
         </div>

@@ -24,22 +24,30 @@ const CreditHistory = ({ data }) => {
     }
 
     return (
-        <div className="row">
-            <Header
-                captions={{
-                    date: "report_date",
-                    number: "number_of_accounts",
-                }}
-                data={{
-                    date: lastBkiCreationDate,
-                    number: loansCount,
-                }}
-                handleExtend={handleExtend}
-                iconName={"bi-credit-card-2-front"}
-                nameSpaces={["credit_history"]}
-            />
-            <PaymentAmounts data={data} showExtendedData={showExtendedData} />
-            <LoansTable columns={columns} rows={rows} />
+        <div className="container-fluid">
+            <div
+                className="row border rounded mb-3"
+                style={{ backgroundColor: "#F9F9FA" }}
+            >
+                <Header
+                    captions={{
+                        date: "report_date",
+                        number: "number_of_accounts",
+                    }}
+                    data={{
+                        date: lastBkiCreationDate,
+                        number: loansCount,
+                    }}
+                    handleExtend={handleExtend}
+                    iconName={"bi-credit-card-2-front"}
+                    nameSpaces={["credit_history"]}
+                />
+                <PaymentAmounts
+                    data={data}
+                    showExtendedData={showExtendedData}
+                />
+                <LoansTable columns={columns} rows={rows} />
+            </div>
         </div>
     );
 
