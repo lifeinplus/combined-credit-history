@@ -24,29 +24,33 @@ const CreditHistory = ({ data }) => {
     }
 
     return (
-        <div className="container-fluid">
+        <div className="container-fluid mb-3">
             <div
-                className="row border rounded mb-3"
+                className="row border rounded"
                 style={{ backgroundColor: "#F9F9FA" }}
             >
-                <Header
-                    captions={{
-                        date: "report_date",
-                        number: "number_of_accounts",
-                    }}
-                    data={{
-                        date: lastBkiCreationDate,
-                        number: loansCount,
-                    }}
-                    handleExtend={handleExtend}
-                    iconName={"bi-credit-card-2-front"}
-                    nameSpaces={["credit_history"]}
-                />
-                <PaymentAmounts
-                    data={data}
-                    showExtendedData={showExtendedData}
-                />
-                <LoansTable columns={columns} rows={rows} />
+                <div className="col">
+                    <div className="row">
+                        <Header
+                            captions={{
+                                date: "report_date",
+                                number: "number_of_accounts",
+                            }}
+                            data={{
+                                date: lastBkiCreationDate,
+                                number: loansCount,
+                            }}
+                            handleExtend={handleExtend}
+                            iconName={"bi-credit-card-2-front"}
+                            nameSpaces={["credit_history"]}
+                        />
+                    </div>
+                    <PaymentAmounts
+                        data={data}
+                        showExtendedData={showExtendedData}
+                    />
+                    <LoansTable columns={columns} rows={rows} />
+                </div>
             </div>
         </div>
     );

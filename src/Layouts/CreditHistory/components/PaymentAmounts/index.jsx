@@ -8,11 +8,11 @@ const PaymentAmounts = ({ data, showExtendedData: extended }) => {
     const paymentCols = extended ? "col-lg-8" : "col-lg-7";
 
     return (
-        <div className="row justify-content-between text-center pe-0">
-            <div className={`${obligationCols} pe-0`}>
+        <div className="row justify-content-between text-center">
+            <div className={obligationCols}>
                 <ListGroup justify={"start"} type={"obligation"} />
             </div>
-            <div className={`${paymentCols} pe-0`}>
+            <div className={paymentCols}>
                 <ListGroup justify={"end"} type={"payment"} />
             </div>
         </div>
@@ -23,7 +23,10 @@ const PaymentAmounts = ({ data, showExtendedData: extended }) => {
 
         return (
             <ul
-                className={`list-group list-group-horizontal mb-3 justify-content-lg-${justify} justify-content-sm-center`}
+                className={`list-group list-group-horizontal
+                            justify-content-lg-${justify}
+                            justify-content-sm-center
+                            mb-3`}
             >
                 {amounts.map(({ context, sysName, value }) => {
                     const contextClass = context

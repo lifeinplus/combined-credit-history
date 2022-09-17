@@ -20,8 +20,8 @@ const LoansTable = ({ columns, rows }) => {
     };
 
     return (
-        <div className="row pe-0">
-            <div className="col pe-0">
+        <div className="row">
+            <div className="col">
                 <div className="table-responsive border rounded mb-3">
                     <table className="table table-striped mb-0">
                         <TableHead

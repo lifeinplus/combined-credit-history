@@ -3,9 +3,9 @@ import ReactDOM from "react-dom/client";
 
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import "./style.scss";
 
-import "./config/i18n";
+import "./assets/scss/main.scss";
+import "./assets/js/main";
 
 import App from "./App";
 import Spinner from "./components/Spinner";
