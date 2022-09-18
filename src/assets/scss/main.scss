@@ -1,5 +1,11 @@
+// Sass Variables
 @import "./abstracts/variables";
 
+// Bootstrap core imports
 @import "~bootstrap/scss/bootstrap";
 
+// Template CSS variables
 @import "./abstracts/css-variables";
+
+// Template utility imports
+@import "./utilities/sizing";
