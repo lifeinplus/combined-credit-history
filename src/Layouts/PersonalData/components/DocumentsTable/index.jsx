@@ -10,7 +10,7 @@ const DocumentsTable = ({ data }) => {
     }));
 
     return (
-        <div className="table-responsive border rounded mb-3">
+        <div className="table-responsive border rounded mb-3 mb-lg-0">
             <table className="table table-striped mb-0">
                 <TableHead />
                 <TableBody documents={documents} />

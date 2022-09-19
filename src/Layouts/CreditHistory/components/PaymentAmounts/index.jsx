@@ -24,9 +24,9 @@ const PaymentAmounts = ({ data, showExtendedData: extended }) => {
         return (
             <ul
                 className={`list-group list-group-horizontal
-                            justify-content-lg-${justify}
-                            justify-content-sm-center
-                            mb-3`}
+                justify-content-sm-center
+                justify-content-lg-${justify}
+                mb-3`}
             >
                 {amounts.map(({ context, sysName, value }) => {
                     const contextClass = context
