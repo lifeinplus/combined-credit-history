@@ -1,0 +1,13 @@
+.table tbody tr:hover .common {
+    background: #e4dff2;
+}
+
+.table tbody tr.selected {
+    border-top: 0.07rem solid #7860b7;
+    border-bottom: 0.07rem solid #7860b7;
+}
+
+.table tbody td.selected.common {
+    background: #7860b7;
+    color: #fff;
+}

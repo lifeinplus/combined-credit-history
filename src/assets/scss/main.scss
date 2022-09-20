@@ -7,5 +7,10 @@
 // Template CSS variables
 @import "./abstracts/css-variables";
 
+// Template Components
+@import "./components/panel";
+@import "./components/th";
+@import "./components/tr";
+
 // Template utility imports
 @import "./utilities/sizing";

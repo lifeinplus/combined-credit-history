@@ -25,10 +25,7 @@ const CreditHistory = ({ data }) => {
 
     return (
         <div className="container-fluid mb-3">
-            <div
-                className="row border rounded"
-                style={{ backgroundColor: "#F9F9FA" }}
-            >
+            <div className="row panel border rounded">
                 <div className="col">
                     <div className="row">
                         <Header

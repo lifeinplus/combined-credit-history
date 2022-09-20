@@ -5,10 +5,7 @@ import RequestCounts from "./components/RequestCounts";
 const PersonalData = ({ data }) => {
     return (
         <div className="container-fluid mb-3">
-            <div
-                className="row pt-2 pb-3 border border-top-0 rounded-bottom"
-                style={{ backgroundColor: "#F9F9FA" }}
-            >
+            <div className="row panel pt-2 pb-3 border border-top-0 rounded-bottom">
                 <div className="col">
                     <div className="row">
                         <Header

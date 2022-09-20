@@ -1,5 +1,3 @@
-import "./style.css";
-
 import { useSortableData } from "./hooks/useSortableData";
 
 import TableBody from "./components/TableBody";
