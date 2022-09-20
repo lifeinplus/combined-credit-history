@@ -24,7 +24,7 @@ const Navbar = () => {
                             src="logo.png"
                         />
                     </span>
-                    <span>{t("title")}</span>
+                    <span className="">{t("title")}</span>
                 </a>
                 <button
                     className="navbar-toggler"
