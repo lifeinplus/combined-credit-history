@@ -2,7 +2,7 @@ import { joinClasses } from "../../../../../util";
 
 const TableHead = ({ columns, getSortClass, requestSort }) => {
     return (
-        <thead>
+        <thead className="align-middle">
             <tr className="table-primary">
                 {columns.map((item) => (
                     <Th

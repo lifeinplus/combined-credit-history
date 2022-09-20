@@ -19,7 +19,7 @@ const TableHead = () => {
     ));
 
     return (
-        <thead>
+        <thead className="align-middle">
             <tr className="table-primary">{ths}</tr>
         </thead>
     );

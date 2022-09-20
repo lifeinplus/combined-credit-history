@@ -21,7 +21,7 @@ const LoansTable = ({ columns, rows }) => {
         <div className="row">
             <div className="col">
                 <div className="table-responsive border rounded mb-3">
-                    <table className="table table-striped mb-0">
+                    <table className="table table-striped align-middle mb-0">
                         <TableHead
                             columns={columns}
                             getSortClass={getSortClass}
