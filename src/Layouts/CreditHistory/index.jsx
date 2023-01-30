@@ -8,20 +8,15 @@ import Header from "../../components/Header";
 import LoansTable from "./components/LoansTable";
 import PaymentAmounts from "./components/PaymentAmounts";
 
-const CreditHistory = ({ data }) => {
+const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
     const { lastBkiCreationDate, loans, loansCount } = data;
 
     const { t } = useTranslation(["credit_history"]);
-    const [showExtendedData, setShowExtendedData] = React.useState(false);
 
     const columns = defineColumns();
     const rows = React.useMemo(() => {
         return loans.map((item) => ({ ...item, id: nanoid() }));
     }, [loans]);
-
-    function handleExtend() {
-        setShowExtendedData(!showExtendedData);
-    }
 
     return (
         <div className="container-fluid mb-3">
@@ -40,6 +35,7 @@ const CreditHistory = ({ data }) => {
                             handleExtend={handleExtend}
                             iconName={"bi-credit-card-2-front"}
                             nameSpaces={["credit_history"]}
+                            showExtendedData={showExtendedData}
                         />
                     </div>
                     <PaymentAmounts

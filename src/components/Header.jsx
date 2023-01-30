@@ -2,7 +2,14 @@ import { useTranslation } from "react-i18next";
 import { formatHeader } from "../util";
 import ExtendControl from "./ExtendControl";
 
-const Header = ({ captions, data, handleExtend, iconName, nameSpaces }) => {
+const Header = ({
+    captions,
+    data,
+    handleExtend,
+    iconName,
+    nameSpaces,
+    showExtendedData,
+}) => {
     const { t } = useTranslation(nameSpaces);
 
     return (
@@ -15,7 +22,10 @@ const Header = ({ captions, data, handleExtend, iconName, nameSpaces }) => {
                 {handleExtend && (
                     <ul className="navbar-nav me-auto">
                         <li className="nav-item">
-                            <ExtendControl handleExtend={handleExtend} />
+                            <ExtendControl
+                                handleExtend={handleExtend}
+                                showExtendedData={showExtendedData}
+                            />
                         </li>
                     </ul>
                 )}

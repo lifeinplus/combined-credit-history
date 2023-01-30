@@ -1,17 +1,7 @@
 import { Fragment } from "react";
-
-const lngs = {
-    en: { nativeName: "English" },
-    ru: { nativeName: "Русский" },
-};
+import { lngs } from "../../../util";
 
 const LanguageButtons = ({ i18n }) => {
-    document.onkeydown = (event) => {
-        if (event.altKey && event.code === "KeyL") {
-            changeLanguage();
-        }
-    };
-
     return (
         <div className="btn-group btn-group-sm" role="group">
             {Object.keys(lngs).map((lng) => (
@@ -35,14 +25,6 @@ const LanguageButtons = ({ i18n }) => {
             ))}
         </div>
     );
-
-    function changeLanguage() {
-        const lng = Object.keys(lngs).filter(
-            (lng) => lng !== i18n.resolvedLanguage
-        );
-
-        i18n.changeLanguage(lng);
-    }
 };
 
 export default LanguageButtons;

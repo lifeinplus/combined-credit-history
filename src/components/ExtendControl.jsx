@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-// TODO: Toggle using hotkey
-const ExtendControl = ({ handleExtend }) => {
+const ExtendControl = ({ handleExtend, showExtendedData }) => {
     const { t } = useTranslation(["credit_history"]);
 
     return (
@@ -9,8 +8,9 @@ const ExtendControl = ({ handleExtend }) => {
             <div className="form-check form-switch navbar-text pb-1">
                 <input
                     id="switchExtendedData"
+                    checked={showExtendedData}
                     className="form-check-input"
-                    onClick={handleExtend}
+                    onChange={handleExtend}
                     role="switch"
                     type="checkbox"
                 />
