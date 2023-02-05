@@ -2,12 +2,12 @@
     "app_creation_date": "от",
     "app_number": "Заявка №",
     "document": {
-        "birth_date": "Дата рождения",
-        "full_name": "ФИО",
-        "issue_date": "Дата выдачи",
-        "passport_number": "Номер паспорта",
-        "passport_series": "Серия паспорта",
-        "source": "Источник"
+        "dataSource": "Источник",
+        "fullName": "ФИО",
+        "birthDate": "Дата рождения",
+        "mainDocNumber": "Номер паспорта",
+        "mainDocSeries": "Серия паспорта",
+        "mainDocIssueDate": "Дата выдачи"
     },
     "requests": {
         "title_all": "Запросы",

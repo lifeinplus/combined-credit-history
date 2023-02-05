@@ -1,24 +1,38 @@
 import { format } from "date-fns";
+import { nanoid } from "nanoid";
 
-// TODO: Refactor
-const TableBody = ({ documents }) => {
+const TableBody = ({ columns, data }) => {
     return (
         <tbody className="table-group-divider">
-            {documents.map((item) => (
-                <tr key={item.id}>
-                    <td>{item.dataSource}</td>
-                    <td>{item.fullName}</td>
-                    <td>{formatDate(item.birthDate)}</td>
-                    <td>{item.mainDocSeries}</td>
-                    <td>{item.mainDocNumber}</td>
-                    <td>{formatDate(item.mainDocIssueDate)}</td>
-                </tr>
+            {data.map((item) => (
+                <Tr key={item.id} data={item} />
             ))}
         </tbody>
     );
 
-    function formatDate(date) {
-        return date ? format(new Date(date), "dd-MM-yyyy") : date;
+    function Tr({ data }) {
+        return (
+            <tr>
+                {columns.map((column) => (
+                    <Td key={nanoid()} column={column} data={data} />
+                ))}
+            </tr>
+        );
+    }
+
+    function Td({ column, data }) {
+        const value = getValue(column, data);
+        return <td>{value}</td>;
+    }
+
+    function getValue(column, data) {
+        const value = data[column.sysName];
+
+        if (column.type === "date" && value) {
+            return format(new Date(value), "dd.MM.yyyy");
+        }
+
+        return value;
     }
 };
 

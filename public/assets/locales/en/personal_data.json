@@ -2,12 +2,12 @@
     "app_creation_date": "Creation Date",
     "app_number": "Application No",
     "document": {
-        "birth_date": "Birth Date",
-        "full_name": "Full Name",
-        "issue_date": "Issue Date",
-        "passport_number": "Passport Number",
-        "passport_series": "Passport Series",
-        "source": "Source"
+        "dataSource": "Source",
+        "fullName": "Full Name",
+        "birthDate": "Birth Date",
+        "mainDocNumber": "Passport Number",
+        "mainDocSeries": "Passport Series",
+        "mainDocIssueDate": "Issue Date"
     },
     "requests": {
         "title_all": "Requests",

@@ -1,10 +1,10 @@
 const respectiveColumns = [
-    { sysName: "source" },
-    { sysName: "full_name" },
-    { sysName: "birth_date" },
-    { sysName: "passport_series" },
-    { sysName: "passport_number" },
-    { sysName: "issue_date" },
+    { sysName: "dataSource", type: "text" },
+    { sysName: "fullName", type: "text" },
+    { sysName: "birthDate", type: "date" },
+    { sysName: "mainDocSeries", type: "text" },
+    { sysName: "mainDocNumber", type: "text" },
+    { sysName: "mainDocIssueDate", type: "date" },
 ];
 
 export { respectiveColumns };

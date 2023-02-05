@@ -1,20 +1,17 @@
-import { useTranslation } from "react-i18next";
-import { respectiveColumns } from "../../../util";
-
-const TableHead = () => {
-    const { t } = useTranslation(["personal_data"]);
-
+const TableHead = ({ columns }) => {
     return (
         <thead className="align-middle">
             <tr className="table-primary">
-                {respectiveColumns.map((item) => (
-                    <th key={item.sysName} scope="col">
-                        {t(`document.${item.sysName}`)}
-                    </th>
+                {columns.map((item) => (
+                    <Th key={item.sysName} column={item} />
                 ))}
             </tr>
         </thead>
     );
+
+    function Th({ column }) {
+        return <th scope="col">{column.name}</th>;
+    }
 };
 
 export default TableHead;

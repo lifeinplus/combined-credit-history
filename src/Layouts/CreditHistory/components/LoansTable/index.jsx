@@ -27,7 +27,7 @@ const LoansTable = ({ columns, rows }) => {
                             getSortClass={getSortClass}
                             requestSort={requestSort}
                         />
-                        <TableBody columns={columns} loans={sortedData} />
+                        <TableBody columns={columns} data={sortedData} />
                     </table>
                 </div>
             </div>

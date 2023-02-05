@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 
 import { joinClasses } from "../../../../../util";
 
-const TableBody = ({ columns, loans }) => {
+const TableBody = ({ columns, data }) => {
     const [selectedRowId, setSelectedRowId] = React.useState(undefined);
 
     const handleClick = ({ target }) => {
@@ -15,22 +15,22 @@ const TableBody = ({ columns, loans }) => {
 
     return (
         <tbody className="table-group-divider">
-            {loans.map((loan) => (
-                <Tr key={loan.id} loan={loan} />
+            {data.map((item) => (
+                <Tr key={item.id} data={item} />
             ))}
         </tbody>
     );
 
-    function Tr({ loan }) {
-        const selectedClass = loan.id === selectedRowId ? "selected" : "";
+    function Tr({ data }) {
+        const selectedClass = data.id === selectedRowId ? "selected" : "";
 
         return (
-            <tr id={loan.id} className={selectedClass} onClick={handleClick}>
+            <tr className={selectedClass} onClick={handleClick}>
                 {columns.map((column) => (
                     <Td
                         key={nanoid()}
                         column={column}
-                        loan={loan}
+                        data={data}
                         selectedClass={selectedClass}
                     />
                 ))}
@@ -38,9 +38,9 @@ const TableBody = ({ columns, loans }) => {
         );
     }
 
-    function Td({ column, loan, selectedClass }) {
+    function Td({ column, data, selectedClass }) {
         const commonClass = column.common ? "common" : "";
-        const value = getValue(loan, column);
+        const value = getValue(column, data);
 
         return (
             <td className={joinClasses([commonClass, selectedClass])}>
@@ -49,8 +49,8 @@ const TableBody = ({ columns, loans }) => {
         );
     }
 
-    function getValue(loan, column) {
-        const value = loan[column.sysNameStatus] || loan[column.sysName];
+    function getValue(column, data) {
+        const value = data[column.sysNameStatus] || data[column.sysName];
 
         if (column.type === "date" && value) {
             return format(new Date(value), "dd.MM.yyyy");
@@ -58,7 +58,7 @@ const TableBody = ({ columns, loans }) => {
 
         return column.common
             ? value
-            : getPaymentStatus(loan.MonthlyHistoryList, column.name);
+            : getPaymentStatus(data.MonthlyHistoryList, column.name);
     }
 
     function getPaymentStatus(historyList, date) {
