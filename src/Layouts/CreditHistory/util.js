@@ -1,9 +1,14 @@
-// TODO: Refactor
-function TimePeriod(loans) {
-    const _loans = loans || [];
+class TimePeriod {
+    #loans;
+    #lastDate;
 
-    this.getTextMonths = function (lastDate) {
-        const dates = getMonthDates(lastDate);
+    constructor(loans, lastDate) {
+        this.#loans = loans;
+        this.#lastDate = new Date(lastDate);
+    }
+
+    get result() {
+        const dates = this.#getMonthDates();
 
         return dates.map((item) => {
             return new Intl.DateTimeFormat("ru", {
@@ -11,13 +16,11 @@ function TimePeriod(loans) {
                 year: "numeric",
             }).format(item);
         });
-    };
+    }
 
-    function getMonthDates(lastDate) {
-        const _lastDate = new Date(lastDate);
-
-        const result = [_lastDate];
-        const monthsNumber = getMonthsNumber(_lastDate);
+    #getMonthDates() {
+        const result = [this.#lastDate];
+        const monthsNumber = this.#getMonthsNumber();
 
         for (let i = 1; i < monthsNumber; i++) {
             let previous = result[i - 1];
@@ -31,22 +34,22 @@ function TimePeriod(loans) {
         return result;
     }
 
-    function getMonthsNumber(lastDate) {
-        const startDate = getStartDate(lastDate);
+    #getMonthsNumber() {
+        const startDate = this.#getStartDate();
         const startFullYear = startDate.getFullYear();
         const startMonth = startDate.getMonth();
 
-        const endDate = lastDate;
+        const endDate = this.#lastDate;
         const endFullYear = endDate.getFullYear();
         const endMonth = endDate.getMonth();
 
         return (endFullYear - startFullYear) * 12 + (endMonth + 1) - startMonth;
     }
 
-    function getStartDate(lastDate) {
-        let result = lastDate;
+    #getStartDate() {
+        let result = this.#lastDate;
 
-        _loans.forEach((loan) => {
+        this.#loans.forEach((loan) => {
             const MonthlyHistoryList = loan.MonthlyHistoryList || [];
 
             MonthlyHistoryList.forEach((item) => {

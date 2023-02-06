@@ -70,10 +70,9 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
     }
 
     function getDateCols() {
-        const timePeriod = new TimePeriod(loans);
-        const textMonths = timePeriod.getTextMonths(lastBkiCreationDate);
+        const timePeriod = new TimePeriod(loans, lastBkiCreationDate);
 
-        return textMonths.map((item) => ({
+        return timePeriod.result.map((item) => ({
             common: false,
             name: item,
         }));
