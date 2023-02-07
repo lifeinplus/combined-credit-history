@@ -1,5 +1,6 @@
 import { joinClasses } from "../../../../../util";
 
+// TODO - make table with sticky head
 const TableHead = ({ columns, getSortClass, requestSort }) => {
     return (
         <thead className="align-middle">

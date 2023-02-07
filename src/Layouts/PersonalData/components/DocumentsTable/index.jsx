@@ -6,6 +6,7 @@ import { respectiveColumns } from "../../util";
 import TableBody from "./components/TableBody";
 import TableHead from "./components/TableHead";
 
+// TODO - make a generic table component
 const DocumentsTable = ({ data }) => {
     const { t } = useTranslation(["personal_data"]);
 

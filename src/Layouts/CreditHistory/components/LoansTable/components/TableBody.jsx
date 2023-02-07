@@ -4,10 +4,13 @@ import { nanoid } from "nanoid";
 
 import { joinClasses } from "../../../../../util";
 
+// TODO - highlight values above zero in delinquency columns
+// TODO - highlight the values of the timeliness of payments
 const TableBody = ({ columns, data }) => {
     const [selectedRowId, setSelectedRowId] = React.useState(undefined);
 
     const handleClick = ({ target }) => {
+        // BUG - lines are not highlighted
         const { parentElement } = target;
         const { id } = parentElement;
         setSelectedRowId(id !== selectedRowId && id);

@@ -3,6 +3,7 @@ import { useSortableData } from "./hooks/useSortableData";
 import TableBody from "./components/TableBody";
 import TableHead from "./components/TableHead";
 
+// TODO - make a generic table component
 const LoansTable = ({ columns, rows }) => {
     const { sortedData, requestSort, sortConfig } = useSortableData(rows, {
         direction: "asc",

@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { lngs } from "../../../util";
 
+// TODO - add turkish language
 const LanguageButtons = ({ i18n }) => {
     return (
         <div className="btn-group btn-group-sm" role="group">

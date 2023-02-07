@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 
+// TODO - save ExtendContorol state in cookie
 const ExtendControl = ({ handleExtend, showExtendedData }) => {
     const { t } = useTranslation(["credit_history"]);
 
