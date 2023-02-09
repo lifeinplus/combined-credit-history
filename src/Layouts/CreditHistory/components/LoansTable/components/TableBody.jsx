@@ -10,7 +10,6 @@ const TableBody = ({ columns, data }) => {
     const [selectedRowId, setSelectedRowId] = React.useState(undefined);
 
     const handleClick = ({ target }) => {
-        // BUG - lines are not highlighted
         const { parentElement } = target;
         const { id } = parentElement;
         setSelectedRowId(id !== selectedRowId && id);
@@ -28,7 +27,7 @@ const TableBody = ({ columns, data }) => {
         const selectedClass = data.id === selectedRowId ? "selected" : "";
 
         return (
-            <tr className={selectedClass} onClick={handleClick}>
+            <tr id={data.id} className={selectedClass} onClick={handleClick}>
                 {columns.map((column) => (
                     <Td
                         key={nanoid()}

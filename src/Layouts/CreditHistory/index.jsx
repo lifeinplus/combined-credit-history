@@ -18,8 +18,6 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
         return loans.map((item) => ({ ...item, id: nanoid() }));
     }, [loans]);
 
-    console.log(rows);
-
     return (
         <div className="container-fluid mb-3">
             <div className="row panel border rounded">
