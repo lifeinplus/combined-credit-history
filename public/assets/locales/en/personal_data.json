@@ -4,10 +4,10 @@
     "document": {
         "dataSource": "Source",
         "fullName": "Full Name",
-        "birthDate": "Birth Date",
+        "birthDateText": "Birth Date",
         "mainDocNumber": "Passport Number",
         "mainDocSeries": "Passport Series",
-        "mainDocIssueDate": "Issue Date"
+        "mainDocIssueDateText": "Issue Date"
     },
     "requests": {
         "title_all": "Requests",

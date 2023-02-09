@@ -2,14 +2,13 @@ import React from "react";
 import { format } from "date-fns";
 import { nanoid } from "nanoid";
 
-import { joinClasses } from "../../../../../util";
+import { joinClasses } from "../../../util";
 
-// TODO - highlight values above zero in delinquency columns
-// TODO - highlight the values of the timeliness of payments
-const TableBody = ({ columns, data }) => {
+const Body = ({ columns, data, hover }) => {
     const [selectedRowId, setSelectedRowId] = React.useState(undefined);
 
     const handleClick = ({ target }) => {
+        if (!hover) return;
         const { parentElement } = target;
         const { id } = parentElement;
         setSelectedRowId(id !== selectedRowId && id);
@@ -42,25 +41,17 @@ const TableBody = ({ columns, data }) => {
 
     function Td({ column, data, selectedClass }) {
         const commonClass = column.common ? "common" : "";
-        const value = getValue(column, data);
+
+        const value =
+            column.type === "status"
+                ? getPaymentStatus(data.MonthlyHistoryList, column.name)
+                : data[column.sysNameStatus] || data[column.sysName];
 
         return (
             <td className={joinClasses([commonClass, selectedClass])}>
                 {value}
             </td>
         );
-    }
-
-    function getValue(column, data) {
-        const value = data[column.sysNameStatus] || data[column.sysName];
-
-        if (column.type === "date" && value) {
-            return format(new Date(value), "dd.MM.yyyy");
-        }
-
-        return column.common
-            ? value
-            : getPaymentStatus(data.MonthlyHistoryList, column.name);
     }
 
     function getPaymentStatus(historyList, date) {
@@ -72,4 +63,4 @@ const TableBody = ({ columns, data }) => {
     }
 };
 
-export default TableBody;
+export default Body;

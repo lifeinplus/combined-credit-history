@@ -129,15 +129,15 @@ const respectiveColumns = [
         type: "text",
     },
     {
-        sysName: "LoanCreationDate",
+        sysName: "LoanCreationDateText",
         type: "date",
     },
     {
-        sysName: "CloseDate",
+        sysName: "CloseDateText",
         type: "date",
     },
     {
-        sysName: "LastInfoUpdatedDate",
+        sysName: "LastInfoUpdatedDateText",
         type: "date",
     },
     {

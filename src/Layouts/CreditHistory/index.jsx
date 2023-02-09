@@ -2,18 +2,22 @@ import React from "react";
 import { nanoid } from "nanoid";
 import { useTranslation } from "react-i18next";
 
-import { TimePeriod, respectiveColumns } from "./util";
-
 import Header from "../../components/Header";
-import LoansTable from "./components/LoansTable";
+import Table from "../../components/Table";
 import PaymentAmounts from "./components/PaymentAmounts";
 
+import { TimePeriod, respectiveColumns } from "./util";
+
+// TODO - make table with sticky head
+// TODO - highlight values above zero in delinquency columns
+// TODO - highlight the values of the timeliness of payments
 const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
     const { lastBkiCreationDate, loans, loansCount } = data;
 
     const { t } = useTranslation(["credit_history"]);
 
     const columns = defineColumns();
+
     const rows = React.useMemo(() => {
         return loans.map((item) => ({ ...item, id: nanoid() }));
     }, [loans]);
@@ -42,7 +46,11 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
                         data={data}
                         showExtendedData={showExtendedData}
                     />
-                    <LoansTable columns={columns} rows={rows} />
+                    <div className="row">
+                        <div className="col">
+                            <Table columns={columns} data={rows} hover={true} />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -66,6 +74,7 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
             ...item,
             common: true,
             name: t(`columns.${item.sysName}`),
+            sortable: true,
         }));
     }
 
@@ -73,8 +82,8 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
         const timePeriod = new TimePeriod(loans, lastBkiCreationDate);
 
         return timePeriod.result.map((item) => ({
-            common: false,
             name: item,
+            type: "status",
         }));
     }
 };

@@ -2,7 +2,6 @@ import React from "react";
 
 const useSortableData = (data, config = null) => {
     const [sortConfig, setSortConfig] = React.useState(config);
-
     const { direction, sysName, sysNameStatus, type } = sortConfig;
 
     const _compareFunctions = {
@@ -22,6 +21,7 @@ const useSortableData = (data, config = null) => {
             return { valueA, valueB };
         },
 
+        // BUG - make dates from textDates
         date(a, b) {
             const valueA = a[sysName] || "";
             const valueB = b[sysName] || "";

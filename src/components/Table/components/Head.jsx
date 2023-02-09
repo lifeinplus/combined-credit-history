@@ -1,7 +1,6 @@
-import { joinClasses } from "../../../../../util";
+import { joinClasses } from "../../../util";
 
-// TODO - make table with sticky head
-const TableHead = ({ columns, getSortClass, requestSort }) => {
+const Head = ({ columns, getSortClass, requestSort }) => {
     return (
         <thead className="align-middle">
             <tr className="table-primary">
@@ -18,12 +17,12 @@ const TableHead = ({ columns, getSortClass, requestSort }) => {
     );
 
     function Th({ column, getSortClass, requestSort }) {
-        const colorClass = column.extended && "table-info";
-        const sortClass = column.common && getSortClass(column.sysName);
+        const extendedClass = column.extended && "table-info";
+        const sortClass = column.sortable && getSortClass(column.sysName);
 
         return column.common ? (
             <th
-                className={joinClasses([colorClass, sortClass])}
+                className={joinClasses([extendedClass, sortClass])}
                 onClick={() => {
                     requestSort(column);
                 }}
@@ -37,4 +36,4 @@ const TableHead = ({ columns, getSortClass, requestSort }) => {
     }
 };
 
-export default TableHead;
+export default Head;
