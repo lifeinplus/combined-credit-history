@@ -1,4 +1,5 @@
 import React from "react";
+import { parse } from "date-fns";
 
 const useSortableData = (data, config = null) => {
     const [sortConfig, setSortConfig] = React.useState(config);
@@ -21,10 +22,12 @@ const useSortableData = (data, config = null) => {
             return { valueA, valueB };
         },
 
-        // BUG - make dates from textDates
         date(a, b) {
-            const valueA = a[sysName] || "";
-            const valueB = b[sysName] || "";
+            const formatString = "dd.MM.yyyy";
+            const referenceDate = new Date();
+
+            const valueA = parse(a[sysName], formatString, referenceDate) || "";
+            const valueB = parse(b[sysName], formatString, referenceDate) || "";
 
             if (!valueA) return { order: 1 };
             if (!valueB) return { order: -1 };
