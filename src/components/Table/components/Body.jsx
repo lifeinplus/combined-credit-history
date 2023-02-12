@@ -40,18 +40,24 @@ const Body = ({ columns, data, hover }) => {
     }
 
     function Td({ column, data, selectedClass }) {
-        const commonClass = column.common ? "common" : "";
+        const { isCommon } = column;
 
-        const value =
-            column.type === "status"
-                ? getPaymentStatus(data.MonthlyHistoryList, column.name)
-                : data[column.sysNameStatus] || data[column.sysName];
+        const commonClass = isCommon ? "common" : "";
+        const value = getValue(column, data);
+        const badgeClass = getBadgeClass(column, value);
 
         return (
             <td className={joinClasses([commonClass, selectedClass])}>
-                {value}
+                <span className={badgeClass}>{value}</span>
             </td>
         );
+    }
+
+    function getBadgeClass(column, value) {
+        const { badgeEqual, badgeMore, badgeType } = column;
+        return value > badgeMore || value === badgeEqual
+            ? `badge text-bg-${badgeType} badge-loans-data`
+            : "";
     }
 
     function getPaymentStatus(historyList, date) {
@@ -60,6 +66,15 @@ const Body = ({ columns, data, hover }) => {
         );
 
         return history.length ? history[0].AccountPaymentStatus : null;
+    }
+
+    function getValue(column, data) {
+        const { name, sysName, sysNameStatus, type } = column;
+        const { MonthlyHistoryList } = data;
+
+        return type === "status"
+            ? getPaymentStatus(MonthlyHistoryList, name)
+            : data[sysNameStatus] || data[sysName];
     }
 };
 
