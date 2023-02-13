@@ -72,7 +72,7 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
 
         return columns.map((item) => ({
             ...item,
-            common: true,
+            isCommon: true,
             name: t(`columns.${item.sysName}`),
             sortable: true,
         }));

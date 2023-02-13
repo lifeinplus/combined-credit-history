@@ -20,7 +20,7 @@ const Head = ({ columns, getSortClass, requestSort }) => {
         const extendedClass = column.extended && "table-info";
         const sortClass = column.sortable && getSortClass(column.sysName);
 
-        return column.common ? (
+        return column.isCommon ? (
             <th
                 className={joinClasses([extendedClass, sortClass])}
                 onClick={() => {

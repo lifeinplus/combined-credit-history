@@ -67,22 +67,32 @@ class TimePeriod {
 
 const respectiveColumns = [
     {
+        badgeMore: 0,
+        badgeType: "warning",
         sysName: "Delinquency0Count",
         type: "numeric",
     },
     {
+        badgeMore: 0,
+        badgeType: "danger",
         sysName: "Delinquency30Count",
         type: "numeric",
     },
     {
+        badgeMore: 0,
+        badgeType: "danger",
         sysName: "Delinquency60Count",
         type: "numeric",
     },
     {
+        badgeMore: 0,
+        badgeType: "danger",
         sysName: "Delinquency90Count",
         type: "numeric",
     },
     {
+        badgeMore: 0,
+        badgeType: "dark",
         sysName: "DelinquencyRestructuringCount",
         type: "numeric",
     },
@@ -96,6 +106,8 @@ const respectiveColumns = [
         type: "amount",
     },
     {
+        badgeEqual: "Микрокредит",
+        badgeType: "danger",
         sysName: "LoanTypeText",
         type: "text",
     },
@@ -121,6 +133,8 @@ const respectiveColumns = [
         type: "numeric",
     },
     {
+        badgeMore: 0,
+        badgeType: "danger",
         sysName: "DelinquencyAmount",
         type: "amount",
     },
