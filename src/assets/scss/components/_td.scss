@@ -1,0 +1,54 @@
+.table tbody td.status {
+    text-align: center;
+}
+
+.table tbody td.table-cch-status-0 {
+    --bs-table-accent-bg: var(--cch-status-white-color);
+}
+
+.table tbody td.table-cch-status-1 {
+    --bs-table-accent-bg: var(--cch-status-green-color);
+    color: var(--cch-status-white-color);
+}
+
+.table tbody td.table-cch-status-A,
+.table tbody td.table-cch-status-B,
+.table tbody td.table-cch-status-C {
+    --bs-table-accent-bg: var(--cch-status-yellow-color);
+}
+
+.table tbody td.table-cch-status-2 {
+    --bs-table-accent-bg: var(--cch-status-dark-yellow-color);
+    color: var(--cch-status-white-color);
+}
+
+.table tbody td.table-cch-status-3 {
+    --bs-table-accent-bg: var(--cch-status-orange-color);
+    color: var(--cch-status-white-color);
+}
+
+.table tbody td.table-cch-status-4 {
+    --bs-table-accent-bg: var(--cch-status-red-color);
+    color: var(--cch-status-white-color);
+}
+
+.table tbody td.table-cch-status-5 {
+    --bs-table-accent-bg: var(--cch-status-dark-red-color);
+    color: var(--cch-status-white-color);
+}
+
+.table tbody td.table-cch-status-7,
+.table tbody td.table-cch-status-Z {
+    --bs-table-accent-bg: var(--cch-status-blue-color);
+    color: var(--cch-status-white-color);
+}
+
+.table tbody td.table-cch-status-8,
+.table tbody td.table-cch-status-9 {
+    --bs-table-accent-bg: var(--cch-status-black-color);
+    color: var(--cch-status-white-color);
+}
+
+.table tbody td.table-cch-status-- {
+    --bs-table-accent-bg: var(--cch-status-grey-color);
+}

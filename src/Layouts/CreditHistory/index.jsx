@@ -9,8 +9,6 @@ import PaymentAmounts from "./components/PaymentAmounts";
 import { TimePeriod, respectiveColumns } from "./util";
 
 // TODO - make table with sticky head
-// TODO - highlight values above zero in delinquency columns
-// TODO - highlight the values of the timeliness of payments
 const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
     const { lastBkiCreationDate, loans, loansCount } = data;
 
@@ -58,9 +56,9 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
 
     function defineColumns() {
         const commonCols = getCommonCols();
-        const dateCols = getDateCols();
+        const statusCols = getStatusCols();
 
-        return [...commonCols, ...dateCols];
+        return [...commonCols, ...statusCols];
     }
 
     function getCommonCols() {
@@ -72,13 +70,13 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
 
         return columns.map((item) => ({
             ...item,
-            isCommon: true,
             name: t(`columns.${item.sysName}`),
+            type: "common",
             sortable: true,
         }));
     }
 
-    function getDateCols() {
+    function getStatusCols() {
         const timePeriod = new TimePeriod(loans, lastBkiCreationDate);
 
         return timePeriod.result.map((item) => ({

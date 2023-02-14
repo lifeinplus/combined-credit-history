@@ -3,7 +3,7 @@ import { parse } from "date-fns";
 
 const useSortableData = (data, config = null) => {
     const [sortConfig, setSortConfig] = React.useState(config);
-    const { direction, sysName, sysNameStatus, type } = sortConfig;
+    const { dataType, direction, sysName, sysNameStatus } = sortConfig;
 
     const _compareFunctions = {
         amount(a, b) {
@@ -83,7 +83,7 @@ const useSortableData = (data, config = null) => {
         const less = direction === "asc" ? -1 : 1;
 
         const result = [...data].sort((a, b) => {
-            const result = _compareFunctions[type](a, b);
+            const result = _compareFunctions[dataType](a, b);
             const { order, valueA, valueB } = result;
 
             if (order) return order;

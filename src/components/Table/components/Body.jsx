@@ -38,42 +38,49 @@ const Body = ({ columns, data, hover }) => {
         );
     }
 
-    function Td({ column, data, selectedClass }) {
-        const { isCommon } = column;
+    function Td(params) {
+        const { type } = params.column;
+        return !type || type === "common"
+            ? getCommonTd(params)
+            : getStatusTd(params);
+    }
 
-        const commonClass = isCommon ? "common" : "";
-        const value = getValue(column, data);
-        const badgeClass = getBadgeClass(column, value);
+    function getCommonTd({ column, data, selectedClass }) {
+        const { sysName, sysNameStatus } = column;
+        const { badgeEqual, badgeMore, badgeType } = column;
+
+        const classNameTd = joinClasses(["common", selectedClass]);
+        const value = data[sysNameStatus] || data[sysName];
+
+        const classNameSpan =
+            value > badgeMore || value === badgeEqual
+                ? `badge text-bg-${badgeType} badge-loans-data`
+                : "";
 
         return (
-            <td className={joinClasses([commonClass, selectedClass])}>
-                <span className={badgeClass}>{value}</span>
+            <td className={classNameTd}>
+                <span className={classNameSpan}>{value}</span>
             </td>
         );
     }
 
-    function getBadgeClass(column, value) {
-        const { badgeEqual, badgeMore, badgeType } = column;
-        return value > badgeMore || value === badgeEqual
-            ? `badge text-bg-${badgeType} badge-loans-data`
-            : "";
-    }
-
-    function getPaymentStatus(historyList, date) {
-        const history = historyList.filter(
-            (item) => format(new Date(item.HistoryDate), "MM.yyyy") === date
-        );
-
-        return history.length ? history[0].AccountPaymentStatus : null;
-    }
-
-    function getValue(column, data) {
-        const { name, sysName, sysNameStatus, type } = column;
+    function getStatusTd({ column, data, selectedClass }) {
+        const { name } = column;
         const { MonthlyHistoryList } = data;
 
-        return type === "status"
-            ? getPaymentStatus(MonthlyHistoryList, name)
-            : data[sysNameStatus] || data[sysName];
+        const filtered = MonthlyHistoryList.filter(
+            (item) => format(new Date(item.HistoryDate), "MM.yyyy") === name
+        );
+
+        const value = filtered.length ? filtered[0].AccountPaymentStatus : null;
+        const cchStatus = `table-cch-status-${value}`;
+        const classNameTd = joinClasses(["status", cchStatus, selectedClass]);
+
+        return (
+            <td className={classNameTd}>
+                <span>{value}</span>
+            </td>
+        );
     }
 };
 

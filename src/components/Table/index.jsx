@@ -5,10 +5,10 @@ import Head from "./components/Head";
 
 const Table = ({ columns, data, hover }) => {
     const { sortedData, requestSort, sortConfig } = useSortableData(data, {
+        dataType: "amount",
         direction: "asc",
         sysName: "calculatedBkiPayment",
         sysNameStatus: "calculatedBkiStatus",
-        type: "amount",
     });
 
     const getSortClass = (name) => {
