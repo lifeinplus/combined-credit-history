@@ -9,9 +9,8 @@ const Body = ({ columns, data, hover }) => {
 
     const handleClick = ({ target }) => {
         if (!hover) return;
-        const { parentElement } = target;
-        const { id } = parentElement;
-        setSelectedRowId(id !== selectedRowId && id);
+        const tr = target.closest("TR");
+        setSelectedRowId(tr.id !== selectedRowId && tr.id);
     };
 
     return (
