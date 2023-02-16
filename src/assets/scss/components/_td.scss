@@ -1,54 +1,70 @@
-.table tbody td.status {
+.cch-badge {
+    --cch-badge-padding-x: 1.6em;
+    --cch-badge-padding-y: 0.4em;
+    --cch-badge-font-size: var(--bs-body-font-size);
+    --cch-badge-font-weight: var(--bs-body-font-weight);
+    --cch-badge-color: #fff;
+    --cch-badge-border-radius: 0.375rem;
+
+    display: inline-block;
+    padding: var(--cch-badge-padding-y) var(--cch-badge-padding-x);
+    font-size: var(--cch-badge-font-size);
+    font-weight: var(--cch-badge-font-weight);
+    line-height: 1;
+    color: var(--cch-badge-color);
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: var(--cch-badge-border-radius);
+}
+
+.cch-status {
     text-align: center;
 }
 
-.table tbody td.table-cch-status-0 {
-    --bs-table-accent-bg: var(--cch-status-white-color);
+.cch-text-bg-0 {
+    color: #000 !important;
+    background-color: #ffffff !important;
 }
 
-.table tbody td.table-cch-status-1 {
-    --bs-table-accent-bg: var(--cch-status-green-color);
-    color: var(--cch-status-white-color);
+.cch-text-bg-1 {
+    background-color: #009933 !important;
 }
 
-.table tbody td.table-cch-status-A,
-.table tbody td.table-cch-status-B,
-.table tbody td.table-cch-status-C {
-    --bs-table-accent-bg: var(--cch-status-yellow-color);
+.cch-text-bg-A,
+.cch-text-bg-B,
+.cch-text-bg-C {
+    color: #000 !important;
+    background-color: #ffcc00 !important;
 }
 
-.table tbody td.table-cch-status-2 {
-    --bs-table-accent-bg: var(--cch-status-dark-yellow-color);
-    color: var(--cch-status-white-color);
+.cch-text-bg-2 {
+    background-color: #ff9900 !important;
 }
 
-.table tbody td.table-cch-status-3 {
-    --bs-table-accent-bg: var(--cch-status-orange-color);
-    color: var(--cch-status-white-color);
+.cch-text-bg-3 {
+    background-color: #ff6600 !important;
 }
 
-.table tbody td.table-cch-status-4 {
-    --bs-table-accent-bg: var(--cch-status-red-color);
-    color: var(--cch-status-white-color);
+.cch-text-bg-4 {
+    background-color: #ff0000 !important;
 }
 
-.table tbody td.table-cch-status-5 {
-    --bs-table-accent-bg: var(--cch-status-dark-red-color);
-    color: var(--cch-status-white-color);
+.cch-text-bg-5 {
+    background-color: #cc0000 !important;
 }
 
-.table tbody td.table-cch-status-7,
-.table tbody td.table-cch-status-Z {
-    --bs-table-accent-bg: var(--cch-status-blue-color);
-    color: var(--cch-status-white-color);
+.cch-text-bg-7,
+.cch-text-bg-Z {
+    background-color: #3399ff !important;
 }
 
-.table tbody td.table-cch-status-8,
-.table tbody td.table-cch-status-9 {
-    --bs-table-accent-bg: var(--cch-status-black-color);
-    color: var(--cch-status-white-color);
+.cch-text-bg-8,
+.cch-text-bg-9 {
+    background-color: #000000 !important;
 }
 
-.table tbody td.table-cch-status-- {
-    --bs-table-accent-bg: var(--cch-status-grey-color);
+.cch-text-bg-- {
+    color: #000 !important;
+    background-color: #cccccc !important;
 }

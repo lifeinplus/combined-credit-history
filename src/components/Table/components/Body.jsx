@@ -73,12 +73,12 @@ const Body = ({ columns, data, hover }) => {
         );
 
         const value = filtered.length ? filtered[0].AccountPaymentStatus : null;
-        const cchStatus = `table-cch-status-${value}`;
-        const classNameTd = joinClasses(["status", cchStatus, selectedClass]);
+        const classNameTd = joinClasses(["cch-status", selectedClass]);
+        const classNameSpan = value ? `cch-badge cch-text-bg-${value}` : "";
 
         return (
             <td className={classNameTd}>
-                <span>{value}</span>
+                <span className={classNameSpan}>{value}</span>
             </td>
         );
     }
