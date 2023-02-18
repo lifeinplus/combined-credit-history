@@ -46,7 +46,12 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
                     />
                     <div className="row">
                         <div className="col">
-                            <Table columns={columns} data={rows} hover={true} />
+                            <Table
+                                columns={columns}
+                                data={rows}
+                                rowActive={true}
+                                rowHover={true}
+                            />
                         </div>
                     </div>
                 </div>
