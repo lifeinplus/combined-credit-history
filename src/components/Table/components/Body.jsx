@@ -4,13 +4,13 @@ import { nanoid } from "nanoid";
 
 import { joinClasses } from "../../../util";
 
-const Body = ({ columns, data, hover }) => {
-    const [selectedRowId, setSelectedRowId] = React.useState(undefined);
+const Body = ({ columns, data, rowActive }) => {
+    const [activeRowId, setActiveRowId] = React.useState(undefined);
 
     const handleClick = ({ target }) => {
-        if (!hover) return;
+        if (!rowActive) return;
         const tr = target.closest("TR");
-        setSelectedRowId(tr.id !== selectedRowId && tr.id);
+        setActiveRowId(tr.id !== activeRowId && tr.id);
     };
 
     return (
@@ -22,17 +22,13 @@ const Body = ({ columns, data, hover }) => {
     );
 
     function Tr({ data }) {
-        const selectedClass = data.id === selectedRowId ? "selected" : "";
+        const tableActive =
+            rowActive && data.id === activeRowId ? "table-active" : "";
 
         return (
-            <tr id={data.id} className={selectedClass} onClick={handleClick}>
+            <tr id={data.id} className={tableActive} onClick={handleClick}>
                 {columns.map((column) => (
-                    <Td
-                        key={nanoid()}
-                        column={column}
-                        data={data}
-                        selectedClass={selectedClass}
-                    />
+                    <Td key={nanoid()} column={column} data={data} />
                 ))}
             </tr>
         );
@@ -45,11 +41,10 @@ const Body = ({ columns, data, hover }) => {
             : getStatusTd(params);
     }
 
-    function getCommonTd({ column, data, selectedClass }) {
+    function getCommonTd({ column, data }) {
         const { sysName, sysNameStatus } = column;
         const { badgeEqual, badgeMore, badgeType } = column;
 
-        const classNameTd = joinClasses(["common", selectedClass]);
         const value = data[sysNameStatus] || data[sysName];
 
         const classNameSpan =
@@ -58,13 +53,13 @@ const Body = ({ columns, data, hover }) => {
                 : "";
 
         return (
-            <td className={classNameTd}>
+            <td className={"common"}>
                 <span className={classNameSpan}>{value}</span>
             </td>
         );
     }
 
-    function getStatusTd({ column, data, selectedClass }) {
+    function getStatusTd({ column, data }) {
         const { name } = column;
         const { MonthlyHistoryList } = data;
 
@@ -73,11 +68,10 @@ const Body = ({ columns, data, hover }) => {
         );
 
         const value = filtered.length ? filtered[0].AccountPaymentStatus : null;
-        const classNameTd = joinClasses(["cch-status", selectedClass]);
         const classNameSpan = value ? `cch-badge cch-text-bg-${value}` : "";
 
         return (
-            <td className={classNameTd}>
+            <td className={"cch-status"}>
                 <span className={classNameSpan}>{value}</span>
             </td>
         );
