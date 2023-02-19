@@ -1,14 +1,9 @@
-.table tbody tr:hover .common {
-    background: #e4dff2;
-}
-
-.table tbody tr.selected {
-    border-top: 0.07rem solid #7860b7;
-    border-bottom: 0.07rem solid #7860b7;
-}
-
-.table tbody td.selected.common {
-    background: #7860b7;
+.table-active {
+    --bs-table-accent-bg: #7860b7;
+    --bs-table-striped-bg: #7860b7;
+    --bs-table-striped-color: #fff;
+    --bs-table-hover-bg: #7860b7;
+    --bs-table-hover-color: #fff;
     color: #fff;
 }
 

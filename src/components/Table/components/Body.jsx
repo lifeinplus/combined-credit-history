@@ -4,13 +4,13 @@ import { nanoid } from "nanoid";
 
 import { joinClasses } from "../../../util";
 
-const Body = ({ columns, data, hover }) => {
-    const [selectedRowId, setSelectedRowId] = React.useState(undefined);
+const Body = ({ columns, data, rowActive }) => {
+    const [activeRowId, setActiveRowId] = React.useState(undefined);
 
     const handleClick = ({ target }) => {
-        if (!hover) return;
+        if (!rowActive) return;
         const tr = target.closest("TR");
-        setSelectedRowId(tr.id !== selectedRowId && tr.id);
+        setActiveRowId(tr.id !== activeRowId && tr.id);
     };
 
     return (
@@ -22,58 +22,59 @@ const Body = ({ columns, data, hover }) => {
     );
 
     function Tr({ data }) {
-        const selectedClass = data.id === selectedRowId ? "selected" : "";
+        const tableActive =
+            rowActive && data.id === activeRowId ? "table-active" : "";
 
         return (
-            <tr id={data.id} className={selectedClass} onClick={handleClick}>
+            <tr id={data.id} className={tableActive} onClick={handleClick}>
                 {columns.map((column) => (
-                    <Td
-                        key={nanoid()}
-                        column={column}
-                        data={data}
-                        selectedClass={selectedClass}
-                    />
+                    <Td key={nanoid()} column={column} data={data} />
                 ))}
             </tr>
         );
     }
 
-    function Td({ column, data, selectedClass }) {
-        const { isCommon } = column;
+    function Td(params) {
+        const { type } = params.column;
+        return !type || type === "common"
+            ? getCommonTd(params)
+            : getStatusTd(params);
+    }
 
-        const commonClass = isCommon ? "common" : "";
-        const value = getValue(column, data);
-        const badgeClass = getBadgeClass(column, value);
+    function getCommonTd({ column, data }) {
+        const { sysName, sysNameStatus } = column;
+        const { badgeEqual, badgeMore, badgeType } = column;
+
+        const value = data[sysNameStatus] || data[sysName];
+
+        const classNameSpan =
+            value > badgeMore || value === badgeEqual
+                ? `badge text-bg-${badgeType} badge-loans-data`
+                : "";
 
         return (
-            <td className={joinClasses([commonClass, selectedClass])}>
-                <span className={badgeClass}>{value}</span>
+            <td className={"common"}>
+                <span className={classNameSpan}>{value}</span>
             </td>
         );
     }
 
-    function getBadgeClass(column, value) {
-        const { badgeEqual, badgeMore, badgeType } = column;
-        return value > badgeMore || value === badgeEqual
-            ? `badge text-bg-${badgeType} badge-loans-data`
-            : "";
-    }
-
-    function getPaymentStatus(historyList, date) {
-        const history = historyList.filter(
-            (item) => format(new Date(item.HistoryDate), "MM.yyyy") === date
-        );
-
-        return history.length ? history[0].AccountPaymentStatus : null;
-    }
-
-    function getValue(column, data) {
-        const { name, sysName, sysNameStatus, type } = column;
+    function getStatusTd({ column, data }) {
+        const { name } = column;
         const { MonthlyHistoryList } = data;
 
-        return type === "status"
-            ? getPaymentStatus(MonthlyHistoryList, name)
-            : data[sysNameStatus] || data[sysName];
+        const filtered = MonthlyHistoryList.filter(
+            (item) => format(new Date(item.HistoryDate), "MM.yyyy") === name
+        );
+
+        const value = filtered.length ? filtered[0].AccountPaymentStatus : null;
+        const classNameSpan = value ? `cch-badge cch-text-bg-${value}` : "";
+
+        return (
+            <td className={"cch-status"}>
+                <span className={classNameSpan}>{value}</span>
+            </td>
+        );
     }
 };
 
