@@ -6,6 +6,7 @@ import Header from "../../components/Header";
 import Table from "../../components/Table";
 import PaymentAmounts from "./components/PaymentAmounts";
 
+import { formatToMonthYear } from "../../util";
 import { TimePeriod, respectiveColumns } from "./util";
 
 // TODO - make table with sticky head
@@ -85,7 +86,7 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
         const timePeriod = new TimePeriod(loans, lastBkiCreationDate);
 
         return timePeriod.result.map((item) => ({
-            name: item,
+            name: formatToMonthYear(item),
             type: "status",
         }));
     }

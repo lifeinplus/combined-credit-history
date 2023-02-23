@@ -1,8 +1,7 @@
 import React from "react";
-import { format } from "date-fns";
 import { nanoid } from "nanoid";
 
-import { joinClasses } from "../../../util";
+import { formatToMonthYear } from "../../../util";
 
 const Body = ({ columns, data, rowActive }) => {
     const [activeRowId, setActiveRowId] = React.useState(undefined);
@@ -22,8 +21,17 @@ const Body = ({ columns, data, rowActive }) => {
     );
 
     function Tr({ data }) {
+        const { MonthlyHistoryList } = data;
+
         const tableActive =
             rowActive && data.id === activeRowId ? "table-active" : "";
+
+        if (MonthlyHistoryList) {
+            data.MonthlyHistoryList = MonthlyHistoryList.map((item) => ({
+                ...item,
+                name: formatToMonthYear(item.HistoryDate),
+            }));
+        }
 
         return (
             <tr id={data.id} className={tableActive} onClick={handleClick}>
@@ -63,11 +71,10 @@ const Body = ({ columns, data, rowActive }) => {
         const { name } = column;
         const { MonthlyHistoryList } = data;
 
-        const filtered = MonthlyHistoryList.filter(
-            (item) => format(new Date(item.HistoryDate), "MM.yyyy") === name
-        );
+        const value = MonthlyHistoryList.reduce((result, item) => {
+            return item.name === name ? item.AccountPaymentStatus : result;
+        }, null);
 
-        const value = filtered.length ? filtered[0].AccountPaymentStatus : null;
         const classNameSpan = value ? `cch-badge cch-text-bg-${value}` : "";
 
         return (
