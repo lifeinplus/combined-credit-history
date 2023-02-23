@@ -1,25 +1,19 @@
+import { formatToMonthYear } from "../../util";
+
 class TimePeriod {
     #loans;
     #lastDate;
 
     constructor(loans, lastDate) {
         this.#loans = loans;
-        this.#lastDate = new Date(lastDate);
+        this.#lastDate = lastDate;
     }
 
     get result() {
-        const dates = this.#getMonthDates();
+        const milliseconds = Date.parse(this.#lastDate);
+        const lastDate = new Date(milliseconds);
+        const result = [lastDate];
 
-        return dates.map((item) => {
-            return new Intl.DateTimeFormat("ru", {
-                month: "numeric",
-                year: "numeric",
-            }).format(item);
-        });
-    }
-
-    #getMonthDates() {
-        const result = [this.#lastDate];
         const monthsNumber = this.#getMonthsNumber();
 
         for (let i = 1; i < monthsNumber; i++) {
@@ -36,32 +30,30 @@ class TimePeriod {
 
     #getMonthsNumber() {
         const startDate = this.#getStartDate();
-        const startFullYear = startDate.getFullYear();
-        const startMonth = startDate.getMonth();
+        const lastDate = this.#lastDate;
 
-        const endDate = this.#lastDate;
-        const endFullYear = endDate.getFullYear();
-        const endMonth = endDate.getMonth();
+        const [startMonth, startYear] = this.#defineMonthYear(startDate);
+        const [lastMonth, lastYear] = this.#defineMonthYear(lastDate);
 
-        return (endFullYear - startFullYear) * 12 + (endMonth + 1) - startMonth;
+        return (lastYear - startYear) * 12 + (lastMonth + 1) - startMonth;
+    }
+
+    #defineMonthYear(isoDate) {
+        return formatToMonthYear(isoDate)
+            .split(".")
+            .map((item) => Number(item));
     }
 
     #getStartDate() {
-        let result = this.#lastDate;
-
-        this.#loans.forEach((loan) => {
+        return this.#loans.reduce((result, loan) => {
             const MonthlyHistoryList = loan.MonthlyHistoryList || [];
 
-            MonthlyHistoryList.forEach((item) => {
-                const HistoryDate = new Date(item.HistoryDate);
-
-                if (result > HistoryDate) {
-                    result = HistoryDate;
-                }
+            MonthlyHistoryList.forEach(({ HistoryDate }) => {
+                result = result > HistoryDate ? HistoryDate : result;
             });
-        });
 
-        return result;
+            return result;
+        }, this.#lastDate);
     }
 }
 
