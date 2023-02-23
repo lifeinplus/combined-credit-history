@@ -1,4 +1,5 @@
 import React from "react";
+import Cookies from "universal-cookie";
 import { useTranslation } from "react-i18next";
 
 import { Navbar } from "./Layouts";
@@ -9,8 +10,13 @@ import { lngs } from "./util";
 import data from "./data/3.json";
 
 const App = () => {
+    const cookies = new Cookies();
     const { i18n } = useTranslation();
-    const [showExtendedData, setShowExtendedData] = React.useState(false);
+
+    const extended_data = cookies.get("extended_data") || "no";
+    const [showExtendedData, setShowExtendedData] = React.useState(
+        extended_data === "yes" ? true : false
+    );
 
     document.onkeydown = (event) => {
         if (!event.altKey) return;
@@ -33,7 +39,9 @@ const App = () => {
     }
 
     function handleExtend() {
-        setShowExtendedData(!showExtendedData);
+        const value = !showExtendedData;
+        setShowExtendedData(value);
+        cookies.set("extended_data", value ? "yes" : "no");
     }
 
     return (
