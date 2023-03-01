@@ -13,7 +13,7 @@ const Body = ({ columns, data, rowActive }) => {
     };
 
     return (
-        <tbody className="table-group-divider">
+        <tbody>
             {data.map((item) => (
                 <Tr key={item.id} data={item} />
             ))}

@@ -7,7 +7,7 @@ import Report from "./Pages/Report";
 
 import { lngs } from "./util";
 
-import data from "./data/3.json";
+import data from "./data/1.json";
 
 const App = () => {
     const cookies = new Cookies();
