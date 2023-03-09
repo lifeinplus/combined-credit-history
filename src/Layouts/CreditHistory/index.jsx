@@ -9,7 +9,6 @@ import PaymentAmounts from "./components/PaymentAmounts";
 import { formatToMonthYear } from "../../util";
 import { TimePeriod, respectiveColumns } from "./util";
 
-// TODO - make table with sticky head
 const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
     const { lastBkiCreationDate, loans, loansCount } = data;
 
@@ -52,6 +51,7 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
                                 data={rows}
                                 rowActive={true}
                                 rowHover={true}
+                                stickyHeader={true}
                             />
                         </div>
                     </div>

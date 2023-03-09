@@ -1,17 +1,20 @@
 import { joinClasses } from "../../util";
 
 import { useSortableData } from "./hooks/useSortableData";
+import { useStickyHeader } from "./hooks/useStickyHeader";
 
-import Body from "./components/Body";
 import Head from "./components/Head";
+import Body from "./components/Body";
 
-const Table = ({ columns, data, rowActive, rowHover }) => {
+const Table = ({ columns, data, stickyHeader, rowActive, rowHover }) => {
     const { sortedData, requestSort, sortConfig } = useSortableData(data, {
         dataType: "amount",
         direction: "asc",
         sysName: "calculatedBkiPayment",
         sysNameStatus: "calculatedBkiStatus",
     });
+
+    const [tableWrapperRef, headerRef] = useStickyHeader(stickyHeader);
 
     const getSortClass = (name) => {
         return sortConfig && sortConfig.sysName === name
@@ -27,11 +30,15 @@ const Table = ({ columns, data, rowActive, rowHover }) => {
     ]);
 
     return (
-        <div className="table-responsive border rounded mb-3">
+        <div
+            className="table-responsive border rounded mb-3"
+            ref={tableWrapperRef}
+        >
             <table className={tableClassName}>
                 <Head
                     columns={columns}
                     getSortClass={getSortClass}
+                    ref={headerRef}
                     requestSort={requestSort}
                 />
                 <Body

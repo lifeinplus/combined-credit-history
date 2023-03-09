@@ -45,6 +45,7 @@ const PersonalData = ({ data }) => {
                                 data={personInfo}
                                 rowActive={false}
                                 rowHover={false}
+                                stickyHeader={false}
                             />
                         </div>
                         <div className="col-md-8 col-lg-5 col-xl-4 mb-sm-3">
