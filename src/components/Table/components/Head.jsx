@@ -1,8 +1,9 @@
+import { forwardRef } from "react";
 import { joinClasses } from "../../../util";
 
-const Head = ({ columns, getSortClass, requestSort }) => {
+const Head = forwardRef(({ columns, getSortClass, requestSort }, ref) => {
     return (
-        <thead className="align-middle">
+        <thead className="align-middle" ref={ref}>
             <tr className="table-primary">
                 {columns.map((item) => (
                     <Th
@@ -34,6 +35,6 @@ const Head = ({ columns, getSortClass, requestSort }) => {
             <th scope="col">{column.name}</th>
         );
     }
-};
+});
 
 export default Head;
