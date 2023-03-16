@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 
+import { customFields } from "./util";
 import { joinClasses } from "../../../../util";
-import { respectiveRequestCounts } from "./util";
 
 const RequestCounts = ({
     microcreditRequestsCounts,
@@ -10,40 +10,46 @@ const RequestCounts = ({
 }) => {
     const { t } = useTranslation(["personal_data"]);
 
-    const values = Object.values(microcreditRequestsCounts);
-    const borderDanger = values.some((item) => item) && "border-danger";
-
     return (
         <div className="card-group">
-            <div className="card">
-                <div className="card-header text-center">
-                    {t("requests.title_all")}
-                </div>
-                <ListGroup counts={requestsCounts} type="all" />
-                <div className="card-footer text-center">
-                    {t("score")}
-                    <span className="badge rounded-pill text-bg-success ms-2">
-                        {score}
-                    </span>
-                </div>
-            </div>
-            <div className={`card ${borderDanger}`}>
-                <div className="card-header text-center text-truncate">
-                    {t("requests.title_microcredits")}
-                </div>
-                <ListGroup counts={microcreditRequestsCounts} type="micro" />
-            </div>
+            <Card
+                counts={requestsCounts}
+                score={score}
+                title={t("requests.title_all")}
+                type={"all"}
+            />
+            <Card
+                counts={microcreditRequestsCounts}
+                title={t("requests.title_microcredits")}
+                type={"micro"}
+            />
         </div>
     );
 
-    function ListGroup({ counts, type }) {
+    function Card({ counts, score, title, type }) {
+        const values = Object.values(counts);
+        const borderDanger =
+            type === "micro" && values.some((item) => item) && "border-danger";
+
+        return (
+            <div className={joinClasses(["card", borderDanger])}>
+                <div className="card-header text-center text-truncate">
+                    {title}
+                </div>
+                <Group counts={counts} type={type} />
+                {score && <Footer value={score} />}
+            </div>
+        );
+    }
+
+    function Group({ counts, type }) {
         return (
             <ul className="list-group list-group-flush">
-                {respectiveRequestCounts
-                    .filter((item) => item.type === type)
+                {customFields
+                    .filter((field) => field.type === type)
                     .map(({ sysName }) => {
                         return (
-                            <ListGroupItem
+                            <Item
                                 key={sysName}
                                 count={counts[sysName]}
                                 sysName={sysName}
@@ -55,27 +61,44 @@ const RequestCounts = ({
         );
     }
 
-    function ListGroupItem({ count, sysName, type }) {
-        const isDanger = !!(type === "micro" && count);
+    function Item({ count, sysName, type }) {
+        const isDanger = type === "micro" && count > 0;
 
-        const itemDangerClass = isDanger ? "list-group-item-danger" : "";
-        const badgeBg = isDanger ? "text-bg-danger" : "text-bg-light";
-
-        const lgiClassName = joinClasses([
+        const itemClasses = joinClasses([
             "list-group-item",
+            isDanger && "list-group-item-danger",
             "d-flex",
             "justify-content-between",
             "align-items-center",
-            itemDangerClass,
         ]);
 
-        const badgeClassName = joinClasses(["badge", "rounded-pill", badgeBg]);
+        const badgeClasses = joinClasses([
+            "badge",
+            "rounded-pill",
+            isDanger ? "text-bg-danger" : "text-bg-light",
+            "ms-2",
+        ]);
 
         return (
-            <li className={lgiClassName}>
-                {t(`requests.${sysName}`)}
-                <span className={badgeClassName}>{count}</span>
+            <li className={itemClasses}>
+                <span className="text-truncate">
+                    {t(`requests.${sysName}`)}
+                </span>
+                <span className={badgeClasses}>{count}</span>
             </li>
+        );
+    }
+
+    function Footer({ value }) {
+        return (
+            <div className="card-footer text-center">
+                <li className="list-group-item d-flex justify-content-between align-items-center">
+                    <span className="text-truncate">{t("score")}</span>
+                    <span className="badge rounded-pill text-bg-success ms-2">
+                        {value}
+                    </span>
+                </li>
+            </div>
         );
     }
 };

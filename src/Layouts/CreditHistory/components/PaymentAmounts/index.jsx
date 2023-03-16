@@ -1,58 +1,69 @@
 import { useTranslation } from "react-i18next";
 
-import { respectivePaymentAmounts } from "./util";
-import { lngs } from "../../../../util";
+import { customFields } from "./util";
+import { joinClasses, lngs } from "../../../../util";
 
 const PaymentAmounts = ({ data, showExtendedData: extended }) => {
     const { t, i18n } = useTranslation(["credit_history"]);
     const lng = lngs[i18n.resolvedLanguage];
     const numberFormat = new Intl.NumberFormat(lng.locale);
 
-    const obligationCols = extended ? "col-lg-4" : "col-lg-5";
-    const paymentCols = extended ? "col-lg-8" : "col-lg-7";
-
     return (
         <div className="row justify-content-between text-center">
-            <div className={obligationCols}>
-                <ListGroup justify={"start"} type={"obligation"} />
-            </div>
-            <div className={paymentCols}>
-                <ListGroup justify={"end"} type={"payment"} />
-            </div>
+            <Group
+                cols={extended ? "col-lg-4" : "col-lg-5"}
+                justify={"start"}
+                type={"obligation"}
+            />
+            <Group
+                cols={extended ? "col-lg-8" : "col-lg-7"}
+                justify={"end"}
+                type={"payment"}
+            />
         </div>
     );
 
-    function ListGroup({ justify, type }) {
-        const amounts = defineAmounts(type);
+    function Group({ cols, justify, type }) {
+        const fields = getFields(type);
+
+        const groupClasses = joinClasses([
+            "list-group",
+            "list-group-horizontal",
+            "justify-content-sm-center",
+            `justify-content-lg-${justify}`,
+            "mb-3",
+        ]);
 
         return (
-            <ul
-                className={`list-group list-group-horizontal
-                justify-content-sm-center
-                justify-content-lg-${justify}
-                mb-3`}
-            >
-                {amounts.map(({ context, sysName, value }) => {
-                    const contextClass = context
-                        ? `list-group-item-${context}`
-                        : "";
-
-                    return (
-                        <li
-                            key={sysName}
-                            className={`list-group-item ${contextClass} text-truncate`}
-                        >
-                            {t(`amounts.${sysName}`)}
-                            <div className="fw-bold">{value}</div>
-                        </li>
-                    );
-                })}
-            </ul>
+            <div className={cols}>
+                <ul className={groupClasses}>
+                    {fields.map((field) => (
+                        <Item key={field.sysName} field={field} />
+                    ))}
+                </ul>
+            </div>
         );
     }
 
-    function defineAmounts(type) {
-        return respectivePaymentAmounts
+    function Item({ field }) {
+        const { sysName, context, value } = field;
+
+        const itemClassName = joinClasses([
+            "list-group-item",
+            context && `list-group-item-${context}`,
+            "text-truncate",
+        ]);
+
+        return (
+            <li className={itemClassName}>
+                {t(`amounts.${sysName}`)}
+                <div className="fw-bold">{value}</div>
+            </li>
+        );
+    }
+
+    function getFields(type) {
+        return customFields
             .filter(
                 (item) =>
                     item.type === type &&

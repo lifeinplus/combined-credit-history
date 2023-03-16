@@ -7,7 +7,7 @@ import Table from "../../components/Table";
 import PaymentAmounts from "./components/PaymentAmounts";
 
 import { formatToMonthYear, getDateTimeFormat } from "../../util";
-import { TimePeriod, respectiveColumns } from "./util";
+import { TimePeriod, customFields } from "./util";
 
 const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
     const { lastBkiCreationDate, loans, loansCount } = data;
@@ -68,7 +68,7 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
     }
 
     function getCommonCols() {
-        const all = [...respectiveColumns];
+        const all = [...customFields];
 
         const columns = showExtendedData
             ? all

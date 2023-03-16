@@ -1,4 +1,4 @@
-const respectivePaymentAmounts = [
+const customFields = [
     {
         context: "primary",
         sysName: "bkiPaymentsAmountTotal",
@@ -32,4 +32,4 @@ const respectivePaymentAmounts = [
     },
 ];
 
-export { respectivePaymentAmounts };
+export { customFields };
