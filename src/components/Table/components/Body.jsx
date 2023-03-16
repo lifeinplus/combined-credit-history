@@ -1,10 +1,15 @@
-import React from "react";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { nanoid } from "nanoid";
 
-import { formatToMonthYear } from "../../../util";
+import { formatToMonthYear, lngs } from "../../../util";
 
 const Body = ({ columns, data, rowActive }) => {
-    const [activeRowId, setActiveRowId] = React.useState(undefined);
+    const [activeRowId, setActiveRowId] = useState(undefined);
+
+    const { i18n } = useTranslation();
+    const lng = lngs[i18n.resolvedLanguage];
+    const numberFormat = new Intl.NumberFormat(lng.locale);
 
     const handleClick = ({ target }) => {
         if (!rowActive) return;
@@ -50,15 +55,19 @@ const Body = ({ columns, data, rowActive }) => {
     }
 
     function getCommonTd({ column, data }) {
-        const { sysName, sysNameStatus } = column;
+        const { dataType, sysName, sysNameStatus } = column;
         const { badgeEqual, badgeMore, badgeType } = column;
 
-        const value = data[sysNameStatus] || data[sysName];
+        let value = data[sysNameStatus] ?? data[sysName] ?? "";
 
         const classNameSpan =
             value > badgeMore || value === badgeEqual
                 ? `badge text-bg-${badgeType} badge-loans-data`
                 : "";
+
+        if (dataType === "amount" && !isNaN(value)) {
+            value = numberFormat.format(value);
+        }
 
         return (
             <td className={"common"}>

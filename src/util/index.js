@@ -1,8 +1,8 @@
 import { format } from "date-fns";
 
 const lngs = {
-    en: { nativeName: "English" },
-    ru: { nativeName: "Русский" },
+    en: { locale: "en-GB", nativeName: "English" },
+    ru: { locale: "ru-RU", nativeName: "Русский" },
 };
 
 function formatHeader(isoDate) {

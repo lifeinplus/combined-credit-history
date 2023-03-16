@@ -1,8 +1,12 @@
 import { useTranslation } from "react-i18next";
+
 import { respectivePaymentAmounts } from "./util";
+import { lngs } from "../../../../util";
 
 const PaymentAmounts = ({ data, showExtendedData: extended }) => {
-    const { t } = useTranslation(["credit_history"]);
+    const { t, i18n } = useTranslation(["credit_history"]);
+    const lng = lngs[i18n.resolvedLanguage];
+    const numberFormat = new Intl.NumberFormat(lng.locale);
 
     const obligationCols = extended ? "col-lg-4" : "col-lg-5";
     const paymentCols = extended ? "col-lg-8" : "col-lg-7";
@@ -54,10 +58,10 @@ const PaymentAmounts = ({ data, showExtendedData: extended }) => {
                     item.type === type &&
                     (!item.extended || (item.extended && extended))
             )
-            .map((item) => ({
-                ...item,
-                value: data[item.sysName],
-            }));
+            .map((item) => {
+                const value = data[item.sysName];
+                return { ...item, value: numberFormat.format(value) };
+            });
     }
 };
 
