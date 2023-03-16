@@ -1,4 +1,4 @@
-const respectiveRequestCounts = [
+const customFields = [
     {
         sysName: "nbkiRequestsCount",
         type: "all",
@@ -29,4 +29,4 @@ const respectiveRequestCounts = [
     },
 ];
 
-export { respectiveRequestCounts };
+export { customFields };

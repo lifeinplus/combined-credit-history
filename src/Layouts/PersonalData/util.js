@@ -1,4 +1,4 @@
-const respectiveColumns = [
+const customFields = [
     {
         dataType: "text",
         sysName: "dataSource",
@@ -25,4 +25,4 @@ const respectiveColumns = [
     },
 ];
 
-export { respectiveColumns };
+export { customFields };
