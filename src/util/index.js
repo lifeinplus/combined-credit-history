@@ -10,18 +10,27 @@ function formatHeader(isoDate) {
     return format(date, "dd-MM-yyyy HH:mm:ss");
 }
 
-function formatToMonthYear(isoDate) {
+function formatToMonthYear(isoDate, dateTimeFormat = getDateTimeFormat()) {
     const milliseconds = Date.parse(isoDate);
+    return dateTimeFormat.format(milliseconds);
+}
 
+function getDateTimeFormat() {
     return new Intl.DateTimeFormat("ru", {
         month: "numeric",
         year: "numeric",
         timeZone: "Europe/Moscow",
-    }).format(milliseconds);
+    });
 }
 
 function joinClasses(classes) {
     return classes.filter((item) => item).join(" ");
 }
 
-export { formatHeader, formatToMonthYear, joinClasses, lngs };
+export {
+    formatHeader,
+    formatToMonthYear,
+    getDateTimeFormat,
+    joinClasses,
+    lngs,
+};

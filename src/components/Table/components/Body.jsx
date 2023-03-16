@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { nanoid } from "nanoid";
 
-import { formatToMonthYear, lngs } from "../../../util";
+import { formatToMonthYear, getDateTimeFormat, lngs } from "../../../util";
 
 const Body = ({ columns, data, rowActive }) => {
     const [activeRowId, setActiveRowId] = useState(undefined);
@@ -10,6 +10,8 @@ const Body = ({ columns, data, rowActive }) => {
     const { i18n } = useTranslation();
     const lng = lngs[i18n.resolvedLanguage];
     const numberFormat = new Intl.NumberFormat(lng.locale);
+
+    const dateTimeFormat = getDateTimeFormat();
 
     const handleClick = ({ target }) => {
         if (!rowActive) return;
@@ -34,7 +36,7 @@ const Body = ({ columns, data, rowActive }) => {
         if (MonthlyHistoryList) {
             data.MonthlyHistoryList = MonthlyHistoryList.map((item) => ({
                 ...item,
-                name: formatToMonthYear(item.HistoryDate),
+                name: formatToMonthYear(item.HistoryDate, dateTimeFormat),
             }));
         }
 
