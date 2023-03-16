@@ -5,12 +5,12 @@ import Header from "../../components/Header";
 import Table from "../../components/Table";
 import RequestCounts from "./components/RequestCounts";
 
-import { respectiveColumns } from "./util";
+import { customFields } from "./util";
 
 const PersonalData = ({ data }) => {
     const { t } = useTranslation(["personal_data"]);
 
-    const columns = respectiveColumns.map((item) => ({
+    const columns = customFields.map((item) => ({
         ...item,
         name: t(`document.${item.sysName}`),
     }));

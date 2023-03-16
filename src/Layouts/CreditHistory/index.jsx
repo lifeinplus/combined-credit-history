@@ -6,14 +6,14 @@ import Header from "../../components/Header";
 import Table from "../../components/Table";
 import PaymentAmounts from "./components/PaymentAmounts";
 
-import { formatToMonthYear } from "../../util";
-import { TimePeriod, respectiveColumns } from "./util";
+import { formatToMonthYear, getDateTimeFormat } from "../../util";
+import { TimePeriod, customFields } from "./util";
 
 const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
     const { lastBkiCreationDate, loans, loansCount } = data;
 
     const { t } = useTranslation(["credit_history"]);
-
+    const dateTimeFormat = getDateTimeFormat();
     const columns = defineColumns();
 
     const rows = React.useMemo(() => {
@@ -68,7 +68,7 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
     }
 
     function getCommonCols() {
-        const all = [...respectiveColumns];
+        const all = [...customFields];
 
         const columns = showExtendedData
             ? all
@@ -86,7 +86,7 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
         const timePeriod = new TimePeriod(loans, lastBkiCreationDate);
 
         return timePeriod.result.map((item) => ({
-            name: formatToMonthYear(item),
+            name: formatToMonthYear(item, dateTimeFormat),
             type: "status",
         }));
     }

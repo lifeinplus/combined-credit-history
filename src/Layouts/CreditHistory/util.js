@@ -57,7 +57,7 @@ class TimePeriod {
     }
 }
 
-const respectiveColumns = [
+const customFields = [
     {
         badgeMore: 0,
         badgeType: "warning",
@@ -230,4 +230,4 @@ const respectiveColumns = [
     },
 ];
 
-export { TimePeriod, respectiveColumns };
+export { TimePeriod, customFields };
