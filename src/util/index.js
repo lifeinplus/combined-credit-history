@@ -23,8 +23,8 @@ function getDateTimeFormat() {
     });
 }
 
-function joinClasses(classes) {
-    return classes.filter((item) => item).join(" ");
+function joinClasses(list) {
+    return list.filter((item) => item).join(" ") || undefined;
 }
 
 export {

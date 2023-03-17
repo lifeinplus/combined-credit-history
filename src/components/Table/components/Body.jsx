@@ -57,7 +57,7 @@ const Body = ({ columns, data, rowActive }) => {
     }
 
     function getCommonTd({ column, data }) {
-        const { dataType, sysName, sysNameStatus } = column;
+        const { alignment, dataType, sysName, sysNameStatus } = column;
         const { badgeEqual, badgeMore, badgeType } = column;
 
         let value = data[sysNameStatus] ?? data[sysName] ?? "";
@@ -72,7 +72,7 @@ const Body = ({ columns, data, rowActive }) => {
         }
 
         return (
-            <td className={"common"}>
+            <td className={alignment}>
                 <span className={classNameSpan}>{value}</span>
             </td>
         );
