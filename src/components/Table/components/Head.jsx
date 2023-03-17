@@ -18,21 +18,22 @@ const Head = forwardRef(({ columns, getSortClass, requestSort }, ref) => {
     );
 
     function Th({ column, getSortClass, requestSort }) {
-        const extendedClass = column.extended && "table-info";
-        const sortClass = column.sortable && getSortClass(column.sysName);
+        const { alignment, extended, name, sortable, sysName, type } = column;
 
-        return column.type === "common" ? (
+        const common = type === "common";
+
+        const extendedClass = common && extended && "table-info";
+        const sortClass = common && sortable && getSortClass(sysName);
+        const onClick = common ? () => requestSort(column) : undefined;
+
+        return (
             <th
-                className={joinClasses([extendedClass, sortClass])}
-                onClick={() => {
-                    requestSort(column);
-                }}
+                className={joinClasses([extendedClass, sortClass, alignment])}
+                onClick={onClick}
                 scope="col"
             >
-                {column.name}
+                {name}
             </th>
-        ) : (
-            <th scope="col">{column.name}</th>
         );
     }
 });
