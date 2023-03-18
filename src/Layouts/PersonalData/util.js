@@ -12,7 +12,7 @@ const customFields = [
     {
         alignment: "text-center",
         dataType: "date",
-        sysName: "birthDateText",
+        sysName: "birthDate",
     },
     {
         alignment: "text-end",
@@ -27,7 +27,7 @@ const customFields = [
     {
         alignment: "text-end",
         dataType: "date",
-        sysName: "mainDocIssueDateText",
+        sysName: "mainDocIssueDate",
     },
 ];
 
