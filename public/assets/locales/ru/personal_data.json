@@ -4,10 +4,10 @@
     "document": {
         "dataSource": "Источник",
         "fullName": "ФИО",
-        "birthDateText": "Дата рождения",
+        "birthDate": "Дата рождения",
         "mainDocNumber": "Номер паспорта",
         "mainDocSeries": "Серия паспорта",
-        "mainDocIssueDateText": "Дата выдачи"
+        "mainDocIssueDate": "Дата выдачи"
     },
     "requests": {
         "title_all": "Запросы",

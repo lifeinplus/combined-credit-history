@@ -1,16 +1,21 @@
 import { useTranslation } from "react-i18next";
-import { formatHeader } from "../util";
 import ExtendControl from "./ExtendControl";
+import { getDateTimeFormat, langs } from "../util";
 
 const Header = ({
-    captions,
-    data,
+    date,
     handleExtend,
     iconName,
     nameSpaces,
+    number,
     showExtendedData,
 }) => {
-    const { t } = useTranslation(nameSpaces);
+    const { i18n, t } = useTranslation(nameSpaces);
+    const lang = langs[i18n.resolvedLanguage];
+
+    const milliseconds = Date.parse(date.value);
+    const headerFormat = getDateTimeFormat(lang.locale, "header");
+    const headerDate = headerFormat.format(milliseconds);
 
     return (
         <nav className="navbar navbar-light">
@@ -32,12 +37,12 @@ const Header = ({
                 <form className="d-flex">
                     <span className="navbar-text">
                         <HeaderValue
-                            caption={captions.number}
-                            value={data.number}
+                            caption={number.caption}
+                            value={number.value}
                         />
                         <HeaderValue
-                            caption={captions.date}
-                            value={formatHeader(data.date)}
+                            caption={date.caption}
+                            value={headerDate}
                         />
                     </span>
                 </form>

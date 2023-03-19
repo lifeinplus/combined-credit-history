@@ -6,14 +6,14 @@ import Header from "../../components/Header";
 import Table from "../../components/Table";
 import PaymentAmounts from "./components/PaymentAmounts";
 
-import { formatToMonthYear, getDateTimeFormat } from "../../util";
+import { getDateTimeFormat } from "../../util";
 import { TimePeriod, customFields } from "./util";
 
 const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
     const { lastBkiCreationDate, loans, loansCount } = data;
 
     const { t } = useTranslation(["credit_history"]);
-    const dateTimeFormat = getDateTimeFormat();
+    const statusFormat = getDateTimeFormat("ru", "tableStatus");
     const columns = defineColumns();
 
     const rows = React.useMemo(() => {
@@ -26,17 +26,17 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
                 <div className="col">
                     <div className="row">
                         <Header
-                            captions={{
-                                date: "report_date",
-                                number: "number_of_accounts",
-                            }}
-                            data={{
-                                date: lastBkiCreationDate,
-                                number: loansCount,
+                            date={{
+                                caption: "report_date",
+                                value: lastBkiCreationDate,
                             }}
                             handleExtend={handleExtend}
                             iconName={"bi-credit-card-2-front"}
                             nameSpaces={["credit_history"]}
+                            number={{
+                                caption: "number_of_accounts",
+                                value: loansCount,
+                            }}
                             showExtendedData={showExtendedData}
                         />
                     </div>
@@ -85,10 +85,13 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
     function getStatusCols() {
         const timePeriod = new TimePeriod(loans, lastBkiCreationDate);
 
-        return timePeriod.result.map((item) => ({
-            name: formatToMonthYear(item, dateTimeFormat),
-            type: "status",
-        }));
+        return timePeriod.result.map((item) => {
+            const milliseconds = Date.parse(item);
+            return {
+                name: statusFormat.format(milliseconds),
+                type: "status",
+            };
+        });
     }
 };
 

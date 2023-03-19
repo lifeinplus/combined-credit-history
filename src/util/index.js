@@ -1,36 +1,37 @@
-import { format } from "date-fns";
+const dateOptions = {
+    header: {
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+    },
 
-const lngs = {
+    table: {
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+    },
+
+    tableStatus: {
+        month: "numeric",
+        year: "numeric",
+        timeZone: "Europe/Moscow",
+    },
+};
+
+const langs = {
     en: { locale: "en-GB", nativeName: "English" },
     ru: { locale: "ru-RU", nativeName: "Русский" },
 };
 
-function formatHeader(isoDate) {
-    const date = new Date(isoDate);
-    return format(date, "dd-MM-yyyy HH:mm:ss");
-}
-
-function formatToMonthYear(isoDate, dateTimeFormat = getDateTimeFormat()) {
-    const milliseconds = Date.parse(isoDate);
-    return dateTimeFormat.format(milliseconds);
-}
-
-function getDateTimeFormat() {
-    return new Intl.DateTimeFormat("ru", {
-        month: "numeric",
-        year: "numeric",
-        timeZone: "Europe/Moscow",
-    });
+function getDateTimeFormat(locale, type) {
+    return new Intl.DateTimeFormat(locale, dateOptions[type]);
 }
 
 function joinClasses(list) {
     return list.filter((item) => item).join(" ") || undefined;
 }
 
-export {
-    formatHeader,
-    formatToMonthYear,
-    getDateTimeFormat,
-    joinClasses,
-    lngs,
-};
+export { getDateTimeFormat, joinClasses, langs };

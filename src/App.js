@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Navbar } from "./Layouts";
 import Report from "./Pages/Report";
 
-import { lngs } from "./util";
+import { langs } from "./util";
 
 import data from "./data/1.json";
 
@@ -31,11 +31,11 @@ const App = () => {
     };
 
     function changeLanguage() {
-        const lng = Object.keys(lngs).filter(
-            (lng) => lng !== i18n.resolvedLanguage
+        const lang = Object.keys(langs).filter(
+            (lang) => lang !== i18n.resolvedLanguage
         );
 
-        i18n.changeLanguage(lng);
+        i18n.changeLanguage(lang);
     }
 
     function handleExtend() {
