@@ -26,16 +26,16 @@ const PersonalData = ({ data }) => {
                 <div className="col">
                     <div className="row">
                         <Header
-                            captions={{
-                                date: "app_creation_date",
-                                number: "app_number",
-                            }}
-                            data={{
-                                date: data.CREATIONDATE,
-                                number: data.DOCUMENTNUMBER,
+                            date={{
+                                caption: "app_creation_date",
+                                value: data.CREATIONDATE,
                             }}
                             iconName={"bi-file-person"}
                             nameSpaces={["personal_data"]}
+                            number={{
+                                caption: "app_number",
+                                value: data.DOCUMENTNUMBER,
+                            }}
                         />
                     </div>
                     <div className="row justify-content-center">

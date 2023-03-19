@@ -2,16 +2,17 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { nanoid } from "nanoid";
 
-import { formatToMonthYear, getDateTimeFormat, lngs } from "../../../util";
+import { getDateTimeFormat, langs } from "../../../util";
 
 const Body = ({ columns, data, rowActive }) => {
     const [activeRowId, setActiveRowId] = useState(undefined);
 
     const { i18n } = useTranslation();
-    const lng = lngs[i18n.resolvedLanguage];
-    const numberFormat = new Intl.NumberFormat(lng.locale);
+    const lang = langs[i18n.resolvedLanguage];
+    const numberFormat = new Intl.NumberFormat(lang.locale);
 
-    const dateTimeFormat = getDateTimeFormat();
+    const statusFormat = getDateTimeFormat("ru", "tableStatus");
+    const tableFormat = getDateTimeFormat(lang.locale, "table");
 
     const handleClick = ({ target }) => {
         if (!rowActive) return;
@@ -34,10 +35,13 @@ const Body = ({ columns, data, rowActive }) => {
             rowActive && data.id === activeRowId ? "table-active" : "";
 
         if (MonthlyHistoryList) {
-            data.MonthlyHistoryList = MonthlyHistoryList.map((item) => ({
-                ...item,
-                name: formatToMonthYear(item.HistoryDate, dateTimeFormat),
-            }));
+            data.MonthlyHistoryList = MonthlyHistoryList.map((item) => {
+                const milliseconds = Date.parse(item.HistoryDate);
+                return {
+                    ...item,
+                    name: statusFormat.format(milliseconds),
+                };
+            });
         }
 
         return (
@@ -51,7 +55,7 @@ const Body = ({ columns, data, rowActive }) => {
 
     function Td(params) {
         const { type } = params.column;
-        return !type || type === "common"
+        return type === "common" || !type
             ? getCommonTd(params)
             : getStatusTd(params);
     }
@@ -69,6 +73,11 @@ const Body = ({ columns, data, rowActive }) => {
 
         if (dataType === "amount" && !isNaN(value)) {
             value = numberFormat.format(value);
+        }
+
+        if (dataType === "date" && value) {
+            const milliseconds = Date.parse(value);
+            value = tableFormat.format(milliseconds);
         }
 
         return (

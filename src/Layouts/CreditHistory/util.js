@@ -1,4 +1,4 @@
-import { formatToMonthYear } from "../../util";
+import { getDateTimeFormat } from "../../util";
 
 class TimePeriod {
     #loans;
@@ -39,7 +39,11 @@ class TimePeriod {
     }
 
     #defineMonthYear(isoDate) {
-        return formatToMonthYear(isoDate)
+        const statusFormat = getDateTimeFormat("ru", "tableStatus");
+        const milliseconds = Date.parse(isoDate);
+
+        return statusFormat
+            .format(milliseconds)
             .split(".")
             .map((item) => Number(item));
     }
@@ -152,17 +156,17 @@ const customFields = [
     {
         alignment: "text-center",
         dataType: "date",
-        sysName: "LoanCreationDateText",
+        sysName: "LoanCreationDate",
     },
     {
         alignment: "text-center",
         dataType: "date",
-        sysName: "CloseDateText",
+        sysName: "CloseDate",
     },
     {
         alignment: "text-center",
         dataType: "date",
-        sysName: "LastInfoUpdatedDateText",
+        sysName: "LastInfoUpdatedDate",
     },
     {
         alignment: "text-end",

@@ -1,26 +1,26 @@
 import { Fragment } from "react";
-import { lngs } from "../../../util";
+import { langs } from "../../../util";
 
 // TODO - add turkish language
 const LanguageButtons = ({ i18n }) => {
     return (
         <div className="btn-group btn-group-sm" role="group">
-            {Object.keys(lngs).map((lng) => (
-                <Fragment key={lng}>
+            {Object.keys(langs).map((lang) => (
+                <Fragment key={lang}>
                     <input
-                        id={lng}
+                        id={lang}
                         autoComplete="off"
-                        checked={i18n.resolvedLanguage === lng}
+                        checked={i18n.resolvedLanguage === lang}
                         className="btn-check"
                         name="btnradio"
-                        onChange={() => i18n.changeLanguage(lng)}
+                        onChange={() => i18n.changeLanguage(lang)}
                         type="radio"
                     />
                     <label
                         className="btn btn-outline-primary m-0"
-                        htmlFor={lng}
+                        htmlFor={lang}
                     >
-                        {lngs[lng].nativeName}
+                        {langs[lang].nativeName}
                     </label>
                 </Fragment>
             ))}
