@@ -6,7 +6,14 @@ import { useStickyHeader } from "./hooks/useStickyHeader";
 import Head from "./components/Head";
 import Body from "./components/Body";
 
-const Table = ({ columns, data, stickyHeader, rowActive, rowHover }) => {
+const Table = ({
+    columns,
+    data,
+    rowActive,
+    rowHover,
+    stickyHeader,
+    textDifference,
+}) => {
     const { sortedData, requestSort, sortConfig } = useSortableData(data, {
         dataType: "amount",
         direction: "asc",
@@ -45,6 +52,7 @@ const Table = ({ columns, data, stickyHeader, rowActive, rowHover }) => {
                     columns={columns}
                     data={sortedData}
                     rowActive={rowActive}
+                    textDifference={textDifference}
                 />
             </table>
         </div>

@@ -1,24 +1,27 @@
 .cch-badge {
-    --cch-badge-padding-x: 1.6em;
-    --cch-badge-padding-y: 0.4em;
-    --cch-badge-font-size: var(--bs-body-font-size);
-    --cch-badge-font-weight: var(--bs-body-font-weight);
-    --cch-badge-color: #fff;
-    --cch-badge-border-radius: 0.375rem;
-
     display: inline-block;
-    padding: var(--cch-badge-padding-y) var(--cch-badge-padding-x);
-    font-size: var(--cch-badge-font-size);
-    font-weight: var(--cch-badge-font-weight);
+    padding: 0.35em 0.65em;
+    font-size: var(--bs-body-font-size);
+    font-weight: var(--bs-body-font-weight);
     line-height: 1;
-    color: var(--cch-badge-color);
+    color: #fff;
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
-    border-radius: var(--cch-badge-border-radius);
+    border-radius: 0.375rem;
+}
+
+.cch-diff {
+    padding: 0.2em 0;
+    border-radius: 0.125rem;
 }
 
 .cch-status {
+    padding: 0.4em 1.6em;
+    border-radius: 0.375rem;
+}
+
+.cch-status-td {
     text-align: center;
 }
 
