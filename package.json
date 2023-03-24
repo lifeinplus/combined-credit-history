@@ -1,6 +1,6 @@
 {
     "name": "combined-credit-history",
-    "version": "0.8.0",
+    "version": "0.9.0",
     "private": true,
     "dependencies": {
         "@popperjs/core": "^2.11.6",
