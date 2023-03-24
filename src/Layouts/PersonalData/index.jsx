@@ -43,9 +43,7 @@ const PersonalData = ({ data }) => {
                             <Table
                                 columns={columns}
                                 data={personInfo}
-                                rowActive={false}
-                                rowHover={false}
-                                stickyHeader={false}
+                                textDifference={true}
                             />
                         </div>
                         <div className="col-md-8 col-lg-5 col-xl-4 mb-sm-3">
