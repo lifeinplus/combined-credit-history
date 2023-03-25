@@ -1,12 +1,14 @@
-import { joinClasses } from "../../util";
-
+import { useRowActive } from "./hooks/useRowActive";
 import { useSortableData } from "./hooks/useSortableData";
 import { useStickyHeader } from "./hooks/useStickyHeader";
 
 import Head from "./components/Head";
 import Body from "./components/Body";
 
+import { joinClasses } from "../../util";
+
 const Table = ({
+    id,
     columns,
     data,
     rowActive,
@@ -14,12 +16,17 @@ const Table = ({
     stickyHeader,
     textDifference,
 }) => {
-    const { sortedData, requestSort, sortConfig } = useSortableData(data, {
-        dataType: "amount",
-        direction: "asc",
-        sysName: "calculatedBkiPayment",
-        sysNameStatus: "calculatedBkiStatus",
-    });
+    const activeData = useRowActive(rowActive, data);
+
+    const { sortedData, requestSort, sortConfig } = useSortableData(
+        activeData,
+        {
+            dataType: "amount",
+            direction: "asc",
+            sysName: "calculatedBkiPayment",
+            sysNameStatus: "calculatedBkiStatus",
+        }
+    );
 
     const [tableWrapperRef, headerRef] = useStickyHeader(stickyHeader);
 
@@ -49,6 +56,7 @@ const Table = ({
                     requestSort={requestSort}
                 />
                 <Body
+                    id={id + "-body"}
                     columns={columns}
                     data={sortedData}
                     rowActive={rowActive}

@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 import { useTranslation } from "react-i18next";
 
 import Header from "../../components/Header";
@@ -8,16 +7,20 @@ import RequestCounts from "./components/RequestCounts";
 import { customFields } from "./util";
 
 const PersonalData = ({ data }) => {
+    const {
+        CREATIONDATE,
+        DOCUMENTNUMBER,
+        ScoringBall,
+        microcreditRequestsCounts,
+        personInfo,
+        requestsCounts,
+    } = data;
+
     const { t } = useTranslation(["personal_data"]);
 
     const columns = customFields.map((item) => ({
         ...item,
         name: t(`document.${item.sysName}`),
-    }));
-
-    const personInfo = data.personInfo.map((item) => ({
-        ...item,
-        id: nanoid(),
     }));
 
     return (
@@ -28,19 +31,20 @@ const PersonalData = ({ data }) => {
                         <Header
                             date={{
                                 caption: "app_creation_date",
-                                value: data.CREATIONDATE,
+                                value: CREATIONDATE,
                             }}
                             iconName={"bi-file-person"}
                             nameSpaces={["personal_data"]}
                             number={{
                                 caption: "app_number",
-                                value: data.DOCUMENTNUMBER,
+                                value: DOCUMENTNUMBER,
                             }}
                         />
                     </div>
                     <div className="row justify-content-center">
                         <div className="col-md-12 col-lg-7 col-xl-8">
                             <Table
+                                id={"pd"}
                                 columns={columns}
                                 data={personInfo}
                                 textDifference={true}
@@ -49,10 +53,10 @@ const PersonalData = ({ data }) => {
                         <div className="col-md-8 col-lg-5 col-xl-4 mb-sm-3">
                             <RequestCounts
                                 microcreditRequestsCounts={
-                                    data.microcreditRequestsCounts
+                                    microcreditRequestsCounts
                                 }
-                                requestsCounts={data.requestsCounts}
-                                score={data.ScoringBall}
+                                requestsCounts={requestsCounts}
+                                score={ScoringBall}
                             />
                         </div>
                     </div>
