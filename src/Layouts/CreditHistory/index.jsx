@@ -1,5 +1,3 @@
-import React from "react";
-import { nanoid } from "nanoid";
 import { useTranslation } from "react-i18next";
 
 import Header from "../../components/Header";
@@ -15,10 +13,6 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
     const { t } = useTranslation(["credit_history"]);
     const statusFormat = getDateTimeFormat("ru", "tableStatus");
     const columns = defineColumns();
-
-    const rows = React.useMemo(() => {
-        return loans.map((item) => ({ ...item, id: nanoid() }));
-    }, [loans]);
 
     return (
         <div className="container-fluid mb-3">
@@ -47,8 +41,9 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
                     <div className="row">
                         <div className="col">
                             <Table
+                                id={"ch"}
                                 columns={columns}
-                                data={rows}
+                                data={loans}
                                 rowActive={true}
                                 rowHover={true}
                                 stickyHeader={true}

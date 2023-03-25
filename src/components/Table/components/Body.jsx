@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { nanoid } from "nanoid";
 
 import { getDateTimeFormat, langs } from "../../../util";
 
-const Body = ({ columns, data, rowActive, textDifference }) => {
+const Body = ({ id, columns, data, rowActive, textDifference }) => {
     const [activeRowId, setActiveRowId] = useState(undefined);
 
     const { i18n } = useTranslation();
@@ -17,100 +16,119 @@ const Body = ({ columns, data, rowActive, textDifference }) => {
 
     const handleClick = ({ target }) => {
         if (!rowActive) return;
-        const tr = target.closest("TR");
-        setActiveRowId(tr.id !== activeRowId && tr.id);
+        const { id } = target.closest("TR");
+        setActiveRowId(id !== activeRowId ? id : undefined);
     };
 
     return (
         <tbody>
-            {data.map((item) => (
-                <Tr key={item.id} data={item} />
-            ))}
+            {data.map((element, index) => {
+                const key = `${id}-row${index}`;
+                return <Row key={key} id={key} data={element} />;
+            })}
         </tbody>
     );
 
-    function Tr({ data }) {
-        const { MonthlyHistoryList } = data;
+    function Row({ id, data }) {
+        const { MonthlyHistoryList, activeId } = data;
 
         const tableActive =
-            rowActive && data.id === activeRowId ? "table-active" : "";
+            rowActive && activeId === activeRowId ? "table-active" : "";
 
         if (MonthlyHistoryList) {
-            data.MonthlyHistoryList = MonthlyHistoryList.map((item) => {
-                const milliseconds = Date.parse(item.HistoryDate);
+            data.MonthlyHistoryList = MonthlyHistoryList.map((element) => {
+                const milliseconds = Date.parse(element.HistoryDate);
                 return {
-                    ...item,
+                    ...element,
                     name: statusFormat.format(milliseconds),
                 };
             });
         }
 
         return (
-            <tr id={data.id} className={tableActive} onClick={handleClick}>
-                {columns.map((column) => (
-                    <Td key={nanoid()} column={column} data={data} />
-                ))}
+            <tr id={activeId} className={tableActive} onClick={handleClick}>
+                {columns.map((element, index) => {
+                    const key = `${id}-cell${index}`;
+                    return (
+                        <Cell key={key} id={key} column={element} data={data} />
+                    );
+                })}
             </tr>
         );
     }
 
-    function Td({ column, data }) {
+    function Cell(params) {
+        const { id, column } = params;
         const { type } = column;
 
-        return type === "common" || !type ? (
-            <Common column={column} data={data} />
-        ) : (
-            <Status column={column} data={data} />
-        );
-    }
-
-    function Common({ column, data }) {
-        const { alignment, dataType } = column;
-        const { badgeEqual, badgeMore, badgeType } = column;
-        const { sysName, sysNameStatus } = column;
-
-        const currentSourceValue = data[sysNameStatus] ?? data[sysName] ?? "";
-
-        const classNameSpan =
-            currentSourceValue > badgeMore || currentSourceValue === badgeEqual
-                ? `cch-badge cch-text-bg-${badgeType}`
-                : undefined;
-
-        const firstSourceValue = firstDataItem[sysName];
-
-        const firstValue = prepare(firstSourceValue, dataType);
-        const currentValue = prepare(currentSourceValue, dataType);
-
-        const comparedValue = textDifference
-            ? compare(firstValue, currentValue)
-            : undefined;
+        const { cell, badge, value } =
+            type === "common" || !type
+                ? getCommonData(params)
+                : getStatusData(params);
 
         return (
-            <td className={alignment}>
-                <span className={classNameSpan}>
-                    {comparedValue || currentValue}
+            <td className={cell}>
+                <span className={badge}>
+                    {textDifference ? (
+                        <DiffBadges id={id} data={value} />
+                    ) : (
+                        value
+                    )}
                 </span>
             </td>
         );
     }
 
-    function Status({ column, data }) {
-        const { name } = column;
+    function DiffBadges({ id, data }) {
+        return data.map((element, index) => {
+            const { spanText, text } = element;
+            const key = `${id}-span${index}`;
+
+            return spanText ? (
+                <span key={key} className={"cch-badge cch-diff cch-text-bg-A"}>
+                    {spanText}
+                </span>
+            ) : (
+                text
+            );
+        });
+    }
+
+    function getCommonData({ column, data }) {
+        const { alignment, dataType, sysName, sysNameStatus } = column;
+        const { badgeEqual, badgeMore, badgeType } = column;
+
+        const currentSource = data[sysNameStatus] ?? data[sysName] ?? "";
+
+        const badge =
+            currentSource > badgeMore || currentSource === badgeEqual
+                ? `cch-badge cch-text-bg-${badgeType}`
+                : undefined;
+
+        const firstSource = firstDataItem[sysName];
+
+        const firstValue = prepare(firstSource, dataType);
+        const currentValue = prepare(currentSource, dataType);
+
+        const value = textDifference
+            ? compare(firstValue, currentValue)
+            : currentValue;
+
+        return { cell: alignment, badge, value };
+    }
+
+    function getStatusData({ column, data }) {
+        const { name: columnName } = column;
         const { MonthlyHistoryList } = data;
 
-        const value = MonthlyHistoryList.reduce((result, item) => {
-            return item.name === name ? item.AccountPaymentStatus : result;
+        const value = MonthlyHistoryList.reduce((accumulator, currentValue) => {
+            const { name, AccountPaymentStatus } = currentValue;
+            return name === columnName ? AccountPaymentStatus : accumulator;
         }, null);
 
-        const classNameSpan = value
-            ? `cch-badge cch-status cch-text-bg-${value}`
-            : "";
+        const badge = value ? `cch-badge cch-status cch-text-bg-${value}` : "";
 
-        return (
-            <td className={"cch-status-td"}>
-                <span className={classNameSpan}>{value}</span>
-            </td>
-        );
+        return { cell: "cch-status-td", badge, value };
     }
 
     function prepare(sourceValue, dataType) {
@@ -147,18 +165,7 @@ const Body = ({ columns, data, rowActive, textDifference }) => {
             result = result.concat(compared);
         }
 
-        return result.map(({ spanText, text }) => {
-            return spanText ? (
-                <span
-                    key={nanoid()}
-                    className={"cch-badge cch-diff cch-text-bg-A"}
-                >
-                    {spanText}
-                </span>
-            ) : (
-                text
-            );
-        });
+        return result;
     }
 
     function compareStrings(stringA, stringB) {
