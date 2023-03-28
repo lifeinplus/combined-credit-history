@@ -1,80 +1,95 @@
-import { useMemo, useState } from "react";
+import React from "react";
+import { parse } from "date-fns";
 
 const useSortableData = (data, config = null) => {
-    const [sortConfig, setSortConfig] = useState(config);
+    const [sortConfig, setSortConfig] = React.useState(config);
     const { dataType, direction, sysName, sysNameStatus } = sortConfig;
 
     const _compareFunctions = {
-        amount({ statusA, statusB, valueA, valueB }) {
+        amount(a, b) {
+            const statusA = a[sysNameStatus];
+            const statusB = b[sysNameStatus];
+
             if (statusA === "Ошибка вычисления") return { order: -1 };
             if (statusB === "Ошибка вычисления") return { order: 1 };
+
+            const valueA = a[sysName];
+            const valueB = b[sysName];
 
             if (isNaN(valueA)) return { order: 1 };
             if (isNaN(valueB)) return { order: -1 };
 
-            return { resultA: valueA, resultB: valueB };
+            return { valueA, valueB };
         },
 
-        date({ valueA, valueB }) {
-            const resultA = Date.parse(valueA) || "";
-            const resultB = Date.parse(valueB) || "";
+        date(a, b) {
+            const formatString = "dd.MM.yyyy";
+            const referenceDate = new Date();
 
-            if (!resultA) return { order: 1 };
-            if (!resultB) return { order: -1 };
+            const valueA = parse(a[sysName], formatString, referenceDate) || "";
+            const valueB = parse(b[sysName], formatString, referenceDate) || "";
 
-            return { resultA, resultB };
-        },
-
-        numeric({ statusA, statusB, valueA, valueB }) {
-            if (statusA === "Ошибка вычисления") return { order: -1 };
-            if (statusB === "Ошибка вычисления") return { order: 1 };
-
-            if (isNaN(valueA)) return { order: 1 };
-            if (isNaN(valueB)) return { order: -1 };
-
-            return { resultA: valueA, resultB: valueB };
-        },
-
-        numericArray({ valueA = "", valueB = "" }) {
-            const arrayA = valueA.split(",");
-            const arrayB = valueB.split(",");
-
-            const resultA = parseInt(arrayA[0]);
-            const resultB = parseInt(arrayB[0]);
-
-            if (isNaN(resultA)) return { order: 1 };
-            if (isNaN(resultB)) return { order: -1 };
-
-            return { resultA, resultB };
-        },
-
-        text({ valueA = "", valueB = "" }) {
             if (!valueA) return { order: 1 };
             if (!valueB) return { order: -1 };
 
-            return { resultA: valueA, resultB: valueB };
+            return { valueA, valueB };
+        },
+
+        numeric(a, b) {
+            const statusA = a[sysNameStatus];
+            const statusB = b[sysNameStatus];
+
+            if (statusA === "Ошибка вычисления") return { order: -1 };
+            if (statusB === "Ошибка вычисления") return { order: 1 };
+
+            const valueA = a[sysName];
+            const valueB = b[sysName];
+
+            if (isNaN(valueA)) return { order: 1 };
+            if (isNaN(valueB)) return { order: -1 };
+
+            return { valueA, valueB };
+        },
+
+        numericArray(a, b) {
+            const stringA = a[sysName] || "";
+            const stringB = b[sysName] || "";
+
+            const arrayA = stringA.split(",");
+            const arrayB = stringB.split(",");
+
+            const valueA = parseInt(arrayA[0]);
+            const valueB = parseInt(arrayB[0]);
+
+            if (isNaN(valueA)) return { order: 1 };
+            if (isNaN(valueB)) return { order: -1 };
+
+            return { valueA, valueB };
+        },
+
+        text(a, b) {
+            const valueA = a[sysName] || "";
+            const valueB = b[sysName] || "";
+
+            if (!valueA) return { order: 1 };
+            if (!valueB) return { order: -1 };
+
+            return { valueA, valueB };
         },
     };
 
-    const sortedData = useMemo(() => {
+    const sortedData = React.useMemo(() => {
         const more = direction === "asc" ? 1 : -1;
         const less = direction === "asc" ? -1 : 1;
 
         const result = [...data].sort((a, b) => {
-            const compare = _compareFunctions[dataType];
-
-            const result = compare({
-                statusA: a[sysNameStatus],
-                statusB: b[sysNameStatus],
-                valueA: a[sysName],
-                valueB: b[sysName],
-            });
-
-            const { order, resultA, resultB } = result;
+            const result = _compareFunctions[dataType](a, b);
+            const { order, valueA, valueB } = result;
 
             if (order) return order;
-            if (resultA > resultB) return more;
-            if (resultA < resultB) return less;
+
+            if (valueA > valueB) return more;
+            if (valueA < valueB) return less;
         });
 
         return result;
