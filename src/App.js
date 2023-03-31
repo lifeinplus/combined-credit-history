@@ -1,6 +1,6 @@
-import React from "react";
-import Cookies from "universal-cookie";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import Cookies from "universal-cookie";
 
 import { Navbar } from "./Layouts";
 import Report from "./Pages/Report";
@@ -10,11 +10,11 @@ import { langs } from "./util";
 import data from "./data/1.json";
 
 const App = () => {
-    const cookies = new Cookies();
     const { i18n } = useTranslation();
 
+    const cookies = new Cookies();
     const extended_data = cookies.get("extended_data") || "no";
-    const [showExtendedData, setShowExtendedData] = React.useState(
+    const [showExtendedData, setShowExtendedData] = useState(
         extended_data === "yes" ? true : false
     );
 

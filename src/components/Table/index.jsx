@@ -15,6 +15,7 @@ const Table = ({
     rowHover,
     stickyHeader,
     textDifference,
+    tooltips,
 }) => {
     const activeData = useRowActive(rowActive, data);
 
@@ -36,10 +37,9 @@ const Table = ({
             : undefined;
     };
 
-    const tableHover = rowHover ? "table-hover" : "";
     const tableClassName = joinClasses([
         "table",
-        tableHover,
+        rowHover && "table-hover",
         "table-striped align-middle mb-0",
     ]);
 
@@ -54,6 +54,7 @@ const Table = ({
                     getSortClass={getSortClass}
                     ref={headerRef}
                     requestSort={requestSort}
+                    tooltips={tooltips}
                 />
                 <Body
                     id={id + "-body"}
