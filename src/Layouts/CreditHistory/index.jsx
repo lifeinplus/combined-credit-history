@@ -47,6 +47,7 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
                                 rowActive={true}
                                 rowHover={true}
                                 stickyHeader={true}
+                                tooltips={true}
                             />
                         </div>
                     </div>
@@ -69,12 +70,16 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
             ? all
             : all.filter((column) => !column.extended);
 
-        return columns.map((item) => ({
-            ...item,
-            name: t(`columns.${item.sysName}`),
-            type: "common",
-            sortable: true,
-        }));
+        return columns.map((item) => {
+            const { sysName, tooltip } = item;
+            return {
+                ...item,
+                name: t(`columns.${sysName}`),
+                sortable: true,
+                type: "common",
+                tooltipName: tooltip && t(`columns.tooltips.${sysName}`),
+            };
+        });
     }
 
     function getStatusCols() {
