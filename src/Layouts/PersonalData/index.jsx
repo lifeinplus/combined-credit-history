@@ -47,6 +47,7 @@ const PersonalData = ({ data }) => {
                                 id={"pd"}
                                 columns={columns}
                                 data={personInfo}
+                                mobileView={true}
                                 textDifference={true}
                             />
                         </div>
