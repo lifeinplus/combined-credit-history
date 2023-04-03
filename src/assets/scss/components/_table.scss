@@ -2,3 +2,41 @@ table {
     border-spacing: 0px;
     border-collapse: separate;
 }
+
+@media screen and (max-width: 575px) {
+    .table-mobile thead,
+    .table-mobile tbody,
+    .table-mobile th,
+    .table-mobile td,
+    .table-mobile tr {
+        display: block;
+    }
+
+    .table-mobile td.text-start {
+        text-align: end !important;
+    }
+
+    .table-mobile thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .table-mobile td {
+        position: relative;
+        padding-left: 50% !important;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .table-mobile td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0.5rem;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+        text-align: start;
+    }
+}

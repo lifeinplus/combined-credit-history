@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { getDateTimeFormat, langs } from "../../../util";
 
-const Body = ({ id, columns, data, rowActive, textDifference }) => {
+const Body = ({ id, columns, data, mobileView, rowActive, textDifference }) => {
     const [activeRowId, setActiveRowId] = useState(undefined);
 
     const { i18n } = useTranslation();
@@ -59,15 +59,17 @@ const Body = ({ id, columns, data, rowActive, textDifference }) => {
 
     function Cell(params) {
         const { id, column } = params;
-        const { type } = column;
+        const { name, type } = column;
 
         const { cell, badge, value } =
             type === "common" || !type
                 ? getCommonData(params)
                 : getStatusData(params);
 
+        const label = mobileView && name;
+
         return (
-            <td className={cell}>
+            <td className={cell} data-label={label}>
                 <span className={badge}>
                     {textDifference ? (
                         <DiffBadges id={id} data={value} />
