@@ -6,10 +6,8 @@ import RequestCounts from "./components/RequestCounts";
 
 import { customFields } from "./util";
 
-const PersonalData = ({ data }) => {
+const PersonalData = ({ appCreationDate, appNumber, data }) => {
     const {
-        CREATIONDATE,
-        DOCUMENTNUMBER,
         ScoringBall,
         microcreditRequestsCounts,
         personInfo,
@@ -31,13 +29,13 @@ const PersonalData = ({ data }) => {
                         <Header
                             date={{
                                 caption: "app_creation_date",
-                                value: CREATIONDATE,
+                                value: appCreationDate,
                             }}
                             iconName={"bi-file-person"}
                             nameSpaces={["personal_data"]}
                             number={{
                                 caption: "app_number",
-                                value: DOCUMENTNUMBER,
+                                value: appNumber,
                             }}
                         />
                     </div>

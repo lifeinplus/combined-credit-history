@@ -39,6 +39,8 @@ class TimePeriod {
     }
 
     #defineMonthYear(isoDate) {
+        if (!isoDate) return [];
+
         const statusFormat = getDateTimeFormat("ru", "tableStatus");
         const milliseconds = Date.parse(isoDate);
 
