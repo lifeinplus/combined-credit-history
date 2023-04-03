@@ -11,6 +11,7 @@ const Table = ({
     id,
     columns,
     data,
+    mobileView,
     rowActive,
     rowHover,
     stickyHeader,
@@ -41,6 +42,7 @@ const Table = ({
         "table",
         rowHover && "table-hover",
         "table-striped align-middle mb-0",
+        mobileView && "table-mobile",
     ]);
 
     return (
@@ -60,6 +62,7 @@ const Table = ({
                     id={id + "-body"}
                     columns={columns}
                     data={sortedData}
+                    mobileView={mobileView}
                     rowActive={rowActive}
                     textDifference={textDifference}
                 />

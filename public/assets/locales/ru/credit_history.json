@@ -4,7 +4,7 @@
         "bkiPaymentsAmountRub": "RUB",
         "bkiPaymentsAmountUsd": "USD",
         "bkiPaymentsAmountEur": "EUR",
-        "pskPaymentsAmountTotal": "Сумма платежей ПСК`: RUB",
+        "pskPaymentsAmountTotal": "Сумма платежей ПСК: RUB",
         "bkiLoansAmount": "Сумма по кредитам: RUB",
         "bkiCreditCardsAmount": "Сумма по картам: RUB"
     },
