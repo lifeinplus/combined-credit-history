@@ -4,33 +4,35 @@ import { useParams } from "react-router-dom";
 import { CreditHistory, PersonalData } from "../layouts";
 
 const Report = ({ handleExtend, showExtendedData }) => {
-    const { id } = useParams();
+    const { reportId } = useParams();
+
     const [data, setData] = useState();
-    const [protocol, setProtocol] = useState();
+    const [reports, setReports] = useState();
 
     useEffect(() => {
-        fetch(`../data/${id}.json`)
+        fetch(`../data/${reportId}.json`)
             .then((response) => response.json())
             .then((json) => setData(json));
-    }, [id]);
+    }, [reportId]);
 
     useEffect(() => {
-        fetch(`../data/protocol.json`)
+        fetch(`../data/reports.json`)
             .then((response) => response.json())
-            .then(({ protocols }) =>
-                setProtocol(protocols.find((item) => item.id === Number(id)))
-            );
-    }, [id]);
+            .then(({ reports }) => setReports(reports));
+    }, []);
+
+    const report =
+        reports && reports.find((item) => item.reportId === Number(reportId));
 
     return (
         <>
-            {protocol && data && (
+            {report && data && (
                 <>
                     <PersonalData
-                        appCreationDate={protocol.appCreationDate}
-                        appNumber={protocol.appNumber}
+                        appCreationDate={report.appCreationDate}
+                        appNumber={report.appNumber}
                         data={data}
-                        protocol={protocol}
+                        protocol={report}
                     />
                     <CreditHistory
                         data={data}
