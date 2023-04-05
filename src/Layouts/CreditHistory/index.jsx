@@ -83,6 +83,8 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
     }
 
     function getStatusCols() {
+        if (!loans) return [];
+
         const timePeriod = new TimePeriod(loans, lastBkiCreationDate);
 
         return timePeriod.result.map((item) => {

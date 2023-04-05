@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 
-const useSortableData = (data, config = null) => {
+const useSortableData = (data = [], config = null) => {
     const [sortConfig, setSortConfig] = useState(config);
     const { dataType, direction, sysName, sysNameStatus } = sortConfig;
 
