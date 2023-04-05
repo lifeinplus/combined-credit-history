@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router-dom";
 
 import LanguageButtons from "./components/LanguageButtons";
 
@@ -13,9 +14,10 @@ const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-md bg-light shadow">
             <div className="container-fluid">
-                <a
+                <NavLink
                     className="navbar-brand d-flex align-items-center me-10"
-                    href="#"
+                    reloadDocument
+                    to="/"
                 >
                     <span className="f-w-5 d-block me-2">
                         <img
@@ -25,7 +27,7 @@ const Navbar = () => {
                         />
                     </span>
                     <span>{t("title")}</span>
-                </a>
+                </NavLink>
                 <button
                     className="navbar-toggler"
                     type="button"

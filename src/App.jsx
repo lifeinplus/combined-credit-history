@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Routes, Route } from "react-router-dom";
 import Cookies from "universal-cookie";
 
-import { Navbar } from "./Layouts";
-import Report from "./Pages/Report";
+import { Navbar } from "./layouts";
+
+import NotFound from "./pages/NotFound";
+import Report from "./pages/Report";
+import ReportList from "./pages/ReportList";
 
 import { langs } from "./util";
-
-import data from "./data/1.json";
 
 const App = () => {
     const { i18n } = useTranslation();
@@ -50,11 +52,24 @@ const App = () => {
                 <Navbar />
             </header>
             <main>
-                <Report
-                    data={data}
-                    handleExtend={handleExtend}
-                    showExtendedData={showExtendedData}
-                />
+                <div className="container-fluid">
+                    <Routes>
+                        <Route path="/" element={<ReportList />} />
+                        <Route path="/reports">
+                            <Route index element={<ReportList />} />
+                            <Route
+                                path=":id"
+                                element={
+                                    <Report
+                                        handleExtend={handleExtend}
+                                        showExtendedData={showExtendedData}
+                                    />
+                                }
+                            />
+                        </Route>
+                        <Route path="*" element={<NotFound />} />
+                    </Routes>
+                </div>
             </main>
         </>
     );
