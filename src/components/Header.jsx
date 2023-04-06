@@ -11,11 +11,8 @@ const Header = ({
     showExtendedData,
 }) => {
     const { i18n, t } = useTranslation(nameSpaces);
-    const lang = langs[i18n.resolvedLanguage];
 
-    const milliseconds = Date.parse(date.value);
-    const headerFormat = getDateTimeFormat(lang.locale, "header");
-    const headerDate = headerFormat.format(milliseconds);
+    const headerDate = getHeaderDate();
 
     return (
         <nav className="navbar navbar-light">
@@ -34,18 +31,20 @@ const Header = ({
                         </li>
                     </ul>
                 )}
-                <form className="d-flex">
-                    <span className="navbar-text">
-                        <HeaderValue
-                            caption={number.caption}
-                            value={number.value}
-                        />
-                        <HeaderValue
-                            caption={date.caption}
-                            value={headerDate}
-                        />
-                    </span>
-                </form>
+                {headerDate && (
+                    <form className="d-flex">
+                        <span className="navbar-text">
+                            <HeaderValue
+                                caption={number.caption}
+                                value={number.value}
+                            />
+                            <HeaderValue
+                                caption={date.caption}
+                                value={headerDate}
+                            />
+                        </span>
+                    </form>
+                )}
             </div>
         </nav>
     );
@@ -59,6 +58,16 @@ const Header = ({
                 </div>
             </>
         );
+    }
+
+    function getHeaderDate() {
+        if (!date) return;
+
+        const lang = langs[i18n.resolvedLanguage];
+        const milliseconds = Date.parse(date.value);
+        const headerFormat = getDateTimeFormat(lang.locale, "header");
+
+        return headerFormat.format(milliseconds);
     }
 };
 

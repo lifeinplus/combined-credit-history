@@ -7,7 +7,7 @@ import { Navbar } from "./layouts";
 
 import NotFound from "./pages/NotFound";
 import Report from "./pages/Report";
-import ReportList from "./pages/ReportList";
+import Reports from "./pages/Reports";
 
 import { langs } from "./util";
 
@@ -54,11 +54,11 @@ const App = () => {
             <main>
                 <div className="container-fluid">
                     <Routes>
-                        <Route path="/" element={<ReportList />} />
+                        <Route path="/" element={<Reports />} />
                         <Route path="/reports">
-                            <Route index element={<ReportList />} />
+                            <Route index element={<Reports />} />
                             <Route
-                                path=":id"
+                                path=":reportId"
                                 element={
                                     <Report
                                         handleExtend={handleExtend}

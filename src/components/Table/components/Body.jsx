@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 import { getDateTimeFormat, langs } from "../../../util";
 
@@ -30,7 +31,7 @@ const Body = ({ id, columns, data, mobileView, rowActive, textDifference }) => {
     );
 
     function Row({ id, data }) {
-        const { MonthlyHistoryList, activeId } = data;
+        const { MonthlyHistoryList, activeId, reportId } = data;
 
         const tableActive =
             rowActive && activeId === activeRowId ? "table-active" : "";
@@ -50,7 +51,13 @@ const Body = ({ id, columns, data, mobileView, rowActive, textDifference }) => {
                 {columns.map((element, index) => {
                     const key = `${id}-cell${index}`;
                     return (
-                        <Cell key={key} id={key} column={element} data={data} />
+                        <Cell
+                            key={key}
+                            id={key}
+                            column={element}
+                            data={data}
+                            reportId={reportId}
+                        />
                     );
                 })}
             </tr>
@@ -58,8 +65,8 @@ const Body = ({ id, columns, data, mobileView, rowActive, textDifference }) => {
     }
 
     function Cell(params) {
-        const { id, column } = params;
-        const { name, type } = column;
+        const { id, column, reportId } = params;
+        const { isLink, name, type } = column;
 
         const { cell, badge, value } =
             type === "common" || !type
@@ -68,13 +75,17 @@ const Body = ({ id, columns, data, mobileView, rowActive, textDifference }) => {
 
         const label = mobileView && name;
 
+        const linkValue = isLink && (
+            <Link to={`/reports/${reportId}`}>{value}</Link>
+        );
+
         return (
             <td className={cell} data-label={label}>
                 <span className={badge}>
                     {textDifference ? (
                         <DiffBadges id={id} data={value} />
                     ) : (
-                        value
+                        linkValue || value
                     )}
                 </span>
             </td>

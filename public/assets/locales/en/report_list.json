@@ -1,0 +1,11 @@
+{
+    "table": {
+        "reportId": "ID",
+        "appCreationDate": "Creation Date",
+        "appNumber": "App No",
+        "clientFullName": "Full Name",
+        "documentNumber": "Passport Number",
+        "documentSeries": "Passport Series"
+    },
+    "title": "Report List"
+}
