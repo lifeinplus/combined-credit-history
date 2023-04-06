@@ -1,6 +1,6 @@
 {
-    "app_creation_date": "от",
-    "app_number": "Заявка №",
+    "app_creation_date": "Дата создания",
+    "app_number": "Номер заявки",
     "document": {
         "dataSource": "Источник",
         "fullName": "ФИО",
