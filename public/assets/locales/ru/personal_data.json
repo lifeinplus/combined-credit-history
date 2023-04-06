@@ -5,20 +5,20 @@
         "dataSource": "Источник",
         "fullName": "ФИО",
         "birthDate": "Дата рождения",
-        "mainDocNumber": "Номер паспорта",
-        "mainDocSeries": "Серия паспорта",
-        "mainDocIssueDate": "Дата выдачи"
+        "documentNumber": "Номер паспорта",
+        "documentSeries": "Серия паспорта",
+        "documentIssueDate": "Дата выдачи"
     },
     "requests": {
         "title_all": "Запросы",
         "title_microcredits": "Запросы на микрокредиты",
-        "nbkiRequestsCount": "Всего",
-        "nbkiCollectionRequestCount": "Последние 24 мес.",
-        "nbkiLastRequestCount": "Последние 30 дн.",
-        "microcreditRequestsCount": "Всего",
-        "last30DaysMicrocreditRequestsCount": "Последние 30 дн.",
-        "lastYearMicrocreditRequestsCount": "Последний год",
-        "more1YearMicrocreditRequestsCount": "Более 1 года"
+        "last24Months": "Последние 24 мес.",
+        "last30Days": "Последние 30 дн.",
+        "total": "Всего",
+        "microcreditLast30Days": "Последние 30 дн.",
+        "microcreditLastYear": "Последний год",
+        "microcreditMore1Year": "Более 1 года",
+        "microcreditTotal": "Всего"
     },
     "title": "Персональные данные",
     "score": "Скоринговый балл"

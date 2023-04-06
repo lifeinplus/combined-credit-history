@@ -17,17 +17,17 @@ const customFields = [
     {
         alignment: "text-end",
         dataType: "text",
-        sysName: "mainDocSeries",
+        sysName: "documentSeries",
     },
     {
         alignment: "text-end",
         dataType: "text",
-        sysName: "mainDocNumber",
+        sysName: "documentNumber",
     },
     {
         alignment: "text-end",
         dataType: "date",
-        sysName: "mainDocIssueDate",
+        sysName: "documentIssueDate",
     },
 ];
 

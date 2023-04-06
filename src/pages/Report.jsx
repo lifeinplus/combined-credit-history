@@ -6,37 +6,73 @@ import { CreditHistory, PersonalData } from "../layouts";
 const Report = ({ handleExtend, showExtendedData }) => {
     const { reportId } = useParams();
 
-    const [data, setData] = useState();
-    const [reports, setReports] = useState();
+    const [database, setDatabase] = useState();
 
     useEffect(() => {
-        fetch(`../data/${reportId}.json`)
+        fetch(`../data/database.json`)
             .then((response) => response.json())
-            .then((json) => setData(json));
-    }, [reportId]);
-
-    useEffect(() => {
-        fetch(`../data/reports.json`)
-            .then((response) => response.json())
-            .then(({ reports }) => setReports(reports));
+            .then((json) => setDatabase(json));
     }, []);
 
     const report =
-        reports && reports.find((item) => item.reportId === Number(reportId));
+        database &&
+        database.reports.find((item) => item.reportId === Number(reportId));
+
+    const common =
+        database &&
+        database.commons.find((item) => item.reportId === Number(reportId));
+
+    const loans =
+        database &&
+        database.loans.filter((item) => item.reportId === Number(reportId));
+
+    const loanIds = loans && loans.map(({ loanId }) => loanId);
+
+    const delinquency =
+        database &&
+        database.delinquency.filter((item) =>
+            loanIds.some((id) => id === item.loanId)
+        );
+
+    const flc =
+        database &&
+        database.flc.filter((item) => loanIds.some((id) => id === item.loanId));
+
+    const paymentHistory =
+        database &&
+        database.paymentHistory.filter((item) =>
+            loanIds.some((id) => id === item.loanId)
+        );
+
+    const persons =
+        database &&
+        database.persons.filter((item) => item.reportId === Number(reportId));
+
+    const requestCounts =
+        database &&
+        database.requestCounts.find(
+            (item) => item.reportId === Number(reportId)
+        );
 
     return (
         <>
-            {report && data && (
+            {report && (
                 <>
                     <PersonalData
                         appCreationDate={report.appCreationDate}
                         appNumber={report.appNumber}
-                        data={data}
-                        protocol={report}
+                        persons={persons}
+                        requestCounts={requestCounts}
+                        score={common.score}
                     />
                     <CreditHistory
-                        data={data}
+                        common={common}
                         handleExtend={handleExtend}
+                        loans={loans}
+                        delinquency={delinquency}
+                        flc={flc}
+                        paymentHistory={paymentHistory}
+                        reportCreationDate={report.reportCreationDate}
                         showExtendedData={showExtendedData}
                     />
                 </>
