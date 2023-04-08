@@ -1,30 +1,30 @@
 const customFields = [
     {
-        sysName: "nbkiRequestsCount",
+        sysName: "total",
         type: "all",
     },
     {
-        sysName: "nbkiCollectionRequestCount",
+        sysName: "last24Months",
         type: "all",
     },
     {
-        sysName: "nbkiLastRequestCount",
+        sysName: "last30Days",
         type: "all",
     },
     {
-        sysName: "microcreditRequestsCount",
+        sysName: "microcreditTotal",
         type: "micro",
     },
     {
-        sysName: "last30DaysMicrocreditRequestsCount",
+        sysName: "microcreditLast30Days",
         type: "micro",
     },
     {
-        sysName: "lastYearMicrocreditRequestsCount",
+        sysName: "microcreditLastYear",
         type: "micro",
     },
     {
-        sysName: "more1YearMicrocreditRequestsCount",
+        sysName: "microcreditMore1Year",
         type: "micro",
     },
 ];

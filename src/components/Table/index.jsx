@@ -25,8 +25,8 @@ const Table = ({
         {
             dataType: "amount",
             direction: "asc",
-            sysName: "calculatedBkiPayment",
-            sysNameStatus: "calculatedBkiStatus",
+            sysName: "chbPayment",
+            sysNameStatus: "chbStatus",
         }
     );
 

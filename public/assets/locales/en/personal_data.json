@@ -5,20 +5,20 @@
         "dataSource": "Source",
         "fullName": "Full Name",
         "birthDate": "Birth Date",
-        "mainDocNumber": "Passport Number",
-        "mainDocSeries": "Passport Series",
-        "mainDocIssueDate": "Issue Date"
+        "documentNumber": "Passport Number",
+        "documentSeries": "Passport Series",
+        "documentIssueDate": "Issue Date"
     },
     "requests": {
         "title_all": "Requests",
         "title_microcredits": "Requests for microcredits",
-        "nbkiRequestsCount": "Total",
-        "nbkiCollectionRequestCount": "Last 24 months",
-        "nbkiLastRequestCount": "Last 30 days",
-        "microcreditRequestsCount": "Total",
-        "last30DaysMicrocreditRequestsCount": "Last 30 days",
-        "lastYearMicrocreditRequestsCount": "Last year",
-        "more1YearMicrocreditRequestsCount": "More than 1 year"
+        "last24Months": "Last 24 months",
+        "last30Days": "Last 30 days",
+        "total": "Total",
+        "microcreditLast30Days": "Last 30 days",
+        "microcreditLastYear": "Last year",
+        "microcreditMore1Year": "More than 1 year",
+        "microcreditTotal": "Total"
     },
     "title": "Personal Data",
     "score": "Score"

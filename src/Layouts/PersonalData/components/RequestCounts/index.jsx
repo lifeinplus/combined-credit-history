@@ -3,23 +3,19 @@ import { useTranslation } from "react-i18next";
 import { customFields } from "./util";
 import { joinClasses } from "../../../../util";
 
-const RequestCounts = ({
-    microcreditRequestsCounts,
-    requestsCounts,
-    score,
-}) => {
+const RequestCounts = ({ counts, score }) => {
     const { t } = useTranslation(["personal_data"]);
 
     return (
         <div className="card-group">
             <Card
-                counts={requestsCounts}
+                counts={counts}
                 score={score}
                 title={t("requests.title_all")}
                 type={"all"}
             />
             <Card
-                counts={microcreditRequestsCounts}
+                counts={counts}
                 title={t("requests.title_microcredits")}
                 type={"micro"}
             />
@@ -27,7 +23,9 @@ const RequestCounts = ({
     );
 
     function Card({ counts, score, title, type }) {
-        const values = Object.values(counts);
+        const fields = customFields.filter((item) => item.type === type);
+        const values = fields.map((item) => counts[item.sysName]);
+
         const borderDanger =
             type === "micro" && values.some((item) => item) && "border-danger";
 
@@ -36,18 +34,8 @@ const RequestCounts = ({
                 <div className="card-header text-center text-truncate">
                     {title}
                 </div>
-                <Group counts={counts} type={type} />
-                {score && <Footer value={score} />}
-            </div>
-        );
-    }
-
-    function Group({ counts, type }) {
-        return (
-            <ul className="list-group list-group-flush">
-                {customFields
-                    .filter((field) => field.type === type)
-                    .map(({ sysName }) => {
+                <ul className="list-group list-group-flush">
+                    {fields.map(({ sysName }) => {
                         return (
                             <Item
                                 key={sysName}
@@ -57,7 +45,9 @@ const RequestCounts = ({
                             />
                         );
                     })}
-            </ul>
+                </ul>
+                {score && <Footer value={score} />}
+            </div>
         );
     }
 

@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import ReportList from "../layouts/ReportList";
 
 const Reports = () => {
-    const [reports, setReports] = useState();
+    const [database, setDatabase] = useState();
 
     useEffect(() => {
-        fetch(`../data/reports.json`)
+        fetch(`../data/database.json`)
             .then((response) => response.json())
-            .then((json) => setReports(json.reports));
+            .then((json) => setDatabase(json));
     }, []);
 
-    return <>{reports && <ReportList reports={reports} />}</>;
+    return <>{database && <ReportList reports={database.reports} />}</>;
 };
 
 export default Reports;
