@@ -1,33 +1,33 @@
 const customFields = [
     {
         context: "primary",
-        sysName: "bkiPaymentsAmountTotal",
+        sysName: "chbPaymentsAmountTotal",
         type: "payment",
     },
     {
-        sysName: "bkiPaymentsAmountRub",
+        sysName: "chbPaymentsAmountRub",
         type: "payment",
     },
     {
-        sysName: "bkiPaymentsAmountUsd",
+        sysName: "chbPaymentsAmountUsd",
         type: "payment",
     },
     {
-        sysName: "bkiPaymentsAmountEur",
+        sysName: "chbPaymentsAmountEur",
         type: "payment",
     },
     {
         context: "info",
         extended: true,
-        sysName: "pskPaymentsAmountTotal",
+        sysName: "flcPaymentsAmountTotal",
         type: "payment",
     },
     {
-        sysName: "bkiLoansAmount",
+        sysName: "chbLoansAmount",
         type: "obligation",
     },
     {
-        sysName: "bkiCreditCardsAmount",
+        sysName: "chbCreditCardsAmount",
         type: "obligation",
     },
 ];

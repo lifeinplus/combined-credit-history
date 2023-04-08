@@ -1,11 +1,11 @@
 import { getDateTimeFormat } from "../../util";
 
 class TimePeriod {
-    #loans;
+    #history;
     #lastDate;
 
-    constructor(loans, lastDate) {
-        this.#loans = loans;
+    constructor(history, lastDate) {
+        this.#history = history;
         this.#lastDate = lastDate;
     }
 
@@ -51,14 +51,8 @@ class TimePeriod {
     }
 
     #getStartDate() {
-        return this.#loans.reduce((result, loan) => {
-            const MonthlyHistoryList = loan.MonthlyHistoryList || [];
-
-            MonthlyHistoryList.forEach(({ HistoryDate }) => {
-                result = result > HistoryDate ? HistoryDate : result;
-            });
-
-            return result;
+        return this.#history.reduce((result, { date }) => {
+            return result > date ? date : result;
         }, this.#lastDate);
     }
 }
@@ -69,54 +63,55 @@ const customFields = [
         badgeMore: 0,
         badgeType: "A",
         dataType: "numeric",
-        sysName: "Delinquency0Count",
+        sysName: "delinquency0Plus",
     },
     {
         alignment: "text-end",
         badgeMore: 0,
         badgeType: "5",
         dataType: "numeric",
-        sysName: "Delinquency30Count",
+        sysName: "delinquency30Plus",
     },
     {
         alignment: "text-end",
         badgeMore: 0,
         badgeType: "5",
         dataType: "numeric",
-        sysName: "Delinquency60Count",
+        sysName: "delinquency60Plus",
     },
     {
         alignment: "text-end",
         badgeMore: 0,
         badgeType: "5",
         dataType: "numeric",
-        sysName: "Delinquency90Count",
+        sysName: "delinquency90Plus",
     },
     {
         alignment: "text-end",
         badgeMore: 0,
         badgeType: "8",
         dataType: "numeric",
-        sysName: "DelinquencyRestructuringCount",
+        sysName: "delinquencyRefinancing",
         tooltip: true,
     },
     {
         alignment: "text-start",
         dataType: "text",
-        sysName: "AccountRatingText",
+        sysName: "status",
     },
     {
         alignment: "text-end",
         dataType: "amount",
-        sysName: "calculatedBkiPayment",
-        sysNameStatus: "calculatedBkiStatus",
+        sysName: "chbPayment",
+        sysNameStatus: "chbStatus",
         tooltip: true,
     },
     {
         alignment: "text-end",
         dataType: "amount",
-        sysName: "pskPayment",
-        sysNameStatus: "calculatedBkiStatus",
+        extended: true,
+        sysName: "flcPayment",
+        sysNameStatus: "chbStatus",
         tooltip: true,
     },
     {
@@ -124,27 +119,27 @@ const customFields = [
         badgeEqual: "Микрокредит",
         badgeType: "5",
         dataType: "text",
-        sysName: "LoanTypeText",
+        sysName: "loanType",
     },
     {
         alignment: "text-end",
         dataType: "amount",
-        sysName: "LoanAmount",
+        sysName: "loanAmount",
     },
     {
         alignment: "text-start",
         dataType: "text",
-        sysName: "LoanCurrencyCode",
+        sysName: "currency",
     },
     {
         alignment: "text-end",
         dataType: "amount",
-        sysName: "CurrentBalanceAmount",
+        sysName: "balanceAmount",
     },
     {
         alignment: "text-end",
         dataType: "amount",
-        sysName: "DebtAmount",
+        sysName: "debtAmount",
     },
     {
         alignment: "text-end",
@@ -157,93 +152,93 @@ const customFields = [
         badgeMore: 0,
         badgeType: "5",
         dataType: "amount",
-        sysName: "DelinquencyAmount",
+        sysName: "delinquencyAmount",
     },
     {
         alignment: "text-start",
         dataType: "text",
-        sysName: "AccountCodeText",
+        sysName: "guarantee",
     },
     {
         alignment: "text-center",
         dataType: "date",
-        sysName: "LoanCreationDate",
+        sysName: "creationDate",
     },
     {
         alignment: "text-center",
         dataType: "date",
-        sysName: "CloseDate",
+        sysName: "closeDate",
     },
     {
         alignment: "text-center",
         dataType: "date",
-        sysName: "LastInfoUpdatedDate",
+        sysName: "lastUpdateDate",
         tooltip: true,
     },
     {
         alignment: "text-start",
         dataType: "text",
-        sysName: "BusinessCategory",
+        sysName: "businessCategory",
     },
     {
         alignment: "text-end",
         dataType: "numericArray",
-        sysName: "nbkiLoanNumber",
+        sysName: "loanNumberNchb",
         tooltip: true,
     },
     {
         alignment: "text-end",
         dataType: "numericArray",
-        sysName: "okbLoanNumber",
+        sysName: "loanNumberUcb",
         tooltip: true,
     },
     {
         alignment: "text-end",
         dataType: "numeric",
         extended: true,
-        sysName: "PaymentPeriodCount",
+        sysName: "paymentPeriod",
         tooltip: true,
     },
     {
         alignment: "text-end",
         dataType: "numeric",
         extended: true,
-        sysName: "monthsNumberSinceDateOfCreation",
+        sysName: "monthsNumberSinceCreationDate",
         tooltip: true,
     },
     {
         alignment: "text-end",
         dataType: "numeric",
         extended: true,
-        sysName: "monthsNumberCloseDateRemaining",
+        sysName: "monthsNumberBeforeCloseDate",
         tooltip: true,
     },
     {
         alignment: "text-end",
         dataType: "numeric",
         extended: true,
-        sysName: "pskTaken",
+        sysName: "flcTaken",
         tooltip: true,
     },
     {
         alignment: "text-end",
         dataType: "numeric",
         extended: true,
-        sysName: "pskNbki",
+        sysName: "flcNchb",
         tooltip: true,
     },
     {
         alignment: "text-end",
         dataType: "numeric",
         extended: true,
-        sysName: "pskOkb",
+        sysName: "flcUcb",
         tooltip: true,
     },
     {
         alignment: "text-end",
         dataType: "numeric",
         extended: true,
-        sysName: "contractPeriodCount",
+        sysName: "contractPeriod",
         tooltip: true,
     },
 ];

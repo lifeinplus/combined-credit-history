@@ -7,12 +7,43 @@ import PaymentAmounts from "./components/PaymentAmounts";
 import { getDateTimeFormat } from "../../util";
 import { TimePeriod, customFields } from "./util";
 
-const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
-    const { lastBkiCreationDate, loans, loansCount } = data;
-
+const CreditHistory = ({
+    common,
+    handleExtend,
+    loans,
+    delinquency,
+    flc,
+    paymentHistory,
+    reportCreationDate,
+    showExtendedData,
+}) => {
     const { t } = useTranslation(["credit_history"]);
     const statusFormat = getDateTimeFormat("ru", "tableStatus");
     const columns = defineColumns();
+
+    const data = loans.map((element) => {
+        delinquency.forEach((item) => {
+            if (item.loanId === element.loanId) {
+                element = { ...element, ...item };
+            }
+        });
+
+        flc.forEach((item) => {
+            if (item.loanId === element.loanId) {
+                element = { ...element, ...item };
+            }
+        });
+
+        paymentHistory.forEach((item) => {
+            if (item.loanId === element.loanId) {
+                const milliseconds = Date.parse(item.date);
+                const name = statusFormat.format(milliseconds);
+                element[name] = item.status;
+            }
+        });
+
+        return element;
+    });
 
     return (
         <div className="container-fluid mb-3">
@@ -22,20 +53,20 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
                         <Header
                             date={{
                                 caption: "report_date",
-                                value: lastBkiCreationDate,
+                                value: reportCreationDate,
                             }}
                             handleExtend={handleExtend}
                             iconName={"bi-credit-card-2-front"}
                             nameSpaces={["credit_history"]}
                             number={{
                                 caption: "number_of_accounts",
-                                value: loansCount,
+                                value: loans.length,
                             }}
                             showExtendedData={showExtendedData}
                         />
                     </div>
                     <PaymentAmounts
-                        data={data}
+                        data={common}
                         showExtendedData={showExtendedData}
                     />
                     <div className="row">
@@ -43,7 +74,7 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
                             <Table
                                 id={"ch"}
                                 columns={columns}
-                                data={loans}
+                                data={data}
                                 rowActive={true}
                                 rowHover={true}
                                 stickyHeader={true}
@@ -85,7 +116,7 @@ const CreditHistory = ({ data, handleExtend, showExtendedData }) => {
     function getStatusCols() {
         if (!loans) return [];
 
-        const timePeriod = new TimePeriod(loans, lastBkiCreationDate);
+        const timePeriod = new TimePeriod(paymentHistory, reportCreationDate);
 
         return timePeriod.result.map((item) => {
             const milliseconds = Date.parse(item);

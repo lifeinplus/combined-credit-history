@@ -12,8 +12,7 @@ const Body = ({ id, columns, data, mobileView, rowActive, textDifference }) => {
     const numberFormat = new Intl.NumberFormat(lang.locale);
 
     const firstDataItem = data.length ? data[0] : {};
-    const statusFormat = getDateTimeFormat("ru", "tableStatus");
-    const tableFormat = getDateTimeFormat(lang.locale, "table");
+    const dateTimeFormat = getDateTimeFormat(lang.locale, "table");
 
     const handleClick = ({ target }) => {
         if (!rowActive) return;
@@ -31,20 +30,10 @@ const Body = ({ id, columns, data, mobileView, rowActive, textDifference }) => {
     );
 
     function Row({ id, data }) {
-        const { MonthlyHistoryList, activeId, reportId } = data;
+        const { activeId, reportId } = data;
 
         const tableActive =
             rowActive && activeId === activeRowId ? "table-active" : "";
-
-        if (MonthlyHistoryList) {
-            data.MonthlyHistoryList = MonthlyHistoryList.map((element) => {
-                const milliseconds = Date.parse(element.HistoryDate);
-                return {
-                    ...element,
-                    name: statusFormat.format(milliseconds),
-                };
-            });
-        }
 
         return (
             <tr id={activeId} className={tableActive} onClick={handleClick}>
@@ -131,14 +120,9 @@ const Body = ({ id, columns, data, mobileView, rowActive, textDifference }) => {
     }
 
     function getStatusData({ column, data }) {
-        const { name: columnName } = column;
-        const { MonthlyHistoryList } = data;
+        const { name } = column;
 
-        const value = MonthlyHistoryList.reduce((accumulator, currentValue) => {
-            const { name, AccountPaymentStatus } = currentValue;
-            return name === columnName ? AccountPaymentStatus : accumulator;
-        }, null);
-
+        const value = data[name];
         const badge = value ? `cch-badge cch-status cch-text-bg-${value}` : "";
 
         return { cell: "cch-status-td", badge, value };
@@ -147,7 +131,7 @@ const Body = ({ id, columns, data, mobileView, rowActive, textDifference }) => {
     function prepare(sourceValue, dataType) {
         if (dataType === "date" && sourceValue) {
             const milliseconds = Date.parse(sourceValue);
-            return tableFormat.format(milliseconds);
+            return dateTimeFormat.format(milliseconds);
         }
 
         if (dataType === "amount" && !isNaN(sourceValue)) {

@@ -6,14 +6,13 @@ import RequestCounts from "./components/RequestCounts";
 
 import { customFields } from "./util";
 
-const PersonalData = ({ appCreationDate, appNumber, data }) => {
-    const {
-        ScoringBall,
-        microcreditRequestsCounts,
-        personInfo,
-        requestsCounts,
-    } = data;
-
+const PersonalData = ({
+    appCreationDate,
+    appNumber,
+    persons,
+    requestCounts,
+    score,
+}) => {
     const { t } = useTranslation(["personal_data"]);
 
     const columns = customFields.map((item) => ({
@@ -44,18 +43,15 @@ const PersonalData = ({ appCreationDate, appNumber, data }) => {
                             <Table
                                 id={"pd"}
                                 columns={columns}
-                                data={personInfo}
+                                data={persons}
                                 mobileView={true}
                                 textDifference={true}
                             />
                         </div>
                         <div className="col-md-8 col-lg-5 col-xl-4 mb-sm-3">
                             <RequestCounts
-                                microcreditRequestsCounts={
-                                    microcreditRequestsCounts
-                                }
-                                requestsCounts={requestsCounts}
-                                score={ScoringBall}
+                                counts={requestCounts}
+                                score={score}
                             />
                         </div>
                     </div>
