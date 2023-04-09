@@ -4,7 +4,15 @@ import { Link } from "react-router-dom";
 
 import { getDateTimeFormat, langs } from "../../../util";
 
-const Body = ({ id, columns, data, mobileView, rowActive, textDifference }) => {
+const Body = ({
+    id,
+    columns,
+    data,
+    mobileView,
+    rowActive,
+    textDifference,
+    theme,
+}) => {
     const [activeRowId, setActiveRowId] = useState(undefined);
 
     const { i18n } = useTranslation();
@@ -32,11 +40,16 @@ const Body = ({ id, columns, data, mobileView, rowActive, textDifference }) => {
     function Row({ id, data }) {
         const { activeId, reportId } = data;
 
-        const tableActive =
-            rowActive && activeId === activeRowId ? "table-active" : "";
-
         return (
-            <tr id={activeId} className={tableActive} onClick={handleClick}>
+            <tr
+                id={activeId}
+                className={
+                    rowActive && activeId === activeRowId
+                        ? `cch-table-active-${theme}`
+                        : undefined
+                }
+                onClick={handleClick}
+            >
                 {columns.map((element, index) => {
                     const key = `${id}-cell${index}`;
                     return (
@@ -65,7 +78,9 @@ const Body = ({ id, columns, data, mobileView, rowActive, textDifference }) => {
         const label = mobileView && name;
 
         const linkValue = isLink && (
-            <Link to={`/reports/${reportId}`}>{value}</Link>
+            <Link className={`cch-link-${theme}`} to={`/reports/${reportId}`}>
+                {value}
+            </Link>
         );
 
         return (
@@ -87,7 +102,10 @@ const Body = ({ id, columns, data, mobileView, rowActive, textDifference }) => {
             const key = `${id}-span${index}`;
 
             return spanText ? (
-                <span key={key} className={"cch-badge cch-diff cch-text-bg-A"}>
+                <span
+                    key={key}
+                    className={"cch-badge cch-badge-diff cch-text-bg-A"}
+                >
                     {spanText}
                 </span>
             ) : (
@@ -123,9 +141,11 @@ const Body = ({ id, columns, data, mobileView, rowActive, textDifference }) => {
         const { name } = column;
 
         const value = data[name];
-        const badge = value ? `cch-badge cch-status cch-text-bg-${value}` : "";
+        const badge = value
+            ? `cch-badge cch-badge-status cch-text-bg-${value}`
+            : "";
 
-        return { cell: "cch-status-td", badge, value };
+        return { cell: "cch-td-status", badge, value };
     }
 
     function prepare(sourceValue, dataType) {

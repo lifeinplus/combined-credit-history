@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { customFields, scoreStyles } from "./util";
 import { joinClasses } from "../../../../util";
 
-const RequestCounts = ({ counts, score }) => {
+const RequestCounts = ({ counts, score, theme }) => {
     const { t } = useTranslation(["personal_data"]);
 
     return (
@@ -25,12 +25,24 @@ const RequestCounts = ({ counts, score }) => {
         const fields = customFields.filter((item) => item.type === type);
         const values = fields.map((item) => counts[item.sysName]);
 
-        const borderDanger =
-            type === "micro" && values.some((item) => item) && "border-danger";
+        const scoreDanger = score < 500;
+        const microDanger = type === "micro" && values.some((item) => item);
 
         return (
-            <div className={joinClasses(["card", borderDanger])}>
-                <div className="card-header text-center text-truncate">
+            <div
+                className={joinClasses([
+                    "card",
+                    `cch-text-bg-${theme}`,
+                    theme === "dark" && "cch-card-border-dark",
+                    (scoreDanger || microDanger) && "border-danger",
+                ])}
+            >
+                <div
+                    className={joinClasses([
+                        "card-header text-center text-truncate",
+                        theme === "dark" && "cch-border-dark",
+                    ])}
+                >
                     {title}
                 </div>
                 <ul className="list-group list-group-flush">
@@ -53,33 +65,35 @@ const RequestCounts = ({ counts, score }) => {
     function Item({ count, sysName, type }) {
         const isDanger = type === "micro" && count > 0;
 
-        const itemClasses = joinClasses([
-            "list-group-item",
-            isDanger && "list-group-item-danger",
-            "d-flex",
-            "justify-content-between",
-            "align-items-center",
-        ]);
-
-        const badgeClasses = joinClasses([
-            "badge",
-            "rounded-pill",
-            isDanger ? "text-bg-danger" : "text-bg-light",
-            "ms-2",
-        ]);
-
         return (
-            <li className={itemClasses}>
+            <li
+                className={joinClasses([
+                    "list-group-item",
+                    `cch-list-group-item-${theme}`,
+                    "d-flex",
+                    "justify-content-between",
+                    "align-items-center",
+                ])}
+            >
                 <span className="text-truncate">
                     {t(`requests.${sysName}`)}
                 </span>
-                <span className={badgeClasses}>{count}</span>
+                <span
+                    className={joinClasses([
+                        "badge",
+                        "rounded-pill",
+                        isDanger ? "text-bg-danger" : `text-bg-${theme}`,
+                        "ms-2",
+                    ])}
+                >
+                    {count}
+                </span>
             </li>
         );
     }
 
     function Footer({ value }) {
-        const scoreStyle = scoreStyles.find(({ min, max }) => {
+        const { style: scoreStyle } = scoreStyles.find(({ min, max }) => {
             return value >= min && value <= max;
         });
 
@@ -87,9 +101,7 @@ const RequestCounts = ({ counts, score }) => {
             <div className="card-footer text-center">
                 <li className="list-group-item d-flex justify-content-between align-items-center">
                     <span className="text-truncate">{t("score")}</span>
-                    <span
-                        className={`badge rounded-pill ${scoreStyle.style} ms-2`}
-                    >
+                    <span className={`badge rounded-pill ${scoreStyle} ms-2`}>
                         {value}
                     </span>
                 </li>

@@ -3,6 +3,65 @@ table {
     border-collapse: separate;
 }
 
+table thead tr th {
+    border-bottom: 2px solid currentcolor !important;
+}
+
+.asc {
+    background-image: url(../../images/asc.png) !important;
+    background-repeat: no-repeat !important;
+    background-position: center bottom !important;
+}
+
+.desc {
+    background-image: url(../../images/desc.png) !important;
+    background-repeat: no-repeat !important;
+    background-position: center top !important;
+}
+
+.cch-table-primary-dark {
+    --bs-table-bg: #463968;
+}
+
+.cch-table-info-dark {
+    --bs-table-bg: #0b4c5a;
+}
+
+.cch-table-active-dark {
+    --bs-table-accent-bg: #a785ff;
+    --bs-table-striped-bg: #a785ff;
+    --bs-table-striped-color: #000;
+    --bs-table-hover-bg: #a785ff;
+    --bs-table-hover-color: #000;
+    color: #000;
+}
+
+.cch-table-active-light {
+    --bs-table-accent-bg: #7860b7;
+    --bs-table-striped-bg: #7860b7;
+    --bs-table-striped-color: #fff;
+    --bs-table-hover-bg: #7860b7;
+    --bs-table-hover-color: #fff;
+    color: #fff;
+}
+
+.cch-table-dark {
+    --bs-table-color: #fff;
+    --bs-table-border-color: #373b3e;
+    --bs-table-striped-bg: #2c3034;
+    --bs-table-striped-color: #fff;
+    --bs-table-hover-bg: #463968;
+    --bs-table-hover-color: #fff;
+}
+
+.cch-table-light {
+    --bs-table-hover-bg: #e4dff2;
+}
+
+.cch-td-status {
+    text-align: center;
+}
+
 @media screen and (max-width: 575px) {
     .table-mobile thead,
     .table-mobile tbody,

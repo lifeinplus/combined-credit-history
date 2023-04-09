@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { customFields } from "./util";
 import { joinClasses, langs } from "../../../../util";
 
-const PaymentAmounts = ({ data, showExtendedData: extended }) => {
+const PaymentAmounts = ({ data, showExtendedData: extended, theme }) => {
     const { t, i18n } = useTranslation(["credit_history"]);
     const lang = langs[i18n.resolvedLanguage];
     const numberFormat = new Intl.NumberFormat(lang.locale);
@@ -48,9 +48,14 @@ const PaymentAmounts = ({ data, showExtendedData: extended }) => {
     function Item({ field }) {
         const { sysName, context, value } = field;
 
+        const contextClass = `list-group-item-${context}`;
+        const darkContextClass =
+            theme === "dark" && `cch-list-group-item-dark-${context}`;
+
         const itemClassName = joinClasses([
             "list-group-item",
-            context && `list-group-item-${context}`,
+            theme === "dark" && "cch-list-group-item-dark",
+            context && (darkContextClass || contextClass),
             "text-truncate",
         ]);
 

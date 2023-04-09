@@ -4,7 +4,9 @@ import { NavLink } from "react-router-dom";
 
 import LanguageButtons from "./components/LanguageButtons";
 
-const Navbar = () => {
+import { joinClasses } from "../../util";
+
+const Navbar = ({ theme, toggleTheme }) => {
     const { t, i18n } = useTranslation(["header"]);
 
     useEffect(() => {
@@ -12,7 +14,15 @@ const Navbar = () => {
     }, [t]);
 
     return (
-        <nav className="navbar navbar-expand-md bg-light shadow">
+        <nav
+            className={joinClasses([
+                "navbar",
+                `navbar-${theme}`,
+                "navbar-expand-md",
+                `bg-${theme}`,
+                theme === "light" ? "shadow" : "cch-shadow-dark",
+            ])}
+        >
             <div className="container-fluid">
                 <NavLink
                     className="navbar-brand d-flex align-items-center me-10"
@@ -21,7 +31,7 @@ const Navbar = () => {
                 >
                     <span className="f-w-5 d-block me-2">
                         <img
-                            alt=""
+                            alt="logo"
                             className="w-100 align-text-top"
                             src="logo.png"
                         />
@@ -44,7 +54,17 @@ const Navbar = () => {
                     id="navbarSupportedContent"
                 >
                     <form className="d-flex">
-                        <LanguageButtons i18n={i18n} />
+                        <div className="form-check form-switch me-2 mt-1">
+                            <input
+                                id="toggleTheme"
+                                checked={theme === "dark"}
+                                className="form-check-input"
+                                onChange={toggleTheme}
+                                role="switch"
+                                type="checkbox"
+                            />
+                        </div>
+                        <LanguageButtons i18n={i18n} theme={theme} />
                     </form>
                 </div>
             </div>
