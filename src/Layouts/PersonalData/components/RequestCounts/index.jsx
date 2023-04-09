@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
-
-import { customFields } from "./util";
+import { customFields, scoreStyles } from "./util";
 import { joinClasses } from "../../../../util";
 
 const RequestCounts = ({ counts, score }) => {
@@ -80,11 +79,17 @@ const RequestCounts = ({ counts, score }) => {
     }
 
     function Footer({ value }) {
+        const scoreStyle = scoreStyles.find(({ min, max }) => {
+            return value >= min && value <= max;
+        });
+
         return (
             <div className="card-footer text-center">
                 <li className="list-group-item d-flex justify-content-between align-items-center">
                     <span className="text-truncate">{t("score")}</span>
-                    <span className="badge rounded-pill text-bg-success ms-2">
+                    <span
+                        className={`badge rounded-pill ${scoreStyle.style} ms-2`}
+                    >
                         {value}
                     </span>
                 </li>
