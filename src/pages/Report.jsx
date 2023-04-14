@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { CreditHistory, PersonalData } from "../layouts";
 
-const Report = ({ handleExtend, showExtendedData }) => {
+const Report = ({ handleExtend, showExtendedData, theme }) => {
     const { reportId } = useParams();
 
     const [database, setDatabase] = useState();
@@ -64,6 +64,7 @@ const Report = ({ handleExtend, showExtendedData }) => {
                         persons={persons}
                         requestCounts={requestCounts}
                         score={common.score}
+                        theme={theme}
                     />
                     <CreditHistory
                         common={common}
@@ -74,6 +75,7 @@ const Report = ({ handleExtend, showExtendedData }) => {
                         paymentHistory={paymentHistory}
                         reportCreationDate={report.reportCreationDate}
                         showExtendedData={showExtendedData}
+                        theme={theme}
                     />
                 </>
             )}

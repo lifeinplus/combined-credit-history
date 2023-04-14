@@ -9,13 +9,14 @@ const Header = ({
     nameSpaces,
     number,
     showExtendedData,
+    theme,
 }) => {
     const { i18n, t } = useTranslation(nameSpaces);
 
     const headerDate = getHeaderDate();
 
     return (
-        <nav className="navbar navbar-light">
+        <nav className={`navbar navbar-${theme}`}>
             <div className="container-fluid">
                 <span className="navbar-brand" href="#">
                     <i className={`bi ${iconName} me-2`}></i>
@@ -53,7 +54,7 @@ const Header = ({
         return (
             <>
                 <small className="px-2">{t(caption)}</small>
-                <div className="d-inline text-body user-select-all">
+                <div className={`d-inline cch-navbar-text user-select-all`}>
                     {value}
                 </div>
             </>

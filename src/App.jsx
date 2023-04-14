@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Routes, Route } from "react-router-dom";
 import Cookies from "universal-cookie";
@@ -12,6 +12,10 @@ import Reports from "./pages/Reports";
 import { langs } from "./util";
 
 const App = () => {
+    const [theme, setTheme] = useState(
+        localStorage.getItem("theme") || "light"
+    );
+
     const { i18n } = useTranslation();
 
     const cookies = new Cookies();
@@ -23,12 +27,16 @@ const App = () => {
     document.onkeydown = (event) => {
         if (!event.altKey) return;
 
+        if (event.code === "KeyE") {
+            handleExtend();
+        }
+
         if (event.code === "KeyL") {
             changeLanguage();
         }
 
-        if (event.code === "KeyE") {
-            handleExtend();
+        if (event.code === "KeyT") {
+            toggleTheme();
         }
     };
 
@@ -46,23 +54,34 @@ const App = () => {
         cookies.set("extended_data", value ? "yes" : "no");
     }
 
+    const toggleTheme = () => {
+        const newMode = theme === "light" ? "dark" : "light";
+        setTheme(newMode);
+    };
+
+    useEffect(() => {
+        localStorage.setItem("theme", theme);
+        document.body.className = theme;
+    }, [theme]);
+
     return (
         <>
             <header>
-                <Navbar />
+                <Navbar theme={theme} toggleTheme={toggleTheme} />
             </header>
             <main>
                 <div className="container-fluid">
                     <Routes>
-                        <Route path="/" element={<Reports />} />
+                        <Route path="/" element={<Reports theme={theme} />} />
                         <Route path="/reports">
-                            <Route index element={<Reports />} />
+                            <Route index element={<Reports theme={theme} />} />
                             <Route
                                 path=":reportId"
                                 element={
                                     <Report
                                         handleExtend={handleExtend}
                                         showExtendedData={showExtendedData}
+                                        theme={theme}
                                     />
                                 }
                             />

@@ -5,6 +5,7 @@ import Table from "../../components/Table";
 import RequestCounts from "./components/RequestCounts";
 
 import { customFields } from "./util";
+import { joinClasses } from "../../util";
 
 const PersonalData = ({
     appCreationDate,
@@ -12,6 +13,7 @@ const PersonalData = ({
     persons,
     requestCounts,
     score,
+    theme,
 }) => {
     const { t } = useTranslation(["personal_data"]);
 
@@ -22,7 +24,13 @@ const PersonalData = ({
 
     return (
         <div className="container-fluid mb-3">
-            <div className="row panel pt-2 border border-top-0 rounded-bottom">
+            <div
+                className={joinClasses([
+                    `row panel-${theme} pt-2 rounded-bottom`,
+                    `border border-top-0`,
+                    theme === "dark" && "cch-border-dark",
+                ])}
+            >
                 <div className="col">
                     <div className="row">
                         <Header
@@ -36,6 +44,7 @@ const PersonalData = ({
                                 caption: "app_number",
                                 value: appNumber,
                             }}
+                            theme={theme}
                         />
                     </div>
                     <div className="row justify-content-center">
@@ -46,12 +55,14 @@ const PersonalData = ({
                                 data={persons}
                                 mobileView={true}
                                 textDifference={true}
+                                theme={theme}
                             />
                         </div>
                         <div className="col-md-8 col-lg-5 col-xl-4 mb-sm-3">
                             <RequestCounts
                                 counts={requestCounts}
                                 score={score}
+                                theme={theme}
                             />
                         </div>
                     </div>
