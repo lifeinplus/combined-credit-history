@@ -1,8 +1,8 @@
 import { Fragment } from "react";
-import { langs } from "../../../util";
+import { joinClasses, langs } from "../../../util";
 
 // TODO - add turkish language
-const LanguageButtons = ({ i18n }) => {
+const LanguageButtons = ({ i18n, theme }) => {
     return (
         <div className="btn-group btn-group-sm" role="group">
             {Object.keys(langs).map((lang) => (
@@ -17,7 +17,12 @@ const LanguageButtons = ({ i18n }) => {
                         type="radio"
                     />
                     <label
-                        className="btn btn-outline-primary m-0"
+                        className={joinClasses([
+                            "btn",
+                            "btn-outline-primary",
+                            theme === "dark" && "cch-btn-outline-primary-dark",
+                            "m-0",
+                        ])}
                         htmlFor={lang}
                     >
                         {langs[lang].nativeName}

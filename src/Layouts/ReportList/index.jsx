@@ -4,8 +4,9 @@ import Header from "../../components/Header";
 import Table from "../../components/Table";
 
 import { customFields } from "./util";
+import { joinClasses } from "../../util";
 
-const ReportList = ({ reports }) => {
+const ReportList = ({ reports, theme }) => {
     const { t } = useTranslation(["report_list"]);
 
     const columns = customFields.map((item) => ({
@@ -15,12 +16,19 @@ const ReportList = ({ reports }) => {
 
     return (
         <div className="container-fluid">
-            <div className="row panel pt-2 border border-top-0 rounded-bottom">
+            <div
+                className={joinClasses([
+                    `row panel-${theme} pt-2 rounded-bottom`,
+                    `border border-top-0`,
+                    theme === "dark" && "cch-border-dark",
+                ])}
+            >
                 <div className="col">
                     <div className="row">
                         <Header
                             iconName={"bi-card-list"}
                             nameSpaces={["report_list"]}
+                            theme={theme}
                         />
                     </div>
                     <div className="row">
@@ -30,6 +38,7 @@ const ReportList = ({ reports }) => {
                                 columns={columns}
                                 data={reports}
                                 rowHover={true}
+                                theme={theme}
                             />
                         </div>
                     </div>

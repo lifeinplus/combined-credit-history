@@ -16,6 +16,7 @@ const Table = ({
     rowHover,
     stickyHeader,
     textDifference,
+    theme,
     tooltips,
 }) => {
     const activeData = useRowActive(rowActive, data);
@@ -38,24 +39,30 @@ const Table = ({
             : undefined;
     };
 
-    const tableClassName = joinClasses([
-        "table",
-        rowHover && "table-hover",
-        "table-striped align-middle mb-0",
-        mobileView && "table-mobile",
-    ]);
-
     return (
         <div
-            className="table-responsive border rounded mb-3"
+            className={joinClasses([
+                "table-responsive rounded mb-3",
+                "border",
+                theme === "dark" && "cch-border-dark",
+            ])}
             ref={tableWrapperRef}
         >
-            <table className={tableClassName}>
+            <table
+                className={joinClasses([
+                    "table",
+                    `cch-table-${theme}`,
+                    rowHover && `table-hover`,
+                    "table-striped align-middle mb-0",
+                    mobileView && "table-mobile",
+                ])}
+            >
                 <Head
                     columns={columns}
                     getSortClass={getSortClass}
                     ref={headerRef}
                     requestSort={requestSort}
+                    theme={theme}
                     tooltips={tooltips}
                 />
                 <Body
@@ -65,6 +72,7 @@ const Table = ({
                     mobileView={mobileView}
                     rowActive={rowActive}
                     textDifference={textDifference}
+                    theme={theme}
                 />
             </table>
         </div>

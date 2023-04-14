@@ -4,7 +4,7 @@ import Header from "../../components/Header";
 import Table from "../../components/Table";
 import PaymentAmounts from "./components/PaymentAmounts";
 
-import { getDateTimeFormat } from "../../util";
+import { getDateTimeFormat, joinClasses } from "../../util";
 import { TimePeriod, customFields } from "./util";
 
 const CreditHistory = ({
@@ -16,6 +16,7 @@ const CreditHistory = ({
     paymentHistory,
     reportCreationDate,
     showExtendedData,
+    theme,
 }) => {
     const { t } = useTranslation(["credit_history"]);
     const statusFormat = getDateTimeFormat("ru", "tableStatus");
@@ -47,7 +48,13 @@ const CreditHistory = ({
 
     return (
         <div className="container-fluid mb-3">
-            <div className="row panel border rounded">
+            <div
+                className={joinClasses([
+                    `row panel-${theme} rounded`,
+                    `border`,
+                    theme === "dark" && "cch-border-dark",
+                ])}
+            >
                 <div className="col">
                     <div className="row">
                         <Header
@@ -63,11 +70,13 @@ const CreditHistory = ({
                                 value: loans.length,
                             }}
                             showExtendedData={showExtendedData}
+                            theme={theme}
                         />
                     </div>
                     <PaymentAmounts
                         data={common}
                         showExtendedData={showExtendedData}
+                        theme={theme}
                     />
                     <div className="row">
                         <div className="col">
@@ -79,6 +88,7 @@ const CreditHistory = ({
                                 rowHover={true}
                                 stickyHeader={true}
                                 tooltips={true}
+                                theme={theme}
                             />
                         </div>
                     </div>
