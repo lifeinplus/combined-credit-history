@@ -33,7 +33,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                         <img
                             alt="logo"
                             className="w-100 align-text-top"
-                            src="logo.png"
+                            src="/logo.png"
                         />
                     </span>
                     <span>{t("title")}</span>
