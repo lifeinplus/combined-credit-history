@@ -42,11 +42,17 @@ const Th = ({ column, getSortClass, requestSort, theme }) => {
         extended &&
         (theme === "light" ? "table-info" : "cch-table-info-dark");
 
+    const sortableThemeClass = common && sortable && `sortable ${theme}`;
     const sortClass = common && sortable && getSortClass(sysName);
 
     return (
         <th
-            className={joinClasses([extendedClass, sortClass, alignment])}
+            className={joinClasses([
+                extendedClass,
+                sortableThemeClass,
+                sortClass,
+                alignment,
+            ])}
             data-bs-toggle={tooltipName && "tooltip"}
             data-bs-placement={tooltipName && "top"}
             data-bs-title={tooltipName}
