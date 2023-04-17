@@ -1,4 +1,4 @@
-import { getDateTimeFormat } from "../../util";
+import { getDateFormat } from "../../util";
 
 class TimePeriod {
     #history;
@@ -41,10 +41,10 @@ class TimePeriod {
     #defineMonthYear(isoDate) {
         if (!isoDate) return [];
 
-        const statusFormat = getDateTimeFormat("ru", "tableStatus");
+        const dateFormat = getDateFormat("ru", "status");
         const milliseconds = Date.parse(isoDate);
 
-        return statusFormat
+        return dateFormat
             .format(milliseconds)
             .split(".")
             .map((item) => Number(item));

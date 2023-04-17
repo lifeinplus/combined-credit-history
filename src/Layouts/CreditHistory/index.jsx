@@ -4,7 +4,7 @@ import Header from "../../components/Header";
 import Table from "../../components/Table";
 import PaymentAmounts from "./components/PaymentAmounts";
 
-import { getDateTimeFormat, joinClasses } from "../../util";
+import { getDateFormat, joinClasses } from "../../util";
 import { TimePeriod, customFields } from "./util";
 
 const CreditHistory = ({
@@ -19,7 +19,7 @@ const CreditHistory = ({
     theme,
 }) => {
     const { t } = useTranslation(["credit_history"]);
-    const statusFormat = getDateTimeFormat("ru", "tableStatus");
+    const dateFormat = getDateFormat("ru", "status");
     const columns = defineColumns();
 
     const data = loans.map((element) => {
@@ -38,7 +38,7 @@ const CreditHistory = ({
         paymentHistory.forEach((item) => {
             if (item.loanId === element.loanId) {
                 const milliseconds = Date.parse(item.date);
-                const name = statusFormat.format(milliseconds);
+                const name = dateFormat.format(milliseconds);
                 element[name] = item.status;
             }
         });
@@ -131,7 +131,7 @@ const CreditHistory = ({
         return timePeriod.result.map((item) => {
             const milliseconds = Date.parse(item);
             return {
-                name: statusFormat.format(milliseconds),
+                name: dateFormat.format(milliseconds),
                 type: "status",
             };
         });

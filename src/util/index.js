@@ -8,16 +8,15 @@ const dateOptions = {
         second: "numeric",
     },
 
-    table: {
-        year: "numeric",
-        month: "numeric",
-        day: "numeric",
-    },
-
-    tableStatus: {
+    status: {
         month: "numeric",
         year: "numeric",
         timeZone: "Europe/Moscow",
+    },
+
+    time: {
+        hour: "numeric",
+        minute: "numeric",
     },
 };
 
@@ -26,12 +25,18 @@ const langs = {
     ru: { locale: "ru-RU", nativeName: "Русский" },
 };
 
-function getDateTimeFormat(locale, type) {
-    return new Intl.DateTimeFormat(locale, dateOptions[type]);
+function getDateFormat(locale, type) {
+    const options = dateOptions[type] || {
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+    };
+
+    return new Intl.DateTimeFormat(locale, options);
 }
 
 function joinClasses(list) {
     return list.filter((item) => item).join(" ") || undefined;
 }
 
-export { getDateTimeFormat, joinClasses, langs };
+export { getDateFormat, joinClasses, langs };
