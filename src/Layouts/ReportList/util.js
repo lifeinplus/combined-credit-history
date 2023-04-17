@@ -11,7 +11,7 @@ const customFields = [
     },
     {
         alignment: "text-center",
-        dataType: "date",
+        dataType: "dateTime",
         sysName: "appCreationDate",
     },
     {

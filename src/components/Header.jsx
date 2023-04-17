@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import ExtendControl from "./ExtendControl";
-import { getDateTimeFormat, langs } from "../util";
+import { getDateFormat, langs } from "../util";
 
 const Header = ({
     date,
@@ -65,10 +65,10 @@ const Header = ({
         if (!date) return;
 
         const lang = langs[i18n.resolvedLanguage];
+        const dateFormat = getDateFormat(lang.locale, "header");
         const milliseconds = Date.parse(date.value);
-        const headerFormat = getDateTimeFormat(lang.locale, "header");
 
-        return headerFormat.format(milliseconds);
+        return dateFormat.format(milliseconds);
     }
 };
 

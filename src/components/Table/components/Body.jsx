@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
-import { getDateTimeFormat, langs } from "../../../util";
+import { getDateFormat, langs } from "../../../util";
 
 const Body = ({
     id,
@@ -19,8 +19,10 @@ const Body = ({
     const lang = langs[i18n.resolvedLanguage];
     const numberFormat = new Intl.NumberFormat(lang.locale);
 
+    const dateFormat = getDateFormat(lang.locale);
+    const timeFormat = getDateFormat(lang.locale, "time");
+
     const firstDataItem = data.length ? data[0] : {};
-    const dateTimeFormat = getDateTimeFormat(lang.locale, "table");
 
     const handleClick = ({ target }) => {
         if (!rowActive) return;
@@ -149,13 +151,20 @@ const Body = ({
     }
 
     function prepare(sourceValue, dataType) {
-        if (dataType === "date" && sourceValue) {
-            const milliseconds = Date.parse(sourceValue);
-            return dateTimeFormat.format(milliseconds);
-        }
-
         if (dataType === "amount" && !isNaN(sourceValue)) {
             return numberFormat.format(sourceValue);
+        }
+
+        if (dataType === "date" && sourceValue) {
+            const milliseconds = Date.parse(sourceValue);
+            return dateFormat.format(milliseconds);
+        }
+
+        if (dataType === "dateTime" && sourceValue) {
+            const milliseconds = Date.parse(sourceValue);
+            const date = dateFormat.format(milliseconds);
+            const time = timeFormat.format(milliseconds);
+            return date + " " + time;
         }
 
         return sourceValue;
