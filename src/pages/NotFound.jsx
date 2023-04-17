@@ -1,9 +1,18 @@
-const NotFound = () => {
+import { joinClasses } from "../util";
+
+const NotFound = ({ theme }) => {
+    const textClass = theme === "light" ? "text-dark" : "text-light";
     return (
         <div className="container-fluid">
-            <div className="row panel pt-2 border border-top-0 rounded-bottom">
+            <div
+                className={joinClasses([
+                    `row panel ${theme} pt-3 pb-2 rounded-bottom`,
+                    `border border-top-0`,
+                    theme === "dark" && "cch-border-dark",
+                ])}
+            >
                 <div className="col">
-                    <h3>404 - Page Not Found</h3>
+                    <h3 className={textClass}>404 - Page Not Found</h3>
                 </div>
             </div>
         </div>

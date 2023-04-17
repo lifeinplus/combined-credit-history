@@ -50,7 +50,7 @@ const CreditHistory = ({
         <div className="container-fluid mb-3">
             <div
                 className={joinClasses([
-                    `row panel-${theme} rounded`,
+                    `row panel ${theme} rounded`,
                     `border`,
                     theme === "dark" && "cch-border-dark",
                 ])}
@@ -86,6 +86,7 @@ const CreditHistory = ({
                                 data={data}
                                 rowActive={true}
                                 rowHover={true}
+                                scrollButtons={true}
                                 stickyHeader={true}
                                 tooltips={true}
                                 theme={theme}

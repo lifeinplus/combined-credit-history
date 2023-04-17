@@ -1,7 +1,9 @@
-.panel-light {
-    background-color: #f9f9fa;
-}
+.panel {
+    &.dark {
+        background-color: var(--cch-panel-bg-dark);
+    }
 
-.panel-dark {
-    background-color: #212529;
+    &.light {
+        background-color: var(--cch-panel-bg-light);
+    }
 }

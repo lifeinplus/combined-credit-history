@@ -50,12 +50,13 @@ const PaymentAmounts = ({ data, showExtendedData: extended, theme }) => {
 
         const contextClass = `list-group-item-${context}`;
         const darkContextClass =
-            theme === "dark" && `cch-list-group-item-dark-${context}`;
+            theme === "dark" && `cch-list-group-item-${context}`;
 
         const itemClassName = joinClasses([
             "list-group-item",
-            theme === "dark" && "cch-list-group-item-dark",
+            "cch-list-group-item",
             context && (darkContextClass || contextClass),
+            theme,
             "text-truncate",
         ]);
 

@@ -1,9 +1,9 @@
 .cch-border-dark {
-    border-color: #3e4347 !important;
+    border-color: var(--cch-border-color) !important;
 }
 
 .cch-card-border-dark {
-    border-color: #3e4347;
+    border-color: var(--cch-border-color);
 }
 
 .cch-shadow-dark {
@@ -12,10 +12,10 @@
 
 body {
     &.dark {
-        background-color: #2f343a;
+        background-color: var(--cch-body-bg-dark);
     }
 
     &.light {
-        background-color: #e9e9e9;
+        background-color: var(--cch-body-bg-light);
     }
 }

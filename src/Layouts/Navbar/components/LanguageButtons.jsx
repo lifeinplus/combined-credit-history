@@ -20,7 +20,7 @@ const LanguageButtons = ({ i18n, theme }) => {
                         className={joinClasses([
                             "btn",
                             "btn-outline-primary",
-                            theme === "dark" && "cch-btn-outline-primary-dark",
+                            `cch-btn-outline-primary ${theme}`,
                             "m-0",
                         ])}
                         htmlFor={lang}
