@@ -16,7 +16,10 @@
     &.dark {
         --bs-btn-color: var(--cch-purple-600);
         --bs-btn-border-color: var(--cch-purple-600);
-        --bs-btn-active-color: var(--bs-black);
+        --bs-btn-hover-color: black;
+        --bs-btn-hover-bg: var(--cch-purple-600);
+        --bs-btn-hover-border-color: var(--cch-purple-600);
+        --bs-btn-active-color: black;
         --bs-btn-active-bg: var(--cch-purple-600);
         --bs-btn-active-border-color: var(--cch-purple-600);
     }

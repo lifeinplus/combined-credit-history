@@ -24,28 +24,38 @@ const App = () => {
         extended_data === "yes" ? true : false
     );
 
-    document.onkeydown = (event) => {
-        if (!event.altKey) return;
+    document.onkeydown = ({ altKey, code, shiftKey }) => {
+        if (!altKey) return;
 
-        if (event.code === "KeyE") {
+        if (code === "KeyE") {
             handleExtend();
         }
 
-        if (event.code === "KeyL") {
-            changeLanguage();
+        if (code === "KeyL") {
+            changeLanguage(shiftKey);
         }
 
-        if (event.code === "KeyT") {
+        if (code === "KeyT") {
             toggleTheme();
         }
     };
 
-    function changeLanguage() {
-        const lang = Object.keys(langs).filter(
-            (lang) => lang !== i18n.resolvedLanguage
-        );
+    function changeLanguage(shiftKey) {
+        const keys = Object.keys(langs);
+        const resolvedLanguage = i18n.resolvedLanguage;
+        const resolvedIndex = keys.indexOf(resolvedLanguage);
 
-        i18n.changeLanguage(lang);
+        let nextIndex = shiftKey ? resolvedIndex - 1 : resolvedIndex + 1;
+
+        if (nextIndex >= keys.length) {
+            nextIndex = 0;
+        }
+
+        if (nextIndex < 0) {
+            nextIndex = keys.length - 1;
+        }
+
+        i18n.changeLanguage(keys[nextIndex]);
     }
 
     function handleExtend() {
