@@ -86,7 +86,7 @@ const App = () => {
                                 }
                             />
                         </Route>
-                        <Route path="*" element={<NotFound />} />
+                        <Route path="*" element={<NotFound theme={theme} />} />
                     </Routes>
                 </div>
             </main>

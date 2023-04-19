@@ -12,7 +12,7 @@ const Head = forwardRef(
                     className={
                         theme === "light"
                             ? "table-primary"
-                            : "cch-table-primary-dark"
+                            : "cch-table dark primary"
                     }
                 >
                     {columns.map((item) => (
@@ -40,7 +40,7 @@ const Th = ({ column, getSortClass, requestSort, theme }) => {
     const extendedClass =
         common &&
         extended &&
-        (theme === "light" ? "table-info" : "cch-table-info-dark");
+        (theme === "light" ? "table-info" : "cch-table dark info");
 
     const sortableThemeClass = common && sortable && `sortable ${theme}`;
     const sortClass = common && sortable && getSortClass(sysName);

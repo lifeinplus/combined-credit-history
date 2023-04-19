@@ -47,7 +47,7 @@ const Body = ({
                 id={activeId}
                 className={
                     rowActive && activeId === activeRowId
-                        ? `cch-table-active-${theme}`
+                        ? `cch-table ${theme} active`
                         : undefined
                 }
                 onClick={handleClick}
@@ -80,7 +80,7 @@ const Body = ({
         const label = mobileView && name;
 
         const linkValue = isLink && (
-            <Link className={`cch-link-${theme}`} to={`/reports/${reportId}`}>
+            <Link className={`cch-link ${theme}`} to={`/reports/${reportId}`}>
                 {value}
             </Link>
         );
@@ -104,10 +104,7 @@ const Body = ({
             const key = `${id}-span${index}`;
 
             return spanText ? (
-                <span
-                    key={key}
-                    className={"cch-badge cch-badge-diff cch-text-bg-A"}
-                >
+                <span key={key} className={"cch-badge diff cch-text-bg-A"}>
                     {spanText}
                 </span>
             ) : (
@@ -143,9 +140,7 @@ const Body = ({
         const { name } = column;
 
         const value = data[name];
-        const badge = value
-            ? `cch-badge cch-badge-status cch-text-bg-${value}`
-            : "";
+        const badge = value ? `cch-badge status cch-text-bg-${value}` : "";
 
         return { cell: "cch-td-status", badge, value };
     }

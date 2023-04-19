@@ -32,7 +32,7 @@ const RequestCounts = ({ counts, score, theme }) => {
             <div
                 className={joinClasses([
                     "card",
-                    `cch-text-bg-${theme}`,
+                    `cch-text-bg ${theme}`,
                     theme === "dark" && "cch-card-border-dark",
                     (scoreDanger || microDanger) && "border-danger",
                 ])}
@@ -69,7 +69,7 @@ const RequestCounts = ({ counts, score, theme }) => {
             <li
                 className={joinClasses([
                     "list-group-item",
-                    `cch-list-group-item-${theme}`,
+                    `cch-list-group-item ${theme}`,
                     "d-flex",
                     "justify-content-between",
                     "align-items-center",

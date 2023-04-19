@@ -1,15 +1,21 @@
-.cch-list-group-item-dark {
-    color: #fff;
-    background-color: #181818;
-    --bs-list-group-border-color: rgba(255, 255, 255, 0.125);
-}
+.cch-list-group-item {
+    &.dark {
+        color: var(--bs-white);
+        background-color: var(--cch-black-light);
+        --bs-list-group-border-color: rgba(255, 255, 255, 0.125);
+    }
 
-.cch-list-group-item-dark-primary {
-    color: #eae2ff;
-    background-color: #463968;
-}
+    &.cch-list-group-item-info {
+        &.dark {
+            color: var(--cch-green-100);
+            background-color: var(--cch-green-900);
+        }
+    }
 
-.cch-list-group-item-dark-info {
-    color: #d0f7ff;
-    background-color: #0b4c5a;
+    &.cch-list-group-item-primary {
+        &.dark {
+            color: var(--cch-purple-100);
+            background-color: var(--cch-purple-900);
+        }
+    }
 }

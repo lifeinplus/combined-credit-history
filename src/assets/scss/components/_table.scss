@@ -60,54 +60,51 @@ th {
         }
 
         &.dark:hover {
-            color: #000;
-            background-color: #a785ff;
+            color: black;
+            background-color: var(--cch-purple-600);
         }
 
         &.light:hover {
-            color: #fff;
-            background-color: #7860b7;
+            color: white;
+            background-color: var(--cch-purple-700);
         }
     }
 }
 
-.cch-table-primary-dark {
-    --bs-table-bg: #463968;
-}
+.cch-table {
+    &.dark {
+        --bs-table-hover-bg: var(--cch-purple-900);
 
-.cch-table-info-dark {
-    --bs-table-bg: #0b4c5a;
-}
+        &.active {
+            --bs-table-accent-bg: var(--cch-purple-600);
+            --bs-table-striped-bg: var(--cch-purple-600);
+            --bs-table-striped-color: black;
+            --bs-table-hover-bg: var(--cch-purple-600);
+            --bs-table-hover-color: black;
+            color: black;
+        }
 
-.cch-table-active-dark {
-    --bs-table-accent-bg: #a785ff;
-    --bs-table-striped-bg: #a785ff;
-    --bs-table-striped-color: #000;
-    --bs-table-hover-bg: #a785ff;
-    --bs-table-hover-color: #000;
-    color: #000;
-}
+        &.info {
+            --bs-table-bg: var(--cch-green-900);
+        }
 
-.cch-table-active-light {
-    --bs-table-accent-bg: #7860b7;
-    --bs-table-striped-bg: #7860b7;
-    --bs-table-striped-color: #fff;
-    --bs-table-hover-bg: #7860b7;
-    --bs-table-hover-color: #fff;
-    color: #fff;
-}
+        &.primary {
+            --bs-table-bg: var(--cch-purple-900);
+        }
+    }
 
-.cch-table-dark {
-    --bs-table-color: #fff;
-    --bs-table-border-color: #373b3e;
-    --bs-table-striped-bg: #2c3034;
-    --bs-table-striped-color: #fff;
-    --bs-table-hover-bg: #463968;
-    --bs-table-hover-color: #fff;
-}
+    &.light {
+        --bs-table-hover-bg: var(--cch-purple-100);
 
-.cch-table-light {
-    --bs-table-hover-bg: #e4dff2;
+        &.active {
+            --bs-table-accent-bg: var(--cch-purple-700);
+            --bs-table-striped-bg: var(--cch-purple-700);
+            --bs-table-striped-color: white;
+            --bs-table-hover-bg: var(--cch-purple-700);
+            --bs-table-hover-color: white;
+            color: white;
+        }
+    }
 }
 
 .cch-td-status {

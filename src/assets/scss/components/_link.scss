@@ -1,13 +1,15 @@
-.cch-link-dark {
-    color: #c1a8ff;
-    &:hover {
-        color: #d1c1ff;
+.cch-link {
+    &.dark {
+        color: var(--cch-purple-300);
+        &:hover {
+            color: var(--cch-purple-100);
+        }
     }
-}
 
-.cch-link-light {
-    color: #7860b7;
-    &:hover {
-        color: #604d92;
+    &.light {
+        color: var(--cch-purple-700);
+        &:hover {
+            color: var(--cch-purple-900);
+        }
     }
 }
