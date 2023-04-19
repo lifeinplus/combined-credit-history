@@ -18,7 +18,7 @@ const ReportList = ({ reports, theme }) => {
         <div className="container-fluid">
             <div
                 className={joinClasses([
-                    `row panel-${theme} pt-2 rounded-bottom`,
+                    `row panel ${theme} pt-2 rounded-bottom`,
                     `border border-top-0`,
                     theme === "dark" && "cch-border-dark",
                 ])}

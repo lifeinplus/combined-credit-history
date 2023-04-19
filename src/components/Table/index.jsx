@@ -4,6 +4,7 @@ import { useStickyHeader } from "./hooks/useStickyHeader";
 
 import Head from "./components/Head";
 import Body from "./components/Body";
+import ScrollButtons from "./components/ScrollButtons";
 
 import { joinClasses } from "../../util";
 
@@ -14,6 +15,7 @@ const Table = ({
     mobileView,
     rowActive,
     rowHover,
+    scrollButtons,
     stickyHeader,
     textDifference,
     theme,
@@ -41,6 +43,7 @@ const Table = ({
 
     return (
         <div
+            id={id}
             className={joinClasses([
                 "table-responsive rounded mb-3",
                 "border",
@@ -48,10 +51,12 @@ const Table = ({
             ])}
             ref={tableWrapperRef}
         >
+            {scrollButtons && <ScrollButtons tableId={id} theme={theme} />}
             <table
                 className={joinClasses([
                     "table",
-                    `cch-table-${theme}`,
+                    `table-${theme}`,
+                    `cch-table ${theme}`,
                     rowHover && `table-hover`,
                     "table-striped align-middle mb-0",
                     mobileView && "table-mobile",
