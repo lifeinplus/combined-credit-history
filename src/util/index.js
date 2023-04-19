@@ -21,8 +21,9 @@ const dateOptions = {
 };
 
 const langs = {
-    en: { locale: "en-GB", nativeName: "English" },
-    ru: { locale: "ru-RU", nativeName: "Русский" },
+    en: { countryCode: "gb", locale: "en-GB", nativeName: "English" },
+    ru: { countryCode: "ru", locale: "ru-RU", nativeName: "Русский" },
+    tr: { countryCode: "tr", locale: "tr-TR", nativeName: "Türkçe" },
 };
 
 function getDateFormat(locale, type) {

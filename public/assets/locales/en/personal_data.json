@@ -3,7 +3,7 @@
     "app_number": "App No",
     "document": {
         "dataSource": "Source",
-        "fullName": "Full Name",
+        "fullName": "Client",
         "birthDate": "Birth Date",
         "documentNumber": "Passport Number",
         "documentSeries": "Passport Series",
@@ -11,7 +11,7 @@
     },
     "requests": {
         "title_all": "Requests",
-        "title_microcredits": "Requests for microcredits",
+        "title_microcredits": "Requests Microcredits",
         "last24Months": "Last 24 months",
         "last30Days": "Last 30 days",
         "total": "Total",

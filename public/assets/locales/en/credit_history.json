@@ -1,12 +1,12 @@
 {
     "amounts": {
-        "chbPaymentsAmountTotal": "Payments amount CHB: RUB",
+        "chbPaymentsAmountTotal": "Payments CHB: RUB",
         "chbPaymentsAmountRub": "RUB",
         "chbPaymentsAmountUsd": "USD",
         "chbPaymentsAmountEur": "EUR",
-        "flcPaymentsAmountTotal": "Payments amount FLC: RUB",
-        "chbLoansAmount": "Loans amount: RUB",
-        "chbCreditCardsAmount": "Cards amount: RUB"
+        "flcPaymentsAmountTotal": "Payments FLC: RUB",
+        "chbLoansAmount": "Loans: RUB",
+        "chbCreditCardsAmount": "Cards: RUB"
     },
     "extended_control": "Extended",
     "columns": {
