@@ -1,12 +1,12 @@
 {
     "amounts": {
-        "chbPaymentsAmountTotal": "Сумма платежей БКИ: RUB",
+        "chbPaymentsAmountTotal": "Платежи БКИ: RUB",
         "chbPaymentsAmountRub": "RUB",
         "chbPaymentsAmountUsd": "USD",
         "chbPaymentsAmountEur": "EUR",
-        "flcPaymentsAmountTotal": "Сумма платежей ПСК: RUB",
-        "chbLoansAmount": "Сумма по кредитам: RUB",
-        "chbCreditCardsAmount": "Сумма по картам: RUB"
+        "flcPaymentsAmountTotal": "Платежи ПСК: RUB",
+        "chbLoansAmount": "Кредиты: RUB",
+        "chbCreditCardsAmount": "Карты: RUB"
     },
     "extended_control": "Расширенная",
     "columns": {

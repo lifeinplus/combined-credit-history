@@ -1,34 +1,53 @@
-import { Fragment } from "react";
+import "/node_modules/flag-icons/css/flag-icons.min.css";
 import { joinClasses, langs } from "../../../util";
 
-// TODO - add turkish language
 const LanguageButtons = ({ i18n, theme }) => {
+    const { resolvedLanguage, changeLanguage } = i18n;
+    const { countryCode, nativeName } = langs[resolvedLanguage];
+    const keys = Object.keys(langs).filter((key) => key !== resolvedLanguage);
+
     return (
-        <div className="btn-group btn-group-sm" role="group">
-            {Object.keys(langs).map((lang) => (
-                <Fragment key={lang}>
-                    <input
-                        id={lang}
-                        autoComplete="off"
-                        checked={i18n.resolvedLanguage === lang}
-                        className="btn-check"
-                        name="btnradio"
-                        onChange={() => i18n.changeLanguage(lang)}
-                        type="radio"
-                    />
-                    <label
-                        className={joinClasses([
-                            "btn",
-                            "btn-outline-primary",
-                            `cch-btn-outline-primary ${theme}`,
-                            "m-0",
-                        ])}
-                        htmlFor={lang}
-                    >
-                        {langs[lang].nativeName}
-                    </label>
-                </Fragment>
-            ))}
+        <div className="dropdown">
+            <button
+                className={joinClasses([
+                    "btn",
+                    "btn-outline-primary",
+                    `cch-btn-outline-primary ${theme}`,
+                    "btn-sm",
+                    "dropdown-toggle",
+                ])}
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+            >
+                <span className={`fi fi-${countryCode} me-2`}></span>
+                {nativeName}
+            </button>
+            <ul
+                className={joinClasses([
+                    "dropdown-menu dropdown-menu-md-end",
+                    theme === "dark" && "dropdown-menu-dark",
+                ])}
+            >
+                {keys.map((key) => {
+                    const { countryCode, nativeName } = langs[key];
+
+                    return (
+                        <li key={key}>
+                            <button
+                                className="dropdown-item"
+                                onClick={() => changeLanguage(key)}
+                                type="button"
+                            >
+                                <span
+                                    className={`fi fi-${countryCode} me-2`}
+                                ></span>
+                                {nativeName}
+                            </button>
+                        </li>
+                    );
+                })}
+            </ul>
         </div>
     );
 };

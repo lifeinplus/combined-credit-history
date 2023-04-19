@@ -1,9 +1,9 @@
 {
-    "app_creation_date": "Дата создания",
-    "app_number": "Номер заявки",
+    "app_creation_date": "Дата Создания",
+    "app_number": "Номер Заявки",
     "document": {
         "dataSource": "Источник",
-        "fullName": "ФИО",
+        "fullName": "Клиент",
         "birthDate": "Дата рождения",
         "documentNumber": "Номер паспорта",
         "documentSeries": "Серия паспорта",
@@ -11,7 +11,7 @@
     },
     "requests": {
         "title_all": "Запросы",
-        "title_microcredits": "Запросы на микрокредиты",
+        "title_microcredits": "Запросы Микрокредиты",
         "last24Months": "Последние 24 мес.",
         "last30Days": "Последние 30 дн.",
         "total": "Всего",
@@ -20,6 +20,6 @@
         "microcreditMore1Year": "Более 1 года",
         "microcreditTotal": "Всего"
     },
-    "title": "Персональные данные",
-    "score": "Скоринговый балл"
+    "title": "Персональные Данные",
+    "score": "Скоринговый Балл"
 }
