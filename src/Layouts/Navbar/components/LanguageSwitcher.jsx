@@ -1,13 +1,13 @@
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 import { joinClasses, langs } from "../../../util";
 
-const LanguageButtons = ({ i18n, theme }) => {
+const LanguageSwitcher = ({ i18n, theme }) => {
     const { resolvedLanguage, changeLanguage } = i18n;
     const { countryCode, nativeName } = langs[resolvedLanguage];
     const keys = Object.keys(langs).filter((key) => key !== resolvedLanguage);
 
     return (
-        <div className="dropdown">
+        <div className="language-switcher dropdown">
             <button
                 className={joinClasses([
                     "btn",
@@ -52,4 +52,4 @@ const LanguageButtons = ({ i18n, theme }) => {
     );
 };
 
-export default LanguageButtons;
+export default LanguageSwitcher;

@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 
-import LanguageButtons from "./components/LanguageButtons";
+import LanguageSwitcher from "./components/LanguageSwitcher";
+import ThemeSwitcher from "./components/ThemeSwitcher";
 
 import { joinClasses } from "../../util";
 
@@ -54,17 +55,11 @@ const Navbar = ({ theme, toggleTheme }) => {
                     id="navbarSupportedContent"
                 >
                     <form className="d-flex">
-                        <div className="form-check form-switch me-2 mt-1">
-                            <input
-                                id="toggleTheme"
-                                checked={theme === "dark"}
-                                className="form-check-input"
-                                onChange={toggleTheme}
-                                role="switch"
-                                type="checkbox"
-                            />
-                        </div>
-                        <LanguageButtons i18n={i18n} theme={theme} />
+                        <ThemeSwitcher
+                            theme={theme}
+                            toggleTheme={toggleTheme}
+                        />
+                        <LanguageSwitcher i18n={i18n} theme={theme} />
                     </form>
                 </div>
             </div>
