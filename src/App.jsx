@@ -1,22 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Routes, Route } from "react-router-dom";
 import Cookies from "universal-cookie";
 
 import { Navbar } from "./layouts";
-
 import NotFound from "./pages/NotFound";
 import Report from "./pages/Report";
 import Reports from "./pages/Reports";
 
+import { useThemeUpdate } from "./hooks/ThemeContext";
 import { langs } from "./util";
 
 const App = () => {
-    const [theme, setTheme] = useState(
-        localStorage.getItem("theme") || "light"
-    );
-
     const { i18n } = useTranslation();
+    const toggleTheme = useThemeUpdate();
 
     const cookies = new Cookies();
     const extended_data = cookies.get("extended_data") || "no";
@@ -64,39 +61,28 @@ const App = () => {
         cookies.set("extended_data", value ? "yes" : "no");
     }
 
-    const toggleTheme = () => {
-        const newMode = theme === "light" ? "dark" : "light";
-        setTheme(newMode);
-    };
-
-    useEffect(() => {
-        localStorage.setItem("theme", theme);
-        document.body.className = theme;
-    }, [theme]);
-
     return (
         <>
             <header>
-                <Navbar theme={theme} toggleTheme={toggleTheme} />
+                <Navbar />
             </header>
             <main>
                 <div className="container-fluid">
                     <Routes>
-                        <Route path="/" element={<Reports theme={theme} />} />
+                        <Route path="/" element={<Reports />} />
                         <Route path="/reports">
-                            <Route index element={<Reports theme={theme} />} />
+                            <Route index element={<Reports />} />
                             <Route
                                 path=":reportId"
                                 element={
                                     <Report
                                         handleExtend={handleExtend}
                                         showExtendedData={showExtendedData}
-                                        theme={theme}
                                     />
                                 }
                             />
                         </Route>
-                        <Route path="*" element={<NotFound theme={theme} />} />
+                        <Route path="*" element={<NotFound />} />
                     </Routes>
                 </div>
             </main>

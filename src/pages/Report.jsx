@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
 import { CreditHistory, PersonalData } from "../layouts";
 
-const Report = ({ handleExtend, showExtendedData, theme }) => {
-    const { reportId } = useParams();
-
+const Report = ({ handleExtend, showExtendedData }) => {
     const [database, setDatabase] = useState();
+    const { reportId } = useParams();
 
     useEffect(() => {
         fetch(`../data/database.json`)
@@ -64,7 +62,6 @@ const Report = ({ handleExtend, showExtendedData, theme }) => {
                         persons={persons}
                         requestCounts={requestCounts}
                         score={common.score}
-                        theme={theme}
                     />
                     <CreditHistory
                         common={common}
@@ -75,7 +72,6 @@ const Report = ({ handleExtend, showExtendedData, theme }) => {
                         paymentHistory={paymentHistory}
                         reportCreationDate={report.reportCreationDate}
                         showExtendedData={showExtendedData}
-                        theme={theme}
                     />
                 </>
             )}
