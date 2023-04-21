@@ -1,9 +1,11 @@
 import { useTranslation } from "react-i18next";
-import { customFields, scoreStyles } from "./util";
+import { useTheme } from "../../../../hooks/ThemeContext";
 import { joinClasses } from "../../../../util";
+import { customFields, scoreStyles } from "./util";
 
-const RequestCounts = ({ counts, score, theme }) => {
+const RequestCounts = ({ counts, score }) => {
     const { t } = useTranslation(["personal_data"]);
+    const theme = useTheme();
 
     return (
         <div className="card-group">

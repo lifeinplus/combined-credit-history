@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ReportList from "../layouts/ReportList";
 
-const Reports = ({ theme }) => {
+const Reports = () => {
     const [database, setDatabase] = useState();
 
     useEffect(() => {
@@ -10,13 +10,7 @@ const Reports = ({ theme }) => {
             .then((json) => setDatabase(json));
     }, []);
 
-    return (
-        <>
-            {database && (
-                <ReportList reports={database.reports} theme={theme} />
-            )}
-        </>
-    );
+    return <>{database && <ReportList reports={database.reports} />}</>;
 };
 
 export default Reports;

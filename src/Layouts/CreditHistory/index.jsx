@@ -2,9 +2,11 @@ import { useTranslation } from "react-i18next";
 
 import Header from "../../components/Header";
 import Table from "../../components/Table";
-import PaymentAmounts from "./components/PaymentAmounts";
 
+import { useTheme } from "../../hooks/ThemeContext";
 import { getDateFormat, joinClasses } from "../../util";
+
+import PaymentAmounts from "./components/PaymentAmounts";
 import { TimePeriod, customFields } from "./util";
 
 const CreditHistory = ({
@@ -16,9 +18,10 @@ const CreditHistory = ({
     paymentHistory,
     reportCreationDate,
     showExtendedData,
-    theme,
 }) => {
     const { t } = useTranslation(["credit_history"]);
+    const theme = useTheme();
+
     const dateFormat = getDateFormat("ru", "status");
     const columns = defineColumns();
 
@@ -70,13 +73,11 @@ const CreditHistory = ({
                                 value: loans.length,
                             }}
                             showExtendedData={showExtendedData}
-                            theme={theme}
                         />
                     </div>
                     <PaymentAmounts
                         data={common}
                         showExtendedData={showExtendedData}
-                        theme={theme}
                     />
                     <div className="row">
                         <div className="col">
@@ -89,7 +90,6 @@ const CreditHistory = ({
                                 scrollButtons={true}
                                 stickyHeader={true}
                                 tooltips={true}
-                                theme={theme}
                             />
                         </div>
                     </div>

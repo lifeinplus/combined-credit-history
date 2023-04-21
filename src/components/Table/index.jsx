@@ -6,6 +6,7 @@ import Head from "./components/Head";
 import Body from "./components/Body";
 import ScrollButtons from "./components/ScrollButtons";
 
+import { useTheme } from "../../hooks/ThemeContext";
 import { joinClasses } from "../../util";
 
 const Table = ({
@@ -18,10 +19,10 @@ const Table = ({
     scrollButtons,
     stickyHeader,
     textDifference,
-    theme,
     tooltips,
 }) => {
     const activeData = useRowActive(rowActive, data);
+    const theme = useTheme();
 
     const { sortedData, requestSort, sortConfig } = useSortableData(
         activeData,
@@ -51,7 +52,7 @@ const Table = ({
             ])}
             ref={tableWrapperRef}
         >
-            {scrollButtons && <ScrollButtons tableId={id} theme={theme} />}
+            {scrollButtons && <ScrollButtons tableId={id} />}
             <table
                 className={joinClasses([
                     "table",
@@ -67,7 +68,6 @@ const Table = ({
                     getSortClass={getSortClass}
                     ref={headerRef}
                     requestSort={requestSort}
-                    theme={theme}
                     tooltips={tooltips}
                 />
                 <Body
@@ -77,7 +77,6 @@ const Table = ({
                     mobileView={mobileView}
                     rowActive={rowActive}
                     textDifference={textDifference}
-                    theme={theme}
                 />
             </table>
         </div>

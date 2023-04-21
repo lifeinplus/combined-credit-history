@@ -1,26 +1,34 @@
-const ScrollButtons = ({ tableId, theme }) => {
-    const handleScrollStart = () => {
-        const element = document.getElementById(tableId);
-        element.scrollLeft = 0;
-    };
+import { useTheme } from "../../../hooks/ThemeContext";
 
-    const handleScrollLeft = () => {
-        const element = document.getElementById(tableId);
-        const { clientWidth, scrollLeft } = element;
+const ScrollButtons = ({ tableId }) => {
+    const theme = useTheme();
+    const table = document.getElementById(tableId);
+
+    const buttons = [
+        { onClick: handleScrollStart, icon: "bi-chevron-bar-left" },
+        { onClick: handleScrollLeft, icon: "bi-arrow-left-circle" },
+        { onClick: handleScrollRight, icon: "bi-arrow-right-circle" },
+        { onClick: handleScrollEnd, icon: "bi-chevron-bar-right" },
+    ];
+
+    function handleScrollStart() {
+        table.scrollLeft = 0;
+    }
+
+    function handleScrollLeft() {
+        const { clientWidth, scrollLeft } = table;
         const scrollNew = scrollLeft - (clientWidth * 3) / 4;
-        element.scrollLeft = scrollNew > 0 ? scrollNew : 0;
-    };
+        table.scrollLeft = scrollNew > 0 ? scrollNew : 0;
+    }
 
-    const handleScrollRight = () => {
-        const element = document.getElementById(tableId);
-        const { clientWidth } = element;
-        element.scrollLeft += (clientWidth * 3) / 4;
-    };
+    function handleScrollRight() {
+        const { clientWidth } = table;
+        table.scrollLeft += (clientWidth * 3) / 4;
+    }
 
-    const handleScrollEnd = () => {
-        const element = document.getElementById(tableId);
-        element.scrollLeft += element.scrollWidth;
-    };
+    function handleScrollEnd() {
+        table.scrollLeft += table.scrollWidth;
+    }
 
     return (
         <>
@@ -29,34 +37,16 @@ const ScrollButtons = ({ tableId, theme }) => {
                     className={`btn-group btn-group-sm cch-btn-group-scroll ${theme}`}
                     role="group"
                 >
-                    <button
-                        type="button"
-                        className={`btn btn-primary cch-btn-primary ${theme}`}
-                        onClick={handleScrollStart}
-                    >
-                        <i className="bi bi-chevron-bar-left"></i>
-                    </button>
-                    <button
-                        type="button"
-                        className={`btn btn-primary cch-btn-primary ${theme}`}
-                        onClick={handleScrollLeft}
-                    >
-                        <i className="bi bi-arrow-left-circle"></i>
-                    </button>
-                    <button
-                        type="button"
-                        className={`btn btn-primary cch-btn-primary ${theme}`}
-                        onClick={handleScrollRight}
-                    >
-                        <i className="bi bi-arrow-right-circle"></i>
-                    </button>
-                    <button
-                        type="button"
-                        className={`btn btn-primary cch-btn-primary ${theme}`}
-                        onClick={handleScrollEnd}
-                    >
-                        <i className="bi bi-chevron-bar-right"></i>
-                    </button>
+                    {buttons.map(({ icon, onClick }) => (
+                        <button
+                            key={icon}
+                            type="button"
+                            className={`btn btn-primary cch-btn-primary ${theme}`}
+                            onClick={onClick}
+                        >
+                            <i className={`bi ${icon}`}></i>
+                        </button>
+                    ))}
                 </div>
             )}
         </>

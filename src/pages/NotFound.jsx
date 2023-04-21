@@ -1,7 +1,10 @@
+import { useTheme } from "../hooks/ThemeContext";
 import { joinClasses } from "../util";
 
-const NotFound = ({ theme }) => {
+const NotFound = () => {
+    const theme = useTheme();
     const textClass = theme === "light" ? "text-dark" : "text-light";
+
     return (
         <div className="container-fluid">
             <div

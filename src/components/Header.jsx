@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
-import ExtendControl from "./ExtendControl";
+import { useTheme } from "../hooks/ThemeContext";
 import { getDateFormat, langs } from "../util";
+import ExtendControl from "./ExtendControl";
 
 const Header = ({
     date,
@@ -9,9 +10,9 @@ const Header = ({
     nameSpaces,
     number,
     showExtendedData,
-    theme,
 }) => {
     const { i18n, t } = useTranslation(nameSpaces);
+    const theme = useTheme();
 
     const headerDate = getHeaderDate();
 

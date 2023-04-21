@@ -2,10 +2,11 @@ import { useTranslation } from "react-i18next";
 
 import Header from "../../components/Header";
 import Table from "../../components/Table";
-import RequestCounts from "./components/RequestCounts";
-
-import { customFields } from "./util";
+import { useTheme } from "../../hooks/ThemeContext";
 import { joinClasses } from "../../util";
+
+import RequestCounts from "./components/RequestCounts";
+import { customFields } from "./util";
 
 const PersonalData = ({
     appCreationDate,
@@ -13,9 +14,9 @@ const PersonalData = ({
     persons,
     requestCounts,
     score,
-    theme,
 }) => {
     const { t } = useTranslation(["personal_data"]);
+    const theme = useTheme();
 
     const columns = customFields.map((item) => ({
         ...item,
@@ -44,7 +45,6 @@ const PersonalData = ({
                                 caption: "app_number",
                                 value: appNumber,
                             }}
-                            theme={theme}
                         />
                     </div>
                     <div className="row justify-content-center">
@@ -55,14 +55,12 @@ const PersonalData = ({
                                 data={persons}
                                 mobileView={true}
                                 textDifference={true}
-                                theme={theme}
                             />
                         </div>
                         <div className="col-md-8 col-lg-5 col-xl-4 mb-sm-3">
                             <RequestCounts
                                 counts={requestCounts}
                                 score={score}
-                                theme={theme}
                             />
                         </div>
                     </div>

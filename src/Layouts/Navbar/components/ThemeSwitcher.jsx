@@ -1,5 +1,8 @@
-const ThemeSwitcher = ({ theme, toggleTheme }) => {
-    const iconName = theme === "light" ? "sun" : "moon-stars";
+import { useTheme, useThemeUpdate } from "../../../hooks/ThemeContext";
+
+const ThemeSwitcher = () => {
+    const theme = useTheme();
+    const toggleTheme = useThemeUpdate();
 
     return (
         <div className="theme-switcher me-3">
