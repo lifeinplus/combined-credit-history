@@ -2,18 +2,12 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
+import { useTheme } from "../../../hooks/ThemeContext";
 import { getDateFormat, langs } from "../../../util";
 
-const Body = ({
-    id,
-    columns,
-    data,
-    mobileView,
-    rowActive,
-    textDifference,
-    theme,
-}) => {
+const Body = ({ id, columns, data, mobileView, rowActive, textDifference }) => {
     const [activeRowId, setActiveRowId] = useState(undefined);
+    const theme = useTheme();
 
     const { i18n } = useTranslation();
     const lang = langs[i18n.resolvedLanguage];

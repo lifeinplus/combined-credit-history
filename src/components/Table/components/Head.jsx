@@ -1,9 +1,11 @@
 import { forwardRef } from "react";
-import { useTooltip } from "../hooks/useTooltip";
+import { useTheme } from "../../../hooks/ThemeContext";
 import { joinClasses } from "../../../util";
+import { useTooltip } from "../hooks/useTooltip";
 
 const Head = forwardRef(
-    ({ columns, getSortClass, requestSort, theme, tooltips }, ref) => {
+    ({ columns, getSortClass, requestSort, tooltips }, ref) => {
+        const theme = useTheme();
         useTooltip(tooltips, columns);
 
         return (

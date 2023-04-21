@@ -1,12 +1,14 @@
 import { useTranslation } from "react-i18next";
-
-import { customFields } from "./util";
+import { useTheme } from "../../../../hooks/ThemeContext";
 import { joinClasses, langs } from "../../../../util";
+import { customFields } from "./util";
 
-const PaymentAmounts = ({ data, showExtendedData: extended, theme }) => {
+const PaymentAmounts = ({ data, showExtendedData: extended }) => {
     const { t, i18n } = useTranslation(["credit_history"]);
     const lang = langs[i18n.resolvedLanguage];
     const numberFormat = new Intl.NumberFormat(lang.locale);
+
+    const theme = useTheme();
 
     return (
         <div className="row justify-content-between text-center">

@@ -2,11 +2,13 @@ import { useTranslation } from "react-i18next";
 
 import Header from "../../components/Header";
 import Table from "../../components/Table";
-
-import { customFields } from "./util";
+import { useTheme } from "../../hooks/ThemeContext";
 import { joinClasses } from "../../util";
 
-const ReportList = ({ reports, theme }) => {
+import { customFields } from "./util";
+
+const ReportList = ({ reports }) => {
+    const theme = useTheme();
     const { t } = useTranslation(["report_list"]);
 
     const columns = customFields.map((item) => ({
@@ -28,7 +30,6 @@ const ReportList = ({ reports, theme }) => {
                         <Header
                             iconName={"bi-card-list"}
                             nameSpaces={["report_list"]}
-                            theme={theme}
                         />
                     </div>
                     <div className="row">
@@ -38,7 +39,6 @@ const ReportList = ({ reports, theme }) => {
                                 columns={columns}
                                 data={reports}
                                 rowHover={true}
-                                theme={theme}
                             />
                         </div>
                     </div>

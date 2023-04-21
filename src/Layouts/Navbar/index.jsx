@@ -2,13 +2,14 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 
+import { useTheme } from "../../hooks/ThemeContext";
+import { joinClasses } from "../../util";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 import ThemeSwitcher from "./components/ThemeSwitcher";
 
-import { joinClasses } from "../../util";
-
-const Navbar = ({ theme, toggleTheme }) => {
+const Navbar = () => {
     const { t, i18n } = useTranslation(["header"]);
+    const theme = useTheme();
 
     useEffect(() => {
         document.title = t("title");
@@ -55,11 +56,8 @@ const Navbar = ({ theme, toggleTheme }) => {
                     id="navbarSupportedContent"
                 >
                     <form className="d-flex">
-                        <ThemeSwitcher
-                            theme={theme}
-                            toggleTheme={toggleTheme}
-                        />
-                        <LanguageSwitcher i18n={i18n} theme={theme} />
+                        <ThemeSwitcher />
+                        <LanguageSwitcher />
                     </form>
                 </div>
             </div>
