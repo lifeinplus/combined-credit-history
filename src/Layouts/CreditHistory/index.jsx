@@ -87,7 +87,7 @@ const CreditHistory = ({
                                 data={data}
                                 rowActive={true}
                                 rowHover={true}
-                                scrollButtons={true}
+                                scrolling={true}
                                 stickyHeader={true}
                                 tooltips={true}
                             />

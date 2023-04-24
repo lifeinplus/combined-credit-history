@@ -73,6 +73,7 @@ th {
 
 .cch-table {
     &.dark {
+        --bs-table-bg: var(--cch-black-light);
         --bs-table-hover-bg: var(--cch-purple-900);
 
         &.active {
@@ -94,6 +95,7 @@ th {
     }
 
     &.light {
+        --bs-table-bg: white;
         --bs-table-hover-bg: var(--cch-purple-100);
 
         &.active {
