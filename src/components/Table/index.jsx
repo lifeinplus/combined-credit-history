@@ -1,13 +1,14 @@
-import { useRowActive } from "./hooks/useRowActive";
-import { useSortableData } from "./hooks/useSortableData";
-import { useStickyHeader } from "./hooks/useStickyHeader";
+import { useTheme } from "../../hooks/ThemeContext";
+import { joinClasses } from "../../util";
 
 import Head from "./components/Head";
 import Body from "./components/Body";
 import ScrollButtons from "./components/ScrollButtons";
 
-import { useTheme } from "../../hooks/ThemeContext";
-import { joinClasses } from "../../util";
+import { useRowActive } from "./hooks/useRowActive";
+import { useSortableData } from "./hooks/useSortableData";
+import { useStickyHeader } from "./hooks/useStickyHeader";
+import { useTableScroll } from "./hooks/useTableScroll";
 
 const Table = ({
     id,
@@ -16,7 +17,7 @@ const Table = ({
     mobileView,
     rowActive,
     rowHover,
-    scrollButtons,
+    scrolling,
     stickyHeader,
     textDifference,
     tooltips,
@@ -34,6 +35,7 @@ const Table = ({
         }
     );
 
+    const [scrollWrapperRef, btnRefs, handleScroll] = useTableScroll(scrolling);
     const [tableWrapperRef, headerRef] = useStickyHeader(stickyHeader);
 
     const getSortClass = (name) => {
@@ -50,9 +52,18 @@ const Table = ({
                 "border",
                 theme === "dark" && "cch-border-dark",
             ])}
-            ref={tableWrapperRef}
+            ref={(node) => {
+                tableWrapperRef.current = node;
+                scrollWrapperRef.current = node;
+            }}
         >
-            {scrollButtons && <ScrollButtons tableId={id} />}
+            {scrolling && (
+                <ScrollButtons
+                    btnRefs={btnRefs}
+                    handleScroll={handleScroll}
+                    wrapperRef={scrollWrapperRef}
+                />
+            )}
             <table
                 className={joinClasses([
                     "table",
