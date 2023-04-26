@@ -12,10 +12,12 @@
 
 body {
     &.dark {
+        color-scheme: dark;
         background-color: var(--cch-body-bg-dark);
     }
 
     &.light {
+        color-scheme: light;
         background-color: var(--cch-body-bg-light);
     }
 }
