@@ -7,7 +7,7 @@ const customFields = [
     {
         alignment: "text-start",
         dataType: "text",
-        sysName: "fullName",
+        sysName: "clientName",
     },
     {
         alignment: "text-center",

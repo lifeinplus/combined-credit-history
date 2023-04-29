@@ -22,16 +22,16 @@ const Table = ({
     textDifference,
     tooltips,
 }) => {
-    const activeData = useRowActive(rowActive, data);
+    const rowActiveData = useRowActive(rowActive, data);
     const theme = useTheme();
 
     const { sortedData, requestSort, sortConfig } = useSortableData(
-        activeData,
+        rowActiveData,
         {
             dataType: "amount",
             direction: "asc",
             sysName: "chbPayment",
-            sysNameStatus: "chbStatus",
+            sysNameStatus: "chbPaymentStatus",
         }
     );
 

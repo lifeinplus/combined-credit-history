@@ -13,9 +13,9 @@ const CreditHistory = ({
     common,
     handleExtend,
     loans,
-    delinquency,
-    flc,
-    paymentHistory,
+    delinquencies,
+    flcs,
+    paymentHistories,
     reportCreationDate,
     showExtendedData,
 }) => {
@@ -25,21 +25,38 @@ const CreditHistory = ({
     const dateFormat = getDateFormat("ru", "status");
     const columns = defineColumns();
 
-    const data = loans.map((element) => {
-        delinquency.forEach((item) => {
-            if (item.loanId === element.loanId) {
-                element = { ...element, ...item };
+    const data = loans?.map((element) => {
+        delinquencies?.forEach((item) => {
+            if (item.loanId !== element._id) {
+                return;
             }
+
+            element = {
+                ...element,
+                delinquency0Plus: item.delinquency0Plus,
+                delinquency30Plus: item.delinquency30Plus,
+                delinquency60Plus: item.delinquency60Plus,
+                delinquency90Plus: item.delinquency90Plus,
+                delinquencyRefinancing: item.delinquencyRefinancing,
+            };
         });
 
-        flc.forEach((item) => {
-            if (item.loanId === element.loanId) {
-                element = { ...element, ...item };
+        flcs?.forEach((item) => {
+            if (item.loanId !== element._id) {
+                return;
             }
+
+            element = {
+                ...element,
+                flcNchb: item.flcNchb,
+                flcPayment: item.flcPayment,
+                flcTaken: item.flcTaken,
+                flcUcb: item.flcUcb,
+            };
         });
 
-        paymentHistory.forEach((item) => {
-            if (item.loanId === element.loanId) {
+        paymentHistories?.forEach((item) => {
+            if (item.loanId === element._id) {
                 const milliseconds = Date.parse(item.date);
                 const name = dateFormat.format(milliseconds);
                 element[name] = item.status;
@@ -70,7 +87,7 @@ const CreditHistory = ({
                             nameSpaces={["credit_history"]}
                             number={{
                                 caption: "number_of_accounts",
-                                value: loans.length,
+                                value: loans?.length,
                             }}
                             showExtendedData={showExtendedData}
                         />
@@ -125,9 +142,9 @@ const CreditHistory = ({
     }
 
     function getStatusCols() {
-        if (!loans) return [];
+        if (!loans?.length) return [];
 
-        const timePeriod = new TimePeriod(paymentHistory, reportCreationDate);
+        const timePeriod = new TimePeriod(paymentHistories, reportCreationDate);
 
         return timePeriod.result.map((item) => {
             const milliseconds = Date.parse(item);

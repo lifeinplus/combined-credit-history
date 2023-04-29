@@ -17,7 +17,7 @@ const ReportList = ({ reports }) => {
     }));
 
     return (
-        <div className="container-fluid">
+        <div className="container-fluid mb-3">
             <div
                 className={joinClasses([
                     `row panel ${theme} pt-2 rounded-bottom`,
