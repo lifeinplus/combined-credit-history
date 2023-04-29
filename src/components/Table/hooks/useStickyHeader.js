@@ -5,18 +5,18 @@ const useStickyHeader = (sticky) => {
     const headerRef = useRef(null);
 
     useEffect(() => {
-        if (headerRef.current && sticky) {
-            headerRef.current.style.removeProperty("transform");
+        const tableWrapper = tableWrapperRef.current;
+        const header = headerRef.current;
+
+        if (header && sticky) {
+            header.style.removeProperty("transform");
 
             const translate = () => {
-                if (!tableWrapperRef.current || !headerRef.current) {
+                if (!tableWrapper || !header) {
                     return;
                 }
 
                 const scroll = window.pageYOffset;
-                const header = headerRef.current;
-                const tableWrapper = tableWrapperRef.current;
-
                 const top = tableWrapper.offsetTop;
 
                 if (scroll > top) {
@@ -34,14 +34,14 @@ const useStickyHeader = (sticky) => {
 
             return () => {
                 window.removeEventListener("scroll", translate);
-                headerRef.current?.style.removeProperty("transform");
+                header?.style.removeProperty("transform");
             };
         }
 
         return () => {
-            headerRef.current?.style.removeProperty("transform");
+            header?.style.removeProperty("transform");
         };
-    }, [tableWrapperRef.current, headerRef.current]);
+    }, [sticky]);
 
     return [tableWrapperRef, headerRef];
 };

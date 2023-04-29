@@ -1,67 +1,65 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 const useTableScroll = (scrolling) => {
     const scrollWrapperRef = useRef(null);
 
-    const btnRefs = {
-        btnStart: useRef(null),
-        btnLeft: useRef(null),
-        btnRight: useRef(null),
-        btnEnd: useRef(null),
-    };
+    const btnStartRef = useRef(null);
+    const btnLeftRef = useRef(null);
+    const btnRightRef = useRef(null);
+    const btnEndRef = useRef(null);
 
-    const handleScroll = ({ altKey, key, target, type }) => {
-        const wrapper = scrollWrapperRef.current;
+    const handleScroll = useCallback(
+        ({ altKey, key, target, type }) => {
+            const wrapper = scrollWrapperRef.current;
 
-        if (!wrapper || !scrolling) return;
+            if (!wrapper || !scrolling) return;
 
-        const { btnStart, btnLeft, btnRight, btnEnd } = btnRefs;
-        const button = type === "click" && target.closest("button");
-        const id = button?.id;
+            const button = type === "click" && target.closest("button");
+            const id = button?.id;
 
-        if (id === "btnStart" || (altKey && key === "ArrowLeft")) {
-            btnStart.current?.focus();
-            wrapper.scrollLeft = 0;
-        }
+            if (id === "btnStart" || (altKey && key === "ArrowLeft")) {
+                btnStartRef.current?.focus();
+                wrapper.scrollLeft = 0;
+            }
 
-        if (id === "btnLeft" || (!altKey && key === "ArrowLeft")) {
-            btnLeft.current?.focus();
-            const { clientWidth, scrollLeft } = wrapper;
-            const scrollNew = scrollLeft - (clientWidth * 3) / 4;
-            wrapper.scrollLeft = scrollNew > 0 ? scrollNew : 0;
-        }
+            if (id === "btnLeft" || (!altKey && key === "ArrowLeft")) {
+                btnLeftRef.current?.focus();
+                const { clientWidth, scrollLeft } = wrapper;
+                const scrollNew = scrollLeft - (clientWidth * 3) / 4;
+                wrapper.scrollLeft = scrollNew > 0 ? scrollNew : 0;
+            }
 
-        if (id === "btnRight" || (!altKey && key === "ArrowRight")) {
-            btnRight.current?.focus();
-            const { clientWidth } = wrapper;
-            wrapper.scrollLeft += (clientWidth * 3) / 4;
-        }
+            if (id === "btnRight" || (!altKey && key === "ArrowRight")) {
+                btnRightRef.current?.focus();
+                const { clientWidth } = wrapper;
+                wrapper.scrollLeft += (clientWidth * 3) / 4;
+            }
 
-        if (id === "btnEnd" || (altKey && key === "ArrowRight")) {
-            btnEnd.current?.focus();
-            wrapper.scrollLeft += wrapper.scrollWidth;
-        }
-    };
+            if (id === "btnEnd" || (altKey && key === "ArrowRight")) {
+                btnEndRef.current?.focus();
+                wrapper.scrollLeft += wrapper.scrollWidth;
+            }
+        },
+        [scrolling]
+    );
 
-    const handleKeyUp = function ({ altKey, key }) {
-        const { btnStart, btnLeft, btnRight, btnEnd } = btnRefs;
-
+    const handleKeyUp = useCallback(function ({ altKey, key }) {
         if (altKey && key === "ArrowLeft") {
-            blurTimeout(btnStart);
+            blurTimeout(btnStartRef);
         }
 
         if (!altKey && key === "ArrowLeft") {
-            blurTimeout(btnLeft);
+            blurTimeout(btnLeftRef);
         }
 
         if (!altKey && key === "ArrowRight") {
-            blurTimeout(btnRight);
+            blurTimeout(btnRightRef);
         }
 
         if (altKey && key === "ArrowRight") {
-            blurTimeout(btnEnd);
+            blurTimeout(btnEndRef);
         }
-    };
+    }, []);
 
     useEffect(() => {
         document.addEventListener("keydown", handleScroll);
@@ -71,7 +69,14 @@ const useTableScroll = (scrolling) => {
             document.removeEventListener("keydown", handleScroll);
             document.removeEventListener("keyup", handleKeyUp);
         };
-    }, [scrollWrapperRef.current]);
+    }, [handleScroll, handleKeyUp]);
+
+    const btnRefs = {
+        btnStartRef,
+        btnLeftRef,
+        btnRightRef,
+        btnEndRef,
+    };
 
     return [scrollWrapperRef, btnRefs, handleScroll];
 };

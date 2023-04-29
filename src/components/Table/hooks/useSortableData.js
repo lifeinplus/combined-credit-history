@@ -2,8 +2,53 @@ import { useMemo, useState } from "react";
 
 const useSortableData = (data = [], config = null) => {
     const [sortConfig, setSortConfig] = useState(config);
-    const { dataType, direction, sysName, sysNameStatus } = sortConfig;
 
+    const sortedData = useMemo(() => {
+        const { dataType, direction, sysName, sysNameStatus } = sortConfig;
+
+        const more = direction === "asc" ? 1 : -1;
+        const less = direction === "asc" ? -1 : 1;
+
+        const result = [...data].sort((a, b) => {
+            const compare = getCompareFunction(dataType);
+
+            const result = compare({
+                statusA: a[sysNameStatus],
+                statusB: b[sysNameStatus],
+                valueA: a[sysName],
+                valueB: b[sysName],
+            });
+
+            const { order, resultA, resultB } = result;
+
+            if (order) return order;
+            if (resultA > resultB) return more;
+            if (resultA < resultB) return less;
+
+            return null;
+        });
+
+        return result;
+    }, [data, sortConfig]);
+
+    const requestSort = (field) => {
+        let direction = "asc";
+
+        if (
+            sortConfig &&
+            sortConfig.sysName === field.sysName &&
+            sortConfig.direction === "asc"
+        ) {
+            direction = "desc";
+        }
+
+        setSortConfig({ ...field, direction });
+    };
+
+    return { sortedData, requestSort, sortConfig };
+};
+
+function getCompareFunction(type) {
     const _compareFunctions = {
         amount({ statusA, statusB, valueA, valueB }) {
             if (statusA === "Ошибка вычисления") return { order: -1 };
@@ -56,45 +101,7 @@ const useSortableData = (data = [], config = null) => {
         },
     };
 
-    const sortedData = useMemo(() => {
-        const more = direction === "asc" ? 1 : -1;
-        const less = direction === "asc" ? -1 : 1;
-
-        const result = [...data].sort((a, b) => {
-            const compare = _compareFunctions[dataType];
-
-            const result = compare({
-                statusA: a[sysNameStatus],
-                statusB: b[sysNameStatus],
-                valueA: a[sysName],
-                valueB: b[sysName],
-            });
-
-            const { order, resultA, resultB } = result;
-
-            if (order) return order;
-            if (resultA > resultB) return more;
-            if (resultA < resultB) return less;
-        });
-
-        return result;
-    }, [data, sortConfig]);
-
-    const requestSort = (field) => {
-        let direction = "asc";
-
-        if (
-            sortConfig &&
-            sortConfig.sysName === field.sysName &&
-            sortConfig.direction === "asc"
-        ) {
-            direction = "desc";
-        }
-
-        setSortConfig({ ...field, direction });
-    };
-
-    return { sortedData, requestSort, sortConfig };
-};
+    return _compareFunctions[type];
+}
 
 export { useSortableData };
