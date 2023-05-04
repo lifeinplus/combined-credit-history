@@ -10,6 +10,10 @@
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3) !important;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     &.dark {
         color-scheme: dark;
@@ -20,4 +24,11 @@ body {
         color-scheme: light;
         background-color: var(--cch-body-bg-light);
     }
+}
+
+body,
+#root {
+    flex-direction: column;
+    height: 100%;
+    display: flex;
 }
