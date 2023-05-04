@@ -51,7 +51,7 @@ class TimePeriod {
     }
 
     #getStartDate() {
-        return this.#history.reduce((result, { date }) => {
+        return this.#history?.reduce((result, { date }) => {
             return result > date ? date : result;
         }, this.#lastDate);
     }
@@ -103,7 +103,7 @@ const customFields = [
         alignment: "text-end",
         dataType: "amount",
         sysName: "chbPayment",
-        sysNameStatus: "chbStatus",
+        sysNameStatus: "chbPaymentStatus",
         tooltip: true,
     },
     {
@@ -111,7 +111,7 @@ const customFields = [
         dataType: "amount",
         extended: true,
         sysName: "flcPayment",
-        sysNameStatus: "chbStatus",
+        sysNameStatus: "chbPaymentStatus",
         tooltip: true,
     },
     {

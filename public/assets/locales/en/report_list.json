@@ -3,7 +3,7 @@
         "reportId": "ID",
         "appCreationDate": "Creation Date",
         "appNumber": "App No",
-        "clientFullName": "Client",
+        "clientName": "Client",
         "documentNumber": "Passport Number",
         "documentSeries": "Passport Series"
     },

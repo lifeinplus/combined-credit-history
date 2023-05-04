@@ -8,7 +8,7 @@ import LanguageSwitcher from "./components/LanguageSwitcher";
 import ThemeSwitcher from "./components/ThemeSwitcher";
 
 const Navbar = () => {
-    const { t, i18n } = useTranslation(["header"]);
+    const { t } = useTranslation(["header"]);
     const theme = useTheme();
 
     useEffect(() => {
