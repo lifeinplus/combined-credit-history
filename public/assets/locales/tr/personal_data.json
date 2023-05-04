@@ -3,7 +3,7 @@
     "app_number": "Başvuru No",
     "document": {
         "dataSource": "Kaynak",
-        "fullName": "Müşteri",
+        "clientName": "Müşteri",
         "birthDate": "Doğum Tarihi",
         "documentNumber": "Pasaport Numarası",
         "documentSeries": "Pasaport Serisi",

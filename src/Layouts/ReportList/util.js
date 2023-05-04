@@ -2,11 +2,6 @@ const customFields = [
     {
         alignment: "text-start",
         dataType: "numeric",
-        sysName: "reportId",
-    },
-    {
-        alignment: "text-end",
-        dataType: "numeric",
         sysName: "appNumber",
     },
     {
@@ -18,7 +13,7 @@ const customFields = [
         alignment: "text-start",
         dataType: "text",
         isLink: true,
-        sysName: "clientFullName",
+        sysName: "clientName",
     },
     {
         alignment: "text-end",

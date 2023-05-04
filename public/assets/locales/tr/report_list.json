@@ -3,7 +3,7 @@
         "reportId": "ID",
         "appCreationDate": "Oluşturma Tarihi",
         "appNumber": "Başvuru No",
-        "clientFullName": "Müşteri",
+        "clientName": "Müşteri",
         "documentNumber": "Pasaport Numarası",
         "documentSeries": "Pasaport Serisi"
     },

@@ -3,7 +3,7 @@ import { useTheme } from "../../../../hooks/ThemeContext";
 import { joinClasses, langs } from "../../../../util";
 import { customFields } from "./util";
 
-const PaymentAmounts = ({ data, showExtendedData: extended }) => {
+const PaymentAmounts = ({ data = {}, showExtendedData: extended }) => {
     const { t, i18n } = useTranslation(["credit_history"]);
     const lang = langs[i18n.resolvedLanguage];
     const numberFormat = new Intl.NumberFormat(lang.locale);

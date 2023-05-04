@@ -3,7 +3,7 @@
         "reportId": "ID",
         "appCreationDate": "Дата Создания",
         "appNumber": "Номер Заявки",
-        "clientFullName": "Клиент",
+        "clientName": "Клиент",
         "documentNumber": "Номер Паспорта",
         "documentSeries": "Серия Паспорта"
     },

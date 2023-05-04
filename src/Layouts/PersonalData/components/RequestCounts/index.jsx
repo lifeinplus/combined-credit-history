@@ -3,7 +3,7 @@ import { useTheme } from "../../../../hooks/ThemeContext";
 import { joinClasses } from "../../../../util";
 import { customFields, scoreStyles } from "./util";
 
-const RequestCounts = ({ counts, score }) => {
+const RequestCounts = ({ counts = {}, score }) => {
     const { t } = useTranslation(["personal_data"]);
     const theme = useTheme();
 

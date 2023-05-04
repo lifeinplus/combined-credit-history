@@ -14,7 +14,7 @@ const Header = ({
     const { i18n, t } = useTranslation(nameSpaces);
     const theme = useTheme();
 
-    const headerDate = getHeaderDate();
+    const headerDate = getHeaderDate(date?.value);
 
     return (
         <nav className={`navbar navbar-${theme}`}>
@@ -62,12 +62,12 @@ const Header = ({
         );
     }
 
-    function getHeaderDate() {
-        if (!date) return;
+    function getHeaderDate(value) {
+        if (!value) return;
 
         const lang = langs[i18n.resolvedLanguage];
         const dateFormat = getDateFormat(lang.locale, "header");
-        const milliseconds = Date.parse(date.value);
+        const milliseconds = Date.parse(value);
 
         return dateFormat.format(milliseconds);
     }

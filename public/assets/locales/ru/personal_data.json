@@ -3,7 +3,7 @@
     "app_number": "Номер Заявки",
     "document": {
         "dataSource": "Источник",
-        "fullName": "Клиент",
+        "clientName": "Клиент",
         "birthDate": "Дата рождения",
         "documentNumber": "Номер паспорта",
         "documentSeries": "Серия паспорта",

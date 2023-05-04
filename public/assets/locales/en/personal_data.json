@@ -3,7 +3,7 @@
     "app_number": "App No",
     "document": {
         "dataSource": "Source",
-        "fullName": "Client",
+        "clientName": "Client",
         "birthDate": "Birth Date",
         "documentNumber": "Passport Number",
         "documentSeries": "Passport Series",

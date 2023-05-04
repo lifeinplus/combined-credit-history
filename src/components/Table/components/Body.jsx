@@ -26,15 +26,14 @@ const Body = ({ id, columns, data, mobileView, rowActive, textDifference }) => {
 
     return (
         <tbody>
-            {data.map((element, index) => {
-                const key = `${id}-row${index}`;
-                return <Row key={key} id={key} data={element} />;
-            })}
+            {data.map((element) => (
+                <Row key={element._id} data={element} />
+            ))}
         </tbody>
     );
 
-    function Row({ id, data }) {
-        const { activeId, reportId } = data;
+    function Row({ data }) {
+        const { activeId, _id } = data;
 
         return (
             <tr
@@ -47,15 +46,9 @@ const Body = ({ id, columns, data, mobileView, rowActive, textDifference }) => {
                 onClick={handleClick}
             >
                 {columns.map((element, index) => {
-                    const key = `${id}-cell${index}`;
+                    const key = `${_id}-${index}`;
                     return (
-                        <Cell
-                            key={key}
-                            id={key}
-                            column={element}
-                            data={data}
-                            reportId={reportId}
-                        />
+                        <Cell key={key} id={key} column={element} data={data} />
                     );
                 })}
             </tr>
@@ -63,7 +56,7 @@ const Body = ({ id, columns, data, mobileView, rowActive, textDifference }) => {
     }
 
     function Cell(params) {
-        const { id, column, reportId } = params;
+        const { id, column, data } = params;
         const { isLink, name, type } = column;
 
         const { cell, badge, value } =
@@ -74,7 +67,7 @@ const Body = ({ id, columns, data, mobileView, rowActive, textDifference }) => {
         const label = mobileView && name;
 
         const linkValue = isLink && (
-            <Link className={`cch-link ${theme}`} to={`/reports/${reportId}`}>
+            <Link className={`cch-link ${theme}`} to={`/reports/${data._id}`}>
                 {value}
             </Link>
         );
@@ -159,7 +152,7 @@ const Body = ({ id, columns, data, mobileView, rowActive, textDifference }) => {
         return sourceValue;
     }
 
-    function compare(valueA, valueB) {
+    function compare(valueA = "", valueB = "") {
         let result = [];
 
         const arrayA = valueA.split(" ");
