@@ -1,5 +1,6 @@
 import CreditHistory from "./CreditHistory";
-import Navbar from "./Navbar";
+import Footer from "./Footer";
+import Header from "./Header";
 import PersonalData from "./PersonalData";
 
-export { CreditHistory, Navbar, PersonalData };
+export { CreditHistory, Footer, Header, PersonalData };
