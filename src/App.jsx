@@ -3,7 +3,8 @@ import { useTranslation } from "react-i18next";
 import { Routes, Route } from "react-router-dom";
 import Cookies from "universal-cookie";
 
-import { Navbar } from "./layouts";
+import { Footer, Header } from "./layouts";
+
 import NotFound from "./pages/NotFound";
 import Report from "./pages/Report";
 import Reports from "./pages/Reports";
@@ -63,9 +64,7 @@ const App = () => {
 
     return (
         <>
-            <header>
-                <Navbar />
-            </header>
+            <Header />
             <main>
                 <div className="container-fluid">
                     <Routes>
@@ -86,6 +85,7 @@ const App = () => {
                     </Routes>
                 </div>
             </main>
+            <Footer />
         </>
     );
 };

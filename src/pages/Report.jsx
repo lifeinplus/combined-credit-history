@@ -48,7 +48,7 @@ function useDataGetByReportId(method, id) {
         axios
             .get(url + method, { params: { reportId: id } })
             .then((response) => setData(response.data));
-    }, []);
+    }, [method, id]);
 
     return data;
 }
@@ -68,7 +68,7 @@ function useDataGetByLoans(method, loans) {
         axios
             .get(url + method, { params: { loanIds: ids } })
             .then((response) => setData(response.data));
-    }, [ids]);
+    }, [method, ids]);
 
     return data;
 }
