@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 import { useTheme } from "../hooks/ThemeContext";
-import ReportList from "../layouts/ReportList";
+import { ReportList } from "../layouts";
 import { joinClasses } from "../util";
 
 const Reports = () => {

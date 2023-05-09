@@ -4,44 +4,42 @@
 
 .cch-text-bg-0 {
     color: black;
-    background-color: white;
+    background-color: var(--cch-text-bg-0);
+    border: 1px solid var(--cch-text-bg--);
 }
 
 .cch-text-bg-1 {
     background-color: var(--cch-text-bg-1);
 }
 
-.cch-text-bg-A,
-.cch-text-bg-B,
-.cch-text-bg-C {
+.cch-text-bg-A {
     color: black;
-    background-color: var(--cch-text-bg-abc);
+    background-color: var(--cch-text-bg-a);
 }
 
-.cch-text-bg-2 {
-    background-color: var(--cch-text-bg-2);
+.cch-text-bg-B {
+    background-color: var(--cch-text-bg-b);
 }
 
-.cch-text-bg-3 {
-    background-color: var(--cch-text-bg-3);
+.cch-text-bg-C {
+    background-color: var(--cch-text-bg-c);
 }
 
-.cch-text-bg-4 {
-    background-color: var(--cch-text-bg-4);
+.cch-text-bg-D {
+    background-color: var(--cch-text-bg-d);
 }
 
-.cch-text-bg-5 {
-    background-color: var(--cch-text-bg-5);
+.cch-text-bg-E {
+    background-color: var(--cch-text-bg-e);
 }
 
-.cch-text-bg-7,
-.cch-text-bg-Z {
-    background-color: var(--cch-text-bg-7z);
+.cch-text-bg-F {
+    background-color: var(--cch-text-bg-f);
 }
 
-.cch-text-bg-8,
-.cch-text-bg-9 {
-    background-color: var(--cch-text-bg-89);
+.cch-text-bg-G {
+    background-color: var(--cch-text-bg-g);
+    border: 1px solid var(--cch-text-bg--);
 }
 
 .cch-text-bg-- {

@@ -4,11 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Cookies from "universal-cookie";
 
 import { Footer, Header } from "./layouts";
-
-import NotFound from "./pages/NotFound";
-import Report from "./pages/Report";
-import Reports from "./pages/Reports";
-
+import { About, NotFound, Report, Reports } from "./pages";
 import { useThemeUpdate } from "./hooks/ThemeContext";
 import { langs } from "./util";
 
@@ -69,6 +65,7 @@ const App = () => {
                 <div className="container-fluid">
                     <Routes>
                         <Route path="/" element={<Reports />} />
+                        <Route path="/about" element={<About />} />
                         <Route path="/reports">
                             <Route index element={<Reports />} />
                             <Route
