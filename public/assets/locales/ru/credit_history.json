@@ -1,12 +1,15 @@
 {
     "amounts": {
-        "chbPaymentsAmountTotal": "Платежи БКИ: RUB",
+        "chbCreditCardsAmount": "Карты - RUB",
+        "chbLoansAmount": "Кредиты - RUB",
+        "chbPaymentsAmount": "Платежи БКИ - RUB",
         "chbPaymentsAmountRub": "RUB",
-        "chbPaymentsAmountUsd": "USD",
-        "chbPaymentsAmountEur": "EUR",
-        "flcPaymentsAmountTotal": "Платежи ПСК: RUB",
-        "chbLoansAmount": "Кредиты: RUB",
-        "chbCreditCardsAmount": "Карты: RUB"
+        "chbPaymentsAmountGbp": "GBP",
+        "chbPaymentsAmountTry": "TRY",
+        "flcPaymentsAmount": "Платежи ПСК - RUB",
+        "flcPaymentsAmountRub": "RUB",
+        "flcPaymentsAmountGbp": "GBP",
+        "flcPaymentsAmountTry": "TRY"
     },
     "extended_control": "Расширенная",
     "columns": {
