@@ -1,12 +1,15 @@
 {
     "amounts": {
-        "chbPaymentsAmountTotal": "Ödeme KGB: RUB",
+        "chbCreditCardsAmount": "Kartlar - TRY",
+        "chbLoansAmount": "Krediler - TRY",
+        "chbPaymentsAmount": "Ödeme KGB - TRY",
         "chbPaymentsAmountRub": "RUB",
-        "chbPaymentsAmountUsd": "USD",
-        "chbPaymentsAmountEur": "EUR",
-        "flcPaymentsAmountTotal": "Ödeme TKM: RUB",
-        "chbLoansAmount": "Krediler: RUB",
-        "chbCreditCardsAmount": "Kartlar: RUB"
+        "chbPaymentsAmountGbp": "GBP",
+        "chbPaymentsAmountTry": "TRY",
+        "flcPaymentsAmount": "Ödeme TKM - TRY",
+        "flcPaymentsAmountRub": "RUB",
+        "flcPaymentsAmountGbp": "GBP",
+        "flcPaymentsAmountTry": "TRY"
     },
     "extended_control": "Genişletilmiş",
     "columns": {
