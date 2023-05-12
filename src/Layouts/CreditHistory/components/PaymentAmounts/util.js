@@ -1,35 +1,61 @@
-const customFields = [
+const obligationFields = [
+    { sysName: "chbLoansAmount", type: "loan" },
+    { sysName: "chbLoansAmountGbp", country: "gb", hide: true, type: "loan" },
+    { sysName: "chbLoansAmountRub", country: "ru", hide: true, type: "loan" },
+    { sysName: "chbLoansAmountTry", country: "tr", hide: true, type: "loan" },
+    { sysName: "chbCreditCardsAmount", type: "card" },
     {
-        context: "primary",
-        sysName: "chbPaymentsAmountTotal",
-        type: "payment",
+        sysName: "chbCreditCardsAmountGbp",
+        country: "gb",
+        hide: true,
+        type: "card",
     },
     {
-        sysName: "chbPaymentsAmountRub",
-        type: "payment",
+        sysName: "chbCreditCardsAmountRub",
+        country: "ru",
+        hide: true,
+        type: "card",
     },
     {
-        sysName: "chbPaymentsAmountUsd",
-        type: "payment",
-    },
-    {
-        sysName: "chbPaymentsAmountEur",
-        type: "payment",
-    },
-    {
-        context: "info",
-        extended: true,
-        sysName: "flcPaymentsAmountTotal",
-        type: "payment",
-    },
-    {
-        sysName: "chbLoansAmount",
-        type: "obligation",
-    },
-    {
-        sysName: "chbCreditCardsAmount",
-        type: "obligation",
+        sysName: "chbCreditCardsAmountTry",
+        country: "tr",
+        hide: true,
+        type: "card",
     },
 ];
 
-export { customFields };
+const paymentFields = [
+    { sysName: "chbPaymentsAmount", type: "chb", context: "primary" },
+    { sysName: "chbPaymentsAmountGbp", type: "chb", country: "gb" },
+    { sysName: "chbPaymentsAmountRub", type: "chb", country: "ru" },
+    { sysName: "chbPaymentsAmountTry", type: "chb", country: "tr" },
+    {
+        sysName: "flcPaymentsAmount",
+        type: "flc",
+        extended: true,
+        context: "info",
+    },
+    {
+        sysName: "flcPaymentsAmountGbp",
+        type: "flc",
+        extended: true,
+        country: "gb",
+        hide: true,
+    },
+    {
+        sysName: "flcPaymentsAmountRub",
+        type: "flc",
+        extended: true,
+        country: "ru",
+        hide: true,
+    },
+    {
+        sysName: "flcPaymentsAmountTry",
+        type: "flc",
+        extended: true,
+        country: "tr",
+        hide: true,
+    },
+];
+
+export { obligationFields, paymentFields };
