@@ -22,6 +22,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.vscode
+
 public/data
 src/data
-.vscode
+
+server/.env
