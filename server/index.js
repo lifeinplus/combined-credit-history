@@ -2,6 +2,8 @@ const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
 
+const config = require("./config/config");
+
 const Common = require("./models/Common");
 const Delinquency = require("./models/Delinquency");
 const Flc = require("./models/Flc");
@@ -13,12 +15,11 @@ const RequestCount = require("./models/RequestCount");
 
 const app = express();
 app.use(cors());
-// app.use(express.json());
 app.use(express.json({ limit: 52428800 }));
 
 mongoose
-    .connect("mongodb://localhost/cchdb")
-    .then(() => console.log("Connected to cchdb database"))
+    .connect(config.mongo.uri, { authSource: "admin" })
+    .then(() => console.log("Connected to MongoDB"))
     .catch((e) => console.error(e));
 
 app.get("/commonsGet", async (req, res) => {
@@ -147,8 +148,8 @@ app.get("/requestCountsGet", async (req, res) => {
     }
 });
 
-app.listen(3001, () => {
-    console.log("Server is running on port 3001");
+app.listen(config.server.port, () => {
+    console.log(`Server is running on port ${config.server.port}`);
 });
 
 async function insertLoans(data, id, newId) {
