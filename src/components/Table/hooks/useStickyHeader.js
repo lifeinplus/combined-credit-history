@@ -16,7 +16,7 @@ const useStickyHeader = (sticky) => {
                     return;
                 }
 
-                const scroll = window.pageYOffset;
+                const scroll = window.scrollY;
                 const top = tableWrapper.offsetTop;
 
                 if (scroll > top) {
